@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 2997388278,
+  "Title": "Iron Man",
+  "Description": "A Caves of Qud mod to make save scumming more difficult in Classic mode.\n\nThis mod makes several changes to Caves of Qud's save schedule so that it saves more frequently, and when the player is in greater peril. These changes [i]only[/i] apply in Classic mode; games played in Roleplay or Wander mode will be unaffected.\n\nSource code: https://github.com/kernelmethod/Iron-Man",
+  "Tags": "Script",
+  "Visibility": "2",
+  "ImagePath": "Preview.png"
+}
