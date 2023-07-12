@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+    <!--
+        Wiki reference page: https://wiki.cavesofqud.com/wiki/Fungal_infections
+
+        Note that the wiki may be out of date as new worms are added and some are tagged/untagged as NoCure.
+        An alternative method would be to use a HarmonyPatch on XRLCore.GenerateFungalCure, but this method
+        doesn't require any Harmony patching (or even any scripting).
+    -->
+
+    <object Name="Seedsprout Worm" Load="Merge">
+        <tag Name="NoCure" />
+    </object>
+
+    <object Name="Electric Snail" Load="Merge">
+        <tag Name="NoCure" />
+    </object>
+</objects>

@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 2995934012,
+  "Title": "Easier Fungal Cures",
+  "Description": "Some of the corpse types that Qud may require for fungal cures ([url=https://wiki.cavesofqud.com/wiki/Fungal_infections#Curing_Fungal_Infections]wiki[/url]) are much harder to find than others. This mod limits the corpses to just those that are easiest to find.\n[h2]Features[/h2]\nModifies the corpse types used for fungal cures to just the following:\n[list]\n[*] Leech corpse\n[*]Knollworm corpse\n[*] Segmented mirthworm corpse\n[/list]\n\nSource code: https://github.com/kernelmethod/EasierFungalCures/",
+  "Tags": "World",
+  "Visibility": "2",
+  "ImagePath": "Preview.png"
+}
