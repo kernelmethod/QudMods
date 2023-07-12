@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<options>
+    <option ID="Option_Kernelmethod_Riftwalker_AdditionalContent" DisplayText="Enable additional content (only checked during worldgen)"
+        Category="Mods: Riftwalker" Type="Checkbox" Default="yes"></option>
+    <option ID="Option_Kernelmethod_Riftwalker_Weapons" Requires="Option_Kernelmethod_Riftwalker_AdditionalContent==Yes"
+        DisplayText="Enable new weapons" Category="Mods: Riftwalker" Type="Checkbox" Default="yes"></option>
+    <option ID="Option_Kernelmethod_Riftwalker_Items" Requires="Option_Kernelmethod_Riftwalker_AdditionalContent==Yes"
+        DisplayText="Enable new items" Category="Mods: Riftwalker" Type="Checkbox" Default="yes"></option>
+</options>

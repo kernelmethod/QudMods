@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<populations>
+    <!--
+        Merchant inventories
+    -->
+    <population Name="GrenadierInventory" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Blueprint="Kernelmethod_Riftwalker_VortexJar" Number="1-2" Chance="40" />
+        </group>
+    </population>
+
+    <population Name="GrenadierInventory_Legendary" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Blueprint="Kernelmethod_Riftwalker_VortexJar" Number="1-3" Chance="50" />
+        </group>
+    </population>
+
+    <!--
+        Armor tables
+    -->
+
+    <population Name="Armor 7R" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Weight="2" Number="1" Blueprint="Kernelmethod_Riftwalker_VortexPack" />
+        </group>
+    </population>
+
+    <population Name="Armor 8R" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Weight="10" Number="1" Blueprint="Kernelmethod_Riftwalker_VortexPack" />
+        </group>
+    </population>
+
+    <!--
+        Artifact tables
+    -->
+
+    <population Name="Artifact 2C" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Weight="1" Number="1" Blueprint="Kernelmethod_Riftwalker_VortexJar" />
+        </group>
+    </population>
+
+    <population Name="Artifact 3C" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Weight="1" Number="1" Blueprint="Kernelmethod_Riftwalker_VortexJar" />
+        </group>
+    </population>
+
+    <population Name="Artifact 4C" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Weight="5" Number="1" Blueprint="Kernelmethod_Riftwalker_VortexJar" />
+        </group>
+    </population>
+
+    <population Name="Artifact 6R" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Weight="1" Number="1" Blueprint="Kernelmethod_Riftwalker_VortexPack" />
+        </group>
+    </population>
+
+    <population Name="Artifact 7R" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Weight="2" Number="1" Blueprint="Kernelmethod_Riftwalker_VortexPack" />
+        </group>
+    </population>
+
+    <population Name="Artifact 8R" Load="Merge">
+        <group Name="Items" Load="Merge">
+            <object Weight="10" Number="1" Blueprint="Kernelmethod_Riftwalker_VortexPack" />
+        </group>
+    </population>
+</populations>

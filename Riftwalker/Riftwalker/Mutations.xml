@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mutations>
+    <category Name="Mental" DisplayName="{{G|Mental Mutations}}" Stat="Ego" Property="MentalMutationShift"
+        ForceProperty="MentalMutationForceShift" IncludeInMutatePool="true">
+        <mutation Name="Escape Rift" Cost="2" MaxSelected="1" Class="Kernelmethod_Riftwalker_EscapeRift"
+            Exclusions="" BearerDescription="spacefolders" BiomeAdjective="warped" Tile="Mutations/EscapeRift.png" />
+
+        <!-- Increase the cost of Space-Time Vortex from 3 to 4 -->
+        <mutation Name="Space-Time Vortex" Cost="4" MaxSelected="1" Class="SpacetimeVortex" Exclusions=""
+            BearerDescription="spacefolders" BiomeAdjective="warped" Tile="Mutations/spacetime_vortex.bmp" />
+    </category>
+</mutations>

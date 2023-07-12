@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+    <!--
+        A space-time anomaly that has a temporary duration (like Space-Time Vortex) but is simultaneously
+        stable (like Space-Time Rift.)
+    -->
+    <object Name="Kernelmethod_Riftwalker_Dissipating Space-Time Rift" Inherits="Space-Time Rift">
+        <part Name="Temporary" Duration="20" />
+    </object>
+</objects>

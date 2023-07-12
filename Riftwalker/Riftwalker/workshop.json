@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 2992397788,
+  "Title": "Riftwalker",
+  "Description": "[list]\n[*] Cornered?\n[*] Tough enemy in the way?\n[*] Barrier blocking your path?\n[*] Bored, and looking for a way to instantly teleport 25 strata below Qud?\n[/list]\n\n[i]Just space-time vortex your problems away![/i]\n\nRiftwalker is a small Caves of Qud mod to increase the viability of Space-Time Vortex-oriented builds. It is partially inspired by the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1445153212]Improved Space-Time Vortex[/url] mod.\n\nFeatures:\n[list]\n[*] Adds the Escape Rift mental mutation, which spawns a space-time vortex at the\n  player's current cell.\n[*] Vortices spawned by the Space-Time Vortex mutation now spawn at the location\n  selected by the player (rather than a random adjacent tile). The mutation\ncost of Space-Time Vortex is slightly increased. This change _only_ applies to\nthe player, not to NPCs that use Space-Time Vortex.\n[/list]\n\nSource code: https://github.com/kernelmethod/Riftwalker",
+  "Tags": "Mutation",
+  "Visibility": "2",
+  "ImagePath": "Preview.png"
+}
