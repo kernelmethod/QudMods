@@ -15,7 +15,6 @@ namespace Kernelmethod.IronMan
             {
                 player.AddPart<SaveOnDeath>();
                 player.AddPart<SaveOnHealthThreshold>();
-                player.AddPart<SaveOnDrainedStat>();
             }
         }
     }
@@ -32,7 +31,6 @@ namespace Kernelmethod.IronMan
             {
                 player.RequirePart<SaveOnDeath>();
                 player.RequirePart<SaveOnHealthThreshold>();
-                player.RequirePart<SaveOnDrainedStat>();
             }
         }
     }
