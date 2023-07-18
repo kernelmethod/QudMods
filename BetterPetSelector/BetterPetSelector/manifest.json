@@ -1,9 +1,9 @@
 {
     "id": "Kernelmethod_BetterPetSelector",
     "title": "{{love|Better Pet Selector}}",
-    "description": "",
+    "description": "Improves the pet selection UI on starting a new game.",
     "version": "0.1.0",
     "author": "{{G|kernelmethod}}",
-    "tags": "UX",
-    "PreviewImage": "BetterPetSelector.png"
+    "tags": "UX,Pet",
+    "PreviewImage": "preview.png"
 }

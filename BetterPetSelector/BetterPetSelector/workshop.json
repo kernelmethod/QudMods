@@ -1,8 +1,8 @@
 {
-  "WorkshopId": 2995934012,
+  "WorkshopId": 3006503292,
   "Title": "Better Pet Selector",
-  "Description": "",
-  "Tags": "UX",
+  "Description": "An improved pet selection interface for starting a new game.\n\nAdds icons and flavor text for each pet during the pet selection phase of a new game.",
+  "Tags": "UX,Pet",
   "Visibility": "2",
-  "ImagePath": "BetterPetSelector.png"
+  "ImagePath": "preview.png"
 }
