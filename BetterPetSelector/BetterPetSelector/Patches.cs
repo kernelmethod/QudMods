@@ -44,7 +44,6 @@ namespace Kernelmethod.BetterPetSelector.Patches {
             }
         }
 
-
         [HarmonyPrefix]
         [HarmonyPatch(nameof(QudCustomizeCharacterModuleWindow.OnChoosePet))]
         static bool OnChoosePetPrefix(QudCustomizeCharacterModuleWindow __instance, Task __result)
@@ -87,6 +86,8 @@ namespace Kernelmethod.BetterPetSelector.Patches {
                 window.module.data.pet = availablePets[num].Id;
             }
             window.module.setData(window.module.data);
+
+            window.UpdateUI();
         }
     }
 }
