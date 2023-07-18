@@ -25,6 +25,7 @@
     </object>
 
     <object Name="FireOnAsphalt" Load="Merge">
+        <part Name="Kernelmethod_BetterPetSelector" Description="A wingless dawnglider that incinerates foes" />
     </object>
 
     <object Name="Frillicent" Load="Merge">
@@ -71,6 +72,10 @@
         <part Name="Kernelmethod_BetterPetSelector" Description="A pit beetle with armor-peeling, man-crunching, dismembering horns" />
     </object>
 
+    <object Name="Mniq Mnaq" Load="Merge">
+        <part Name="Kernelmethod_BetterPetSelector" Description="A great saltback with musical talent" />
+    </object>
+
     <object Name="Moldfella" Load="Merge">
         <part Name="Kernelmethod_BetterPetSelector" Description="A sentient fungus that thinks you're the pet" />
     </object>
@@ -84,7 +89,7 @@
     </object>
 
     <object Name="ooEEOOH" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="Baboon girl" />
+        <part Name="Kernelmethod_BetterPetSelector" Description="A dancing baboon girl" />
     </object>
 
     <object Name="RootKnotStarter" Load="Merge">
