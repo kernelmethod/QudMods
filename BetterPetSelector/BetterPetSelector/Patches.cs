@@ -81,35 +81,5 @@ namespace Kernelmethod.BetterPetSelector.Patches {
             }
             window.module.setData(window.module.data);
         }
-
-        static async Task OnChoosePetOriginal(QudCustomizeCharacterModuleWindow window)
-        {
-            List<FrameworkDataElement> availablePets = new List<FrameworkDataElement>(window.GetPets());
-            if (availablePets.Count == 0)
-                return;
-
-            availablePets.Insert(0, new FrameworkDataElement
-            {
-                Id = null,
-                Description = "<none>"
-            });
-
-            var petNames = availablePets.Select((FrameworkDataElement o) => o.Description);
-
-            int num = await Popup.ShowOptionListAsync("Choose Pet", availablePets.Select((FrameworkDataElement o) => o.Description).ToArray(), null, 0, null, 60, RespectOptionNewlines: false, AllowEscape: true);
-            if (window.module.data == null)
-            {
-                window.module.data = new QudCustomizeCharacterModuleData();
-            }
-            if (num <= 0)
-            {
-                window.module.data.pet = null;
-            }
-            else
-            {
-                window.module.data.pet = availablePets[num].Id;
-            }
-            window.module.setData(window.module.data);
-        }
     }
 }
