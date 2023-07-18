@@ -26,9 +26,8 @@ namespace Kernelmethod.BetterPetSelector.Patches {
             {
                 string id = item.Name;
                 string name = item.GetTag("PetName", item.DisplayName());
-                string description = item.GetPartParameter<string>("Kernelmethod_BetterPetSelector", "Description");
-
-                string renderBlueprint = item.GetPartParameter<string>("Kernelmethod_BetterPetSelector", "RenderBlueprint");
+                string description = item.GetTag("Kernelmethod_BetterPetSelector_Description", null);
+                string renderBlueprint = item.GetTag("Kernelmethod_BetterPetSelector_RenderBlueprint", null);
 
                 IRenderable icon;
                 if (renderBlueprint == null)

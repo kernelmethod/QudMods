@@ -5,115 +5,118 @@
     -->
 
     <object Name="E-Ros" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A lovestruck robot" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A lovestruck robot" />
     </object>
 
     <object Name="Ebenshabat" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A starapple-loving robot" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A starapple-loving robot" />
     </object>
 
     <object Name="EitherOrPetSpawner" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A pair of the player's alternate selves" RenderBlueprint="Kernelmethod_BetterPetSelector_EitherOrBlueprint" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A pair of the player's alternate selves" />
+        <tag Name="Kernelmethod_BetterPetSelector_RenderBlueprint" Value="Kernelmethod_BetterPetSelector_EitherOrBlueprint" />
     </object>
 
     <object Name="Ercolano" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A sentient chair" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A sentient chair" />
     </object>
 
     <object Name="Esbear" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="An esper. And a bear. A mind-tinker with an inexplicable force of ego" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="An esper. And a bear. A mind-tinker with an inexplicable force of ego" />
     </object>
 
     <object Name="FireOnAsphalt" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A wingless dawnglider that incinerates foes" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A wingless dawnglider that incinerates foes" />
     </object>
 
     <object Name="Frillicent" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A land-dwelling sea slug that dazzles enemies with her rainbow colors" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A land-dwelling sea slug that dazzles enemies with her rainbow colors" />
     </object>
 
     <object Name="Frondzie" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A jokester vine. Taunts random creatures" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A jokester vine. Taunts random creatures" />
     </object>
 
     <object Name="Gloaming" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A nullphase owl. Has a chance of revealing secrets" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A nullphase owl. Has a chance of revealing secrets" />
     </object>
 
     <object Name="Gruwofufo" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A loyal snapjaw retainer" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A loyal snapjaw retainer" />
     </object>
 
     <object Name="Goshling" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="An adorable girshling" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="An adorable girshling" />
     </object>
 
     <object Name="Hylaeus" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A loyal dog. Fetches random objects on the ground" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A loyal dog. Fetches random objects on the ground" />
     </object>
 
     <object Name="Important Fish" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A steel-and-chrome, piston-powered, laser-wielding fish" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A steel-and-chrome, piston-powered, laser-wielding fish" />
     </object>
 
     <object Name="Iopinax" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="Probable descendant of the great three-headed mountain goat Iopinax" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="Probable descendant of the great three-headed mountain goat Iopinax" />
     </object>
 
     <object Name="LorentEpsomeSummoner" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="An enigmatic, busted templar phylactery projection" RenderBlueprint="Lorent Epsome" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="An enigmatic, busted templar phylactery projection" />
+        <tag Name="Kernelmethod_BetterPetSelector_RenderBlueprint" Value="Lorent Epsome" />
     </object>
 
     <object Name="Lyy" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A peculiar frog borne from the realm of tattooed imagination" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A peculiar frog borne from the realm of tattooed imagination" />
     </object>
 
     <object Name="Man Opener" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A pit beetle with armor-peeling, man-crunching, dismembering horns" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A pit beetle with armor-peeling, man-crunching, dismembering horns" />
     </object>
 
     <object Name="Mniq Mnaq" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A great saltback with musical talent" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A great saltback with musical talent" />
     </object>
 
     <object Name="Moldfella" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A sentient fungus that thinks you're the pet" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A sentient fungus that thinks you're the pet" />
     </object>
 
     <object Name="Mote Cloud" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A cloud of light. Has Light Manipulation" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A cloud of light. Has Light Manipulation" />
     </object>
 
     <object Name="Nanna" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A servile robot with Moon King Fever" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A servile robot with Moon King Fever" />
     </object>
 
     <object Name="ooEEOOH" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A dancing baboon girl" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A dancing baboon girl" />
     </object>
 
     <object Name="RootKnotStarter" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A network of roots that provides storage at settlements" RenderBlueprint="RootKnot" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A network of roots that provides storage at settlements" />
+        <tag Name="Kernelmethod_BetterPetSelector_RenderBlueprint" Value="RootKnot" />
     </object>
 
     <object Name="Recall Star" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A floating crystal octahedron. Has a natural missile weapon and reality-altering effects" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A floating crystal octahedron. Has a natural missile weapon and reality-altering effects" />
     </object>
 
     <object Name="Snakelite" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A mechanical worm with the ability to manipulate light" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A mechanical worm with the ability to manipulate light" />
     </object>
 
     <object Name="Unpleasant Mirror" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A magic mirror that makes creatures feel bad about themselves" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A magic mirror that makes creatures feel bad about themselves" />
     </object>
 
     <object Name="Uthabatafah" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A small rhinox. Charges violently" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A small rhinox. Charges violently" />
     </object>
 
     <object Name="YouButMechanical" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A robotic imposter who thinks they are the real you" />
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A robotic imposter who thinks they are the real you" />
     </object>
 
     <!--
