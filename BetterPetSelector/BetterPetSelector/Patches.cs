@@ -18,14 +18,6 @@ namespace Kernelmethod.BetterPetSelector.Patches {
             public string Name;
             public IRenderable Icon;
             public string Description;
-
-            public Pet(string id, string name, IRenderable icon, string description)
-            {
-                Id = id;
-                Name = name;
-                Icon = icon;
-                Description = description;
-            }
         }
 
         static IEnumerable<Pet> GetPets()
@@ -44,7 +36,12 @@ namespace Kernelmethod.BetterPetSelector.Patches {
                 else
                     icon = new Renderable(GameObjectFactory.Factory.GetBlueprint(renderBlueprint));
 
-                yield return new Pet(id, name, icon, description);
+                yield return new Pet {
+                    Id=id,
+                    Name=name,
+                    Description=description,
+                    Icon=icon
+                };
             }
         }
 
@@ -63,7 +60,12 @@ namespace Kernelmethod.BetterPetSelector.Patches {
             if (availablePets.Count == 0)
                 return;
 
-            availablePets.Insert(0, new Pet(null, "<none>", null, null));
+            availablePets.Insert(0, new Pet {
+                Id=null,
+                Name="<none>",
+                Description=null,
+                Icon=null
+            });
             var descriptions = availablePets.Select((Pet p) => {
                 string description = p.Name;
                 if (p.Description != null)
