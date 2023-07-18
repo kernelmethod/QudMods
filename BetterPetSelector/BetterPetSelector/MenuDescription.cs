@@ -5,6 +5,7 @@ namespace XRL.World.Parts
     [Serializable]
     public class Kernelmethod_BetterPetSelector : IPart
     {
+        public string RenderBlueprint = null;
         public string _Description = null;
 
         public string Description

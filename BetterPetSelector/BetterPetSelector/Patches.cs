@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using XRL.CharacterBuilds.Qud;
 using XRL.CharacterBuilds.Qud.UI;
 using XRL.UI;
-using XRL.UI.Framework;
 using XRL.World;
 
 namespace Kernelmethod.BetterPetSelector.Patches {
@@ -35,8 +34,15 @@ namespace Kernelmethod.BetterPetSelector.Patches {
             {
                 string id = item.Name;
                 string name = item.GetTag("PetName", item.DisplayName());
-                IRenderable icon = new Renderable(item);
                 string description = item.GetPartParameter<string>("Kernelmethod_BetterPetSelector", "Description");
+
+                string renderBlueprint = item.GetPartParameter<string>("Kernelmethod_BetterPetSelector", "RenderBlueprint");
+
+                IRenderable icon;
+                if (renderBlueprint == null)
+                    icon = new Renderable(item);
+                else
+                    icon = new Renderable(GameObjectFactory.Factory.GetBlueprint(renderBlueprint));
 
                 yield return new Pet(id, name, icon, description);
             }

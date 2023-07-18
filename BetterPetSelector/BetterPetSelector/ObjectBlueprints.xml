@@ -12,8 +12,8 @@
         <part Name="Kernelmethod_BetterPetSelector" Description="A starapple-loving robot" />
     </object>
 
-    <object Name="EitherPet" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A pair of the player's alternate selves" />
+    <object Name="EitherOrPetSpawner" Load="Merge">
+        <part Name="Kernelmethod_BetterPetSelector" Description="A pair of the player's alternate selves" RenderBlueprint="Kernelmethod_BetterPetSelector_EitherOrBlueprint" />
     </object>
 
     <object Name="Ercolano" Load="Merge">
@@ -60,7 +60,7 @@
     </object>
 
     <object Name="LorentEpsomeSummoner" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="An enigmatic, busted templar phylactery projection" />
+        <part Name="Kernelmethod_BetterPetSelector" Description="An enigmatic, busted templar phylactery projection" RenderBlueprint="Lorent Epsome" />
     </object>
 
     <object Name="Lyy" Load="Merge">
@@ -87,8 +87,8 @@
         <part Name="Kernelmethod_BetterPetSelector" Description="Baboon girl" />
     </object>
 
-    <object Name="RootKnot" Load="Merge">
-        <part Name="Kernelmethod_BetterPetSelector" Description="A network of roots that provides storage at settlements" />
+    <object Name="RootKnotStarter" Load="Merge">
+        <part Name="Kernelmethod_BetterPetSelector" Description="A network of roots that provides storage at settlements" RenderBlueprint="RootKnot" />
     </object>
 
     <object Name="Recall Star" Load="Merge">
@@ -109,5 +109,16 @@
 
     <object Name="YouButMechanical" Load="Merge">
         <part Name="Kernelmethod_BetterPetSelector" Description="A robotic imposter who thinks they are the real you" />
+    </object>
+
+    <!--
+        Custom blueprints to use to render some of the pets
+    -->
+    <object Name="Kernelmethod_BetterPetSelector_EitherOrBlueprint">
+        <part Name="Render" Tile="Creatures/EitherOr.png" ColorString="&amp;r" DetailColor="c" />
+    </object>
+
+    <object Name="Kernelmethod_BetterPetSelector_LorentEpsumBlueprint">
+        <part Name="Render" Tile="Creatures/Lorent_epsome_wraithknight_errant.png" ColorString="&amp;c" DetailColor="r" />
     </object>
 </objects>
