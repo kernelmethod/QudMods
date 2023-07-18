@@ -1,7 +1,7 @@
 {
   "WorkshopId": 3006503292,
   "Title": "Better Pet Selector",
-  "Description": "An improved pet selection interface for starting a new game.\n\nAdds icons and flavor text for each pet during the pet selection phase of a new game.",
+  "Description": "An improved pet selection interface for starting a new game.\n\nAdds icons and flavor text for each pet during the pet selection phase of a new game.\n\nSource code: https://github.com/kernelmethod/QudMods/tree/main/BetterPetSelector",
   "Tags": "UX,Pet",
   "Visibility": "2",
   "ImagePath": "preview.png"
