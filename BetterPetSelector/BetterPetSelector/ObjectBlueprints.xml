@@ -4,6 +4,14 @@
         Source: https://wiki.cavesofqud.com/wiki/Pets
     -->
 
+    <object Name="Bon Te Bok" Load="Merge">
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="Highly entropic antelope. Has Temporal Fugue, Teleportation, and Teleport Other" />
+    </object>
+
+    <object Name="CAP-N" Load="Merge">
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="The tip of a chrome pyramid" />
+    </object>
+
     <object Name="E-Ros" Load="Merge">
         <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A lovestruck robot" />
     </object>
@@ -61,6 +69,10 @@
         <tag Name="Kernelmethod_BetterPetSelector_Description" Value="Probable descendant of the great three-headed mountain goat Iopinax" />
     </object>
 
+    <object Name="Koharta" Load="Merge">
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A great ocean-faring pig" />
+    </object>
+
     <object Name="LorentEpsomeSummoner" Load="Merge">
         <tag Name="Kernelmethod_BetterPetSelector_Description" Value="An enigmatic, busted templar phylactery projection" />
         <tag Name="Kernelmethod_BetterPetSelector_RenderBlueprint" Value="Lorent Epsome" />
@@ -101,6 +113,10 @@
 
     <object Name="Recall Star" Load="Merge">
         <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A floating crystal octahedron. Has a natural missile weapon and reality-altering effects" />
+    </object>
+
+    <object Name="Small Problems" Load="Merge">
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A three-headed fungal friend" />
     </object>
 
     <object Name="Snakelite" Load="Merge">
