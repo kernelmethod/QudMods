@@ -16,7 +16,12 @@ namespace Kernelmethod.IronMan
 
         public override bool HandleEvent(AfterDieEvent E)
         {
+            if (!ParentObject.IsPlayer())
+                goto Exit;
+
             The.Game.QuickSave();
+
+            Exit:
             return base.HandleEvent(E);
         }
     }
@@ -45,6 +50,9 @@ namespace Kernelmethod.IronMan
 
         public override bool HandleEvent(BeforeTookDamageEvent E)
         {
+            if (!ParentObject.IsPlayer())
+                goto Exit;
+
             // Check whether the damage we're about to take puts us below the threshold
             // (but above 0 health).
             // - We don't save if we're already below the threshold.
@@ -65,6 +73,7 @@ namespace Kernelmethod.IronMan
             LastSaveTurn = XRLCore.CurrentTurn;
             The.Game.QuickSave();
 
+            Exit:
             return base.HandleEvent(E);
         }
     }
