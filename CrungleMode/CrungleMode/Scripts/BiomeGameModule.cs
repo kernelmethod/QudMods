@@ -198,12 +198,18 @@ namespace XRL.CharacterBuilds.Qud
                 for (int i = 0; i < numWaterskins; i++) {
                     GameObject waterskin = GameObject.create("Waterskin");
                     LiquidVolume liquidVolume = waterskin.GetPart("LiquidVolume") as LiquidVolume;
+
+                    if (liquidVolume == null)
+                        goto AddObject;
+
                     liquidVolume.ComponentLiquids.Clear();
 
                     if (i < 2) {
                         liquidVolume.InitialLiquid = "water";
                         liquidVolume.Volume = Kernelmethod_CrungleMode_Random.Next(24, 32);
                     }
+
+                    AddObject:
                     Target.Inventory.AddObject(waterskin);
                 }
             }
