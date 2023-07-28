@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<options>
+    <!-- Starting location / creature options -->
+    <option ID="Option_Kernelmethod_CrungleMode_NoAquatic" DisplayText="Don't spawn as an aquatic creature"
+        Category="Mods: Crungle Mode!" Type="Checkbox" Default="No"></option>
+    <option ID="Option_Kernelmethod_CrungleMod_NoLivesOnWalls" DisplayText="Don't spawn as a creature that lives on walls (e.g. livid creepers)"
+        Category="Mods: Crungle Mode!" Type="Checkbox" Default="No"></option>
+
+    <!-- Survival options -->
+    <option ID="Option_Kernelmethod_CrungleMode_BasicSurvival" DisplayText="Enable all basic survival options"
+        Category="Mods: Crungle Mode!" Type="Checkbox" Default="Yes"></option>
+    <option ID="Option_Kernelmethod_CrungleMode_SpawnWithMakeCamp" DisplayText="Always spawn with Make Camp" Requires="Option_Kernelmethod_CrungleMode_BasicSurvival==No"
+        Category="Mods: Crungle Mode!" Type="Checkbox" Default="No"></option>
+    <option ID="Option_Kernelmethod_CrungleMode_SpawnWithSprint" DisplayText="Always spawn with Sprint" Requires="Option_Kernelmethod_CrungleMode_BasicSurvival==No"
+        Category="Mods: Crungle Mode!" Type="Checkbox" Default="No"></option>
+    <option ID="Option_Kernelmethod_CrungleMode_SpawnWithWater" DisplayText="Always spawn with waterskins" Requires="Option_Kernelmethod_CrungleMode_BasicSurvival==No"
+        Category="Mods: Crungle Mode!" Type="Checkbox" Default="No"></option>
+    <option ID="Option_Kernelmethod_CrungleMode_SpawnWithTorches" DisplayText="Always spawn with sources of light" Requires="Option_Kernelmethod_CrungleMode_BasicSurvival==No"
+        Category="Mods: Crungle Mode!" Type="Checkbox" Default="No"></option>
+
+    <!-- Miscellaneous options -->
+    <option ID="Option_Kernelmethod_CrungleMode_SaveScores" DisplayText="Save game scores after death"
+        Category="Mods: Crungle Mode!" Type="Checkbox" Default="No"></option>
+</options>

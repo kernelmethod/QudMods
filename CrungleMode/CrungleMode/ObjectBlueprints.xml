@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<objects>
+    <!-- Modify sampling weights for certain common creatures -->
+    <object Name="Cave Spider" Load="Merge">
+        <tag Name="Kernelmethod_CrungleMode_SamplingWeight" Value="30" />
+    </object>
+
+    <object Name="GiantAmoeba" Load="Merge">
+        <tag Name="Kernelmethod_CrungleMode_SamplingWeight" Value="30" />
+    </object>
+
+    <object Name="GiantDragonfly" Load="Merge">
+        <tag Name="Kernelmethod_CrungleMode_SamplingWeight" Value="30" />
+    </object>
+
+    <object Name="Giant Centipede" Load="Merge">
+        <tag Name="Kernelmethod_CrungleMode_SamplingWeight" Value="50" />
+    </object>
+
+    <object Name="Glowfish" Load="Merge">
+        <tag Name="Kernelmethod_CrungleMode_SamplingWeight" Value="30" />
+    </object>
+
+    <object Name="Naphtaali" Load="Merge">
+        <tag Name="Kernelmethod_CrungleMode_SamplingWeight" Value="30" />
+    </object>
+</objects>

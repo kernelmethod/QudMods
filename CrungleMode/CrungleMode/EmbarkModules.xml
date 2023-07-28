@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<embarkmodules>
+    <module Class="XRL.CharacterBuilds.Qud.QudGamemodeModule" Load="Merge">
+        <modes Load="Merge">
+            <mode ID="Kernelmethod_CrungleMode_CrungleMode" Title="Crungle Mode!">
+                <icon Tile="Creatures/sw_dreamcrungle.bmp" Foreground="b" Detail="B"></icon>
+                <description>
+                Permadeath mode, starting as a random inhabitant of Qud.
+                </description>
+                <stringgamestate Name="GameMode" Value="Crungle Mode!"></stringgamestate>
+            </mode>
+        </modes>
+    </module>
+
+    <module Class="XRL.CharacterBuilds.Qud.Kernelmethod_CrungleMode_BiomeGameModule">
+        <window ID="Chargen/Kernelmethod_CrungleMode_Biome" Prefab="HorizScroll" Class="XRL.CharacterBuilds.Qud.UI.Kernelmethod_CrungleMode_BiomeModuleWindow">
+            <name>Biome</name>
+            <title>:choose creature biome:</title>
+        </window>
+
+        <biomes>
+            <!-- Random biome -->
+            <biome Name="Random" Tile="Mutations/spacetime_vortex.bmp" Foreground="M" Detail="B">
+                <description>
+                    Start in a completely random zone.
+                </description>
+                <xyzselector Name="RandomXYZSelector" />
+            </biome>
+
+            <!-- Caverns biome -->
+            <biome Name="Caverns" Tile="UI/Cavern.png" Foreground="w" Detail="O">
+                <description>
+                    Start as an inhabitant of the caves below Qud.
+                </description>
+                <xyzselector Name="CavernXYZSelector" />
+            </biome>
+
+            <!-- Water marsh biome -->
+            <biome Name="Water marsh" Tile="Assets_Content_Textures_Tiles_sw_watervine1.bmp" Detail="g" Foreground="w">
+                <description>
+                    Start as an inhabitant of the water marsh.
+                </description>
+                <terrain Name="TerrainWatervine" />
+                <terrain Name="TerrainJoppa" />
+            </biome>
+
+            <!-- Desert canyon biome -->
+            <biome Name="Desert canyon" Tile="Terrain/sw_canyon.bmp" Foreground="w" Detail="k">
+                <description>
+                    Start as a denizen of the desert canyons.
+                </description>
+                <terrain Name="TerrainDesertCanyon" />
+                <terrain Name="TerrainDesertCanyon2" />
+                <terrain Name="TerrainDesertCanyon3" />
+                <terrain Name="TerrainDesertCanyon4" />
+                <terrain Name="TerrainRedRock" />
+                <terrain Name="TerrainRustWell" />
+                <terrain Name="TerrainRustedArchway" />
+            </biome>
+
+            <!-- Salt dunes biome -->
+            <biome Name="Salt dunes" Tile="Terrain/sw_desert.bmp" Foreground="Y" Detail="k">
+                <description>
+                    Start as an inhabitant of the Great Salt Desert, Moghra'yi.
+                </description>
+                <terrain Name="TerrainSaltdunes" />
+                <terrain Name="TerrainSaltdunes2" />
+                <terrain Name="TerrainSixDayStilt" />
+            </biome>
+
+            <!-- Hills biome -->
+            <biome Name="Hills" Tile="Terrain/sw_hills.bmp" Foreground="y" Detail="k">
+                <description>
+                    Start living in the hills of Qud.
+                </description>
+                <terrain Name="TerrainHills" />
+            </biome>
+
+            <!-- Jungle biome -->
+            <biome Name="Jungle" Tile="Terrain/tile_jungleleft1.bmp" Foreground="G" Detail="k">
+                <description>
+                    Start as an inhabitant of Qud's jungles.
+                </description>
+                <terrain Name="TerrainJungle" />
+                <terrain Name="TerrainDeepJungle" />
+                <terrain Name="TerrainKyakukya" />
+                <terrain Name="TerrainGolgotha" />
+                <terrain Name="TerrainBethesdaSusa" />
+            </biome>
+
+            <!-- Palladium Reef biome -->
+            <biome Name="Palladium Reef" Tile="Terrain/sw_reef_worldmap_1.bmp" Foreground="r" Detail="r">
+                <description>
+                    Start as an inhabitant of the Palladium Reef.
+                </description>
+                <terrain Name="TerrainPalladiumReef" />
+                <terrain Filter="PalladiumReefFilter" />
+            </biome>
+
+            <!-- Moon Stair biome -->
+            <biome Name="Moon Stair" Tile="Terrain/sw_moonstair_worldmap_1.bmp" Detail="M" Foreground="y">
+                <description>
+                    Start as an inhabitant of the Moon Stair.
+                </description>
+                <terrain Name="TerrainMoonStair" />
+            </biome>
+        </biomes>
+    </module>
+</embarkmodules>
