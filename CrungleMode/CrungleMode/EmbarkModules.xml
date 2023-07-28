@@ -45,7 +45,7 @@
             </biome>
 
             <!-- Desert canyon biome -->
-            <biome Name="Desert canyon" Tile="Terrain/sw_canyon.bmp" Foreground="w" Detail="k">
+            <biome Name="Desert canyon" Tile="terrain/tile_location7.bmp" Foreground="R" Detail="r">
                 <description>
                     Start as a denizen of the desert canyons.
                 </description>
@@ -59,7 +59,7 @@
             </biome>
 
             <!-- Salt dunes biome -->
-            <biome Name="Salt dunes" Tile="Terrain/sw_desert.bmp" Foreground="Y" Detail="k">
+            <biome Name="Salt dunes" Tile="Creatures/sw_kraken.bmp" Foreground="Y" Detail="y">
                 <description>
                     Start as an inhabitant of the Great Salt Desert, Moghra'yi.
                 </description>
@@ -69,15 +69,16 @@
             </biome>
 
             <!-- Hills biome -->
-            <biome Name="Hills" Tile="Terrain/sw_hills.bmp" Foreground="y" Detail="k">
+            <biome Name="Hills" Tile="terrain/tile_location9.bmp" Foreground="y" Detail="w">
                 <description>
                     Start living in the hills of Qud.
                 </description>
                 <terrain Name="TerrainHills" />
+                <terrain Name="TerrainAsphaltMines" />
             </biome>
 
             <!-- Jungle biome -->
-            <biome Name="Jungle" Tile="Terrain/tile_jungleleft1.bmp" Foreground="G" Detail="k">
+            <biome Name="Jungle" Tile="terrain/sw_mangrove1.bmp" Foreground="g" Detail="w">
                 <description>
                     Start as an inhabitant of Qud's jungles.
                 </description>
