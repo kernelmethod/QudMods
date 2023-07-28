@@ -1,7 +1,7 @@
 {
-  "WorkshopId": 2995934012,
+  "WorkshopId": 3010917750,
   "Title": "Crungle Mode!",
-  "Description": "",
+  "Description": "[i]You awaken from a fitful dream...[/i]\n\n[b]Crungle Mode![/b] adds a new game mode in which you assume the role of a random inhabitant of Qud. Play in Crungle Mode by selecting the \"Crungle Mode!\" option when beginning a new game.\n\nSource code: https://github.com/kernelmethod/QudMods/tree/main/CrungleMode\n\n[h2]Preferences[/h2]\n\nThis mod comes with a number of different options you can set to change how this mod works. From the Options menu, go to \"Mods: Crungle Mode!\" and select the settings you want to play with.",
   "Tags": "World",
   "Visibility": "2",
   "ImagePath": "preview.png"
