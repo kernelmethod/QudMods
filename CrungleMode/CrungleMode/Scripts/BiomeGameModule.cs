@@ -135,7 +135,7 @@ namespace XRL.CharacterBuilds.Qud
 
         public override object handleBootEvent(string id, XRLGame game, EmbarkInfo info, object element = null)
         {
-            MetricsManager.LogInfo("Kernelmethod_CrungleMode: handling boot event " + id);
+            LogInfo("handling boot event " + id);
 
             if (id == QudGameBootModule.BOOTEVENT_AFTERINITIALIZEHISTORY)
                 return HandleAfterInitializeHistory(game, info, element);
@@ -171,8 +171,8 @@ namespace XRL.CharacterBuilds.Qud
             Target.pBrain.Goals.Clear();
             Target.CurrentZone.SetActive();
 
-            MetricsManager.LogInfo("Kernelmethod_CrungleMode::Subject: " + Target.Blueprint);
-            MetricsManager.LogInfo("Kernelmethod_CrungleMode::Zone: " + Target.CurrentZone.ZoneID);
+            LogInfo($"Subject: {Target.Blueprint}");
+            LogInfo($"Zone: {Target.CurrentZone.ZoneID}");
             return base.handleBootEvent(QudGameBootModule.BOOTEVENT_BOOTPLAYEROBJECT, game, info, element);
         }
 
@@ -225,12 +225,15 @@ namespace XRL.CharacterBuilds.Qud
             var slots = Object.Body.GetPart("Floating Nearby");
 
             // Don't do anything if the player already has night vision
-            if (Object.HasPart(typeof(DarkVision)))
+            if (Object.HasPart(typeof(DarkVision))) {
+                LogInfo("RequireLightSource: skipping provisioning (has DarkVision)");
                 return;
+            }
 
             // Try to give the player some torches, if they can be equipped
             if (Object.Body.HasPart("Hand"))
             {
+                LogInfo("RequireLightSource: provisioning player with torches");
                 Object.ReceiveObject("Torch", Kernelmethod_CrungleMode_Random.Next(11, 14));
                 Object.pBrain.PerformReequip(Silent: true, DoPrimaryChoice: false);
                 return;
@@ -239,9 +242,13 @@ namespace XRL.CharacterBuilds.Qud
             // Give the player a floating glowsphere if they have a floating nearby slot
             if (slots.Count > 0)
             {
+                LogInfo("RequireLightSource: provisioning player with glowsphere");
                 GameObject glowsphere = GameObject.create("Floating Glowsphere");
                 Object.ForceEquipObject(glowsphere, slots[0], Silent: true);
+                return;
             }
+
+            LogInfo("RequireLightSource: not provisioning player with light source");
         }
 
         public object HandleBootGameStarting(XRLGame game, EmbarkInfo info, object element = null)
@@ -256,6 +263,9 @@ namespace XRL.CharacterBuilds.Qud
             return null;
         }
 
+        /// <summary>
+        /// Return the sampling weight for a randomly selected creature.
+        /// </summary>
         public int GetObjectWeight(GameObject Object)
         {
             if (!Object.IsCombatObject())
@@ -302,15 +312,16 @@ namespace XRL.CharacterBuilds.Qud
                 if (ballBag.Count != 0)
                 {
                     int num = ballBag.TotalWeight / ballBag.Count;
-                    MetricsManager.LogInfo($"BiomeGameModule::{randomDestinationZoneID}:{num}");
                     if (num.ChanceIn(100))
-                    {
                         break;
-                    }
                 }
             }
             The.ZoneManager.Tick(bAllowFreeze: true);
             return ballBag.PeekOne();
+        }
+
+        private static void LogInfo(string message) {
+            MetricsManager.LogInfo($"Kernelmethod_CrungleMode::Kernelmethod_CrungleMode_BiomeGameModule: {message}");
         }
     }
 }
