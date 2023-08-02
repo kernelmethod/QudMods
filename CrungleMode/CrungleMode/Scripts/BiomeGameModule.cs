@@ -190,6 +190,28 @@ namespace XRL.CharacterBuilds.Qud
             Target.CurrentZone.SetActive();
             Target.AddPart(new Kernelmethod_CrungleMode_CrungleStory());
 
+            // Change faction relationships to reflect current faction affiliation...
+            foreach (Faction faction in Factions.loop()) {
+                int basePlayerReputation = faction.InitialPlayerReputation;
+                int baseTargetFeeling = faction.GetFeelingTowardsObject(Target);
+
+                int newReputation = basePlayerReputation;
+
+                if (baseTargetFeeling < 0 && basePlayerReputation > 0)
+                    newReputation = baseTargetFeeling * 6;
+                if (baseTargetFeeling > 0 && basePlayerReputation < 0)
+                    newReputation = 0;
+
+                if (newReputation != basePlayerReputation) {
+                    LogInfo($"HandleBootPlayerObject: changing reputation with {faction.DisplayName} from {basePlayerReputation} to {newReputation}");
+                    Faction.PlayerReputation.set(faction, newReputation);
+                }
+            }
+
+            // ... and then remove the current faction affiliation.
+            LogInfo($"HandleBootPlayerObject: removing faction membership (was: {Target.pBrain.Factions})");
+            Target.pBrain.FactionMembership.Clear();
+
             if (Options.SpawnWithWater) {
                 int numWaterskins = Kernelmethod_CrungleMode_Random.Next(3, 4);
 
