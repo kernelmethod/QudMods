@@ -27,11 +27,15 @@ namespace Kernelmethod.IronMan
         {
             GameObject player = XRLCore.Core?.Game?.Player?.Body;
 
-            if (player != null && The.Game.GetStringGameState("GameMode", "Classic") == "Classic")
-            {
-                player.RequirePart<SaveOnDeath>();
-                player.RequirePart<SaveOnHealthThreshold>();
-            }
+            if (player == null)
+                return;
+
+            if (The.Game.GetStringGameState("GameMode", "Classic") != "Classic")
+                return;
+
+            player.RequirePart<SaveOnDeath>();
+            player.RequirePart<SaveOnHealthThreshold>();
+            player.RequirePart<SaveOnStatChange>();
         }
     }
 }
