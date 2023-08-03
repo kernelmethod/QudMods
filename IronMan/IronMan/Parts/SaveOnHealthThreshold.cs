@@ -2,49 +2,12 @@ using System;
 using XRL;
 using XRL.Core;
 using XRL.World;
+
 namespace Kernelmethod.IronMan
 {
-    [Serializable]
-    public abstract class AbstractSavePart : IPart
-    {
-        public override bool WantEvent(int ID, int cascade)
-        {
-            return base.WantEvent(ID, cascade) || ID == AfterPlayerBodyChangeEvent.ID;
-        }
-
-        public override bool HandleEvent(AfterPlayerBodyChangeEvent E)
-        {
-            Type bodyType = E.NewBody.GetType();
-            var baseMethod = bodyType.GetMethod("RequirePart", new Type[] {false.GetType()});
-            var typedForThis = baseMethod.MakeGenericMethod(this.GetType());
-            typedForThis.Invoke(E.NewBody, new object[] {false});
-
-            return base.HandleEvent(E);
-        }
-    }
-
-    [Serializable]
-    public class SaveOnDeath : AbstractSavePart
-    {
-        public SaveOnDeath() {}
-
-        public override bool WantEvent(int ID, int cascade)
-        {
-            return base.WantEvent(ID, cascade) || ID == AfterDieEvent.ID;
-        }
-
-        public override bool HandleEvent(AfterDieEvent E)
-        {
-            if (!ParentObject.IsPlayer())
-                goto Exit;
-
-            The.Game.QuickSave();
-
-            Exit:
-            return base.HandleEvent(E);
-        }
-    }
-
+    /// <summary>
+    /// Custom part that triggers a save whenever the player's health drops below a certain threshold.
+    /// </summary>
     [Serializable]
     public class SaveOnHealthThreshold : AbstractSavePart
     {
