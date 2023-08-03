@@ -1,5 +1,4 @@
 using System;
-using XRL;
 using XRL.World;
 
 namespace Kernelmethod.IronMan {
@@ -18,7 +17,7 @@ namespace Kernelmethod.IronMan {
             if (!ParentObject.IsPlayer())
                 goto Exit;
 
-            The.Game.QuickSave();
+            TriggerSave();
 
             Exit:
             return base.HandleEvent(E);

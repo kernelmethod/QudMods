@@ -1,6 +1,4 @@
 using System;
-using XRL;
-using XRL.Core;
 using XRL.World;
 
 namespace Kernelmethod.IronMan
@@ -11,19 +9,8 @@ namespace Kernelmethod.IronMan
     [Serializable]
     public class SaveOnHealthThreshold : AbstractSavePart
     {
-        public long LastSaveTurn;
-        public long MinTurnsBetweenSaves;
-        public double HealthThreshold;
-
-        public SaveOnHealthThreshold()
-        {
-            MinTurnsBetweenSaves = 300;
-            HealthThreshold = 0.4;
-
-            // Initialize LastSaveTurn to -MinTurnBetweenSaves to ensure that we can save as early
-            // as turn zero.
-            LastSaveTurn = -MinTurnsBetweenSaves;
-        }
+        public override long MinTurnsBetweenSaves => 300;
+        public double HealthThreshold = 0.4;
 
         public override bool WantEvent(int ID, int cascade)
         {
@@ -49,11 +36,7 @@ namespace Kernelmethod.IronMan
             if (afterDamageHealth <= 0 || afterDamageHealth > HealthThreshold)
                 return false;
 
-            if (XRLCore.CurrentTurn - MinTurnsBetweenSaves < LastSaveTurn)
-                return false;
-
-            LastSaveTurn = XRLCore.CurrentTurn;
-            The.Game.QuickSave();
+            TriggerSave();
 
             Exit:
             return base.HandleEvent(E);
