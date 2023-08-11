@@ -14,9 +14,6 @@
         <part Name="Physics" Weight="1" />
 
         <part Name="Examiner" Complexity="5" />
-        <part Name="TinkerItem" Bits="0022" CanDisassemble="true" CanBuild="true" />
-
-        <tag Name="Tier" Value="4" />
         <tag Name="Mods" Value="CommonMods" />
     </object>
 
