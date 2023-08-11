@@ -42,9 +42,8 @@ namespace Kernelmethod.CrungleMode {
             for (int i = 0; i < num; i++) {
                 // Determine location within parasang
                 (parasangX, parasangY) = zones.PickOne();
-                int zoneX = biome.ZoneXYZ.ChooseX("JoppaWorld", parasangX, parasangY);
-                int zoneY = biome.ZoneXYZ.ChooseY("JoppaWorld", parasangX, parasangY);
-                int zoneZ = biome.ZoneXYZ.ChooseZ("JoppaWorld", parasangX, parasangY);
+
+                (var zoneX, var zoneY, var zoneZ) = biome.ZoneXYZ.ChooseXYZ("JoppaWorld", parasangX, parasangY);
                 var zone = ZoneID.Assemble("JoppaWorld", parasangX, parasangY, zoneX, zoneY, zoneZ);
                 LogInfo($"sampled random zone {zone}");
                 yield return zone;
