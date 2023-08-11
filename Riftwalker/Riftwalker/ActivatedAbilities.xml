@@ -1,0 +1,5 @@
+<activatedabilities>
+  <ability Command="CommandEscapeRift">
+    <UITile Tile="Mutations/EscapeRift.png" Foreground="m" Detail="B" />
+  </ability>
+</activatedabilities>

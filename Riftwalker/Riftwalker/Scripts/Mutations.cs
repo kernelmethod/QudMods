@@ -43,9 +43,8 @@ namespace XRL.World.Parts.Mutation
         public override bool HandleEvent(AIGetOffensiveAbilityListEvent E)
         {
             if (E.Distance <= 5 && IsMyActivatedAbilityAIUsable(ActivatedAbilityID))
-            {
                 E.Add("CommandEscapeRift");
-            }
+
             return base.HandleEvent(E);
         }
 
