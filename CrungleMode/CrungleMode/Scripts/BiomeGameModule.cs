@@ -116,7 +116,7 @@ namespace XRL.CharacterBuilds.Qud
 
         public override bool shouldBeEnabled()
         {
-            return builder?.GetModule<QudGamemodeModule>()?.GetMode() == "Kernelmethod_CrungleMode_CrungleMode";
+            return builder.GetModule<Kernelmethod_CrungleMode_CrungleGamemodeModule>().IsDataValid();
         }
 
         public override bool shouldBeEditable()

@@ -5,9 +5,34 @@
             <mode ID="Kernelmethod_CrungleMode_CrungleMode" Title="Crungle Mode!">
                 <icon Tile="Creatures/sw_dreamcrungle.bmp" Foreground="b" Detail="B"></icon>
                 <description>
-                Permadeath mode, starting as a random inhabitant of Qud.
+                Play Caves of Qud starting from a random creature's body.
                 </description>
                 <stringgamestate Name="GameMode" Value="Crungle Mode!"></stringgamestate>
+            </mode>
+        </modes>
+    </module>
+
+    <module Class="XRL.CharacterBuilds.Qud.Kernelmethod_CrungleMode_CrungleGamemodeModule">
+        <window ID="Chargen/Kernelmethod_CrungleMode_Gamemode" Prefab="HorizScroll" Class="XRL.CharacterBuilds.Qud.UI.QudGamemodeModuleWindow">
+            <title>:choose game mode:</title>
+            <name>Game Modes</name>
+        </window>
+        <modes>
+            <mode ID="Classic" Title="Classic">
+                <icon Tile="Creatures/class_gunslinger.bmp" Foreground="y" Detail="K"></icon>
+                <description>
+                    Permadeath: lose your character when you die.
+                </description>
+                <stringgamestate Name="GameMode" Value="Classic"></stringgamestate>
+            </mode>
+
+            <mode ID="Roleplay" Title="Roleplay">
+                <icon Tile="UI/sw_roleplay_mode.bmp" Foreground="b" Detail="B"></icon>
+                <description>
+                    Checkpointing at settlements.
+                </description>
+                <stringgamestate Name="GameMode" Value="Roleplay"></stringgamestate>
+                <stringgamestate Name="Checkpointing" Value="Enabled"></stringgamestate>
             </mode>
         </modes>
     </module>
@@ -99,7 +124,7 @@
             </biome>
 
             <!-- Tomb of the Eaters biome -->
-            <biome Name="Tomb of the Eaters" Tile="terrain/sw_spindle_bottom.bmp" Forground="&amp;C^k" Detail="Y">
+            <biome Name="Tomb of the Eaters" Tile="terrain/sw_spindle_bottom.bmp" Foreground="C" Detail="Y">
                 <description>
                     Begin in the Tomb of the Eaters.
                 </description>
