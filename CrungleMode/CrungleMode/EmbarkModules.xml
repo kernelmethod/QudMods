@@ -98,6 +98,15 @@
                 <terrain Filter="PalladiumReefFilter" />
             </biome>
 
+            <!-- Tomb of the Eaters biome -->
+            <biome Name="Tomb of the Eaters" Tile="terrain/sw_spindle_bottom.bmp" Forground="&amp;C^k" Detail="Y">
+                <description>
+                    Begin in the Tomb of the Eaters.
+                </description>
+                <terrain Name="TerrainTheSpindle" />
+                <xyzselector Name="SpindleXYZSelector" />
+            </biome>
+
             <!-- Moon Stair biome -->
             <biome Name="Moon Stair" Tile="Terrain/sw_moonstair_worldmap_1.bmp" Detail="M" Foreground="y">
                 <description>

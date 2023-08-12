@@ -25,4 +25,8 @@
     <object Name="Naphtaali" Load="Merge">
         <tag Name="Kernelmethod_CrungleMode_SamplingWeight" Value="30" />
     </object>
+
+    <object Name="Crypt Ferret" Load="Merge">
+        <tag Name="Kernelmethod_CrungleMode_SamplingWeight" Value="70" />
+    </object>
 </objects>
