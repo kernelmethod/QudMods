@@ -40,9 +40,10 @@ namespace Kernelmethod.CrungleMode {
                 throw new Exception("No zones found for BiomeType " + biome);
 
             for (int i = 0; i < num; i++) {
-                // Determine location within parasang
-                (parasangX, parasangY) = zones.PickOne();
+                // Pick a random parasang satisfying the terrain conditions
+                (parasangX, parasangY) = zones.PeekOne();
 
+                // Pick a random location within that parasang
                 (var zoneX, var zoneY, var zoneZ) = biome.ZoneXYZ.ChooseXYZ("JoppaWorld", parasangX, parasangY);
                 var zone = ZoneID.Assemble("JoppaWorld", parasangX, parasangY, zoneX, zoneY, zoneZ);
                 LogInfo($"sampled random zone {zone}");
