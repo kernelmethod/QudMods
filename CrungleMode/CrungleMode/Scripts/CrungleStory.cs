@@ -2,6 +2,7 @@ using ConsoleLib.Console;
 using Qud.API;
 using Qud.UI;
 using UnityEngine;
+using XRL;
 using XRL.UI;
 
 namespace XRL.World.Parts {
@@ -39,6 +40,11 @@ namespace XRL.World.Parts {
                 text += "\n\n<Press space, then press F1 for help.>";
 
             ClassicFade();
+
+            // Create an initial checkpoint
+            if (CheckpointingSystem.IsCheckpointingEnabled())
+                CheckpointingSystem.DoCheckpoint();
+
             Popup.Show(text);
             JournalAPI.AddAccomplishment(
                 $"On the {day} of {month}, you awoke from a fitful dream.",
