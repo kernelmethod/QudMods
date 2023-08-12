@@ -8,7 +8,7 @@ namespace Kernelmethod.CrungleMode.Patches
     {
         static bool Prefix(Scoreboard2 __instance, int Score, string Details, long Turn, string GameId, string GameMode, bool ReplaceOnId = false, int Level = 0, string Name = "")
         {
-            return GameMode != "Kernelmethod_CrungleMode_CrungleMode" || Options.SaveScores;
+            return GameMode != "Crungle Mode!" || Options.SaveScores;
         }
     }
 }
