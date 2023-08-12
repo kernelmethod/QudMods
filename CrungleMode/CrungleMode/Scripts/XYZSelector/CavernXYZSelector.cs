@@ -7,7 +7,7 @@ namespace Kernelmethod.CrungleMode.ZoneSampling {
     public class CavernXYZSelector : XYZSelector {
         public override int ChooseZ(string world, int parasangX, int parasangY)
         {
-            return Kernelmethod_CrungleMode_Random.Next(5, 30);
+            return Kernelmethod_CrungleMode_Random.Next(11, 30);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Kernelmethod.CrungleMode.ZoneSampling {
             if (Kernelmethod_CrungleMode_Random.Next(0, 1) == 0)
                 return base.ChooseZ(world, parasangX, parasangY);
 
-            return Kernelmethod_CrungleMode_Random.Next(1, 30);
+            return Kernelmethod_CrungleMode_Random.Next(11, 30);
         }
     }
 }
