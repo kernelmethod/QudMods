@@ -190,6 +190,9 @@ namespace XRL.CharacterBuilds.Qud
             Target.CurrentZone.SetActive();
             Target.AddPart(new Kernelmethod_CrungleMode_CrungleStory());
 
+            // Remove problematic parts, if the player's body has them
+            Target.RemovePart("CryptSitterBehavior");
+
             // Change faction relationships to reflect current faction affiliation...
             foreach (Faction faction in Factions.loop()) {
                 int basePlayerReputation = faction.InitialPlayerReputation;
