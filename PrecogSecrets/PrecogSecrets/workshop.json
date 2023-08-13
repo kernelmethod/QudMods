@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 3019838600,
+  "Title": "Precog Secrets",
+  "Description": "Any secrets that are learned (or forgotten!) during precognition remain as such after precognition.\n\nBased on an idea by @slimegirls in the Caves of Qud Discord.\n\nSource code: https://github.com/kernelmethod/QudMods/tree/main/PrecogSecrets",
+  "Tags": "World",
+  "Visibility": "2",
+  "ImagePath": "preview.png"
+}

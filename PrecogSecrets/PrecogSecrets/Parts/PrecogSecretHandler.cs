@@ -9,7 +9,7 @@ using XRL.UI;
 namespace Kernelmethod.PrecogSecrets {
     [Serializable]
     public class PrecogSecretHandler : IPart {
-        public static string Prefix = "Kernelmethod_PrecogSecrets";
+        public const string Prefix = "Kernelmethod_PrecogSecrets";
 
         public Dictionary<string, bool> KnownSecrets = new Dictionary<string, bool>();
         public bool Activated = false;
@@ -28,7 +28,17 @@ namespace Kernelmethod.PrecogSecrets {
         }
 
         public override bool HandleEvent(AfterPlayerBodyChangeEvent E) {
-            E.NewBody.RequirePart<PrecogSecretHandler>();
+            // Copy over state from old body to new body
+            var handlerPart = new PrecogSecretHandler();
+            handlerPart.KnownSecrets = this.KnownSecrets;
+            handlerPart.Activated = this.Activated;
+
+            E.NewBody.RemovePart("PrecogSecretHandler");
+            E.NewBody.AddPart(handlerPart);
+
+            if (E.OldBody != null)
+                E.OldBody.RemovePart("PrecogSecretHandler");
+
             return base.HandleEvent(E);
         }
 
