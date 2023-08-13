@@ -2,7 +2,7 @@
     "id": "Kernelmethod_CrungleMode",
     "title": "{{B|Crungle Mode!}}",
     "description": "Adds a new game mode, Crungle Mode, in which you start off in the body of a random inhabitant of Qud.",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "author": "{{G|kernelmethod}}",
     "tags": "World",
     "PreviewImage": "preview.png"
