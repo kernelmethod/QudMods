@@ -60,7 +60,7 @@ namespace Kernelmethod.BetterPetSelector.Patches {
 
             availablePets.Insert(0, new Pet {
                 Id=null,
-                Name="<none>",
+                Name="{{W|<none>}}",
                 Description=null,
                 Icon=null
             });
