@@ -43,6 +43,7 @@
         Weapons
     -->
 
+    <!--
     <object Name="Kernelmethod_Riftwalker_BaseRiftPistol" Inherits="BasePistol">
         <part Name="Metal" />
         <tag Name="Mods" Value="MissileWeaponMods,FirearmMods,CommonMods,ElectronicsMods,PistolMods" />
@@ -90,6 +91,7 @@
         <part Name="Commerce" Value="600" />
         <tag Name="Tier" Value="6" />
     </object>
+    -->
 
     <!--
         Projectiles
