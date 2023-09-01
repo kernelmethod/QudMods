@@ -6,15 +6,20 @@
     -->
 
     <object Name="Kernelmethod_Riftwalker_VortexJar" Inherits="Grenade">
-        <part Name="Render" DisplayName="vortex-in-a-jar" ColorString="&amp;M" DetailColor="y" Tile="Items/vortex_jar.png" />
+        <part Name="Render" DisplayName="vortex jar" ColorString="&amp;M" DetailColor="y" Tile="Items/vortex_jar.png" />
         <part Name="Commerce" Value="100" />
-        <part Name="Description" Short="Mesmerizing folds of reality, sealed behind glass. They were once sold as festive ornaments for the festival of Ut yara Ux. After several unfortunate accidents called their safety into question, VoidCorp pivoted into emphasizing their combat applications."></part>
+        <part Name="Description" Short="Mesmerizing folds of reality, sealed behind glass. These jars were once sold as festive ornaments for the festival of Ut yara Ux. After several unfortunate accidents called their safety into question, VoidCorp pivoted into emphasizing their combat applications."></part>
         <part Name="Kernelmethod_Riftwalker_VortexBox" />
 
+        <part Name="Commerce" Value="80" />
         <part Name="Physics" Weight="1" />
+        <part Name="TinkerItem" Bits="024" />
+        <part Name="MissileStatusColor" Color="M" />
 
-        <part Name="Examiner" Complexity="5" />
-        <tag Name="Mods" Value="CommonMods" />
+        <tag Name="Tier" Value="5" />
+        <tag Name="ExcludeFromTurretStock" />
+
+        <property Name="Role" Value="Uncommon" />
     </object>
 
     <object Name="Kernelmethod_Riftwalker_VortexPack" Inherits="BaseCloak">
