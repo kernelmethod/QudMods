@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 3032410975,
+  "Title": "Choose Your Fighter",
+  "Description": "[h1][i]Choose Your Fighter![/i][/h1]\n\nThis mod allows you to customize your character's model in the character creation menu before starting a new game,\n\nCharacter model is purely cosmetic and has no impact on the game itself. You can find the character model selection menu after the \"choose starting location\" window.\n\n[b]Features:[/b]\n[list]\n[*] Choose the tile for your character from all of the tiles used by the various castes, callings, and presets available during character creation.\n[*] Choose a model from an existing creature or item to use for your player. Play as a crab! A chair! A sentient plasma grenade!\n[*] Extendable with mods to play with new character models.\n[/list]\n\n[h2]Using new tiles for characters[/h2]\n\nIf you want your character to be modeled off of an existing creature or item from the game, you can use the \"Choose tile from blueprint\" option in the tile selection menu, and then enter the ID of an existing creature or item. For instance:\n\n[list]\n[*] Enter \"Great Magma Crab\" to play as a Great Magma Crab.\n[*] Enter \"Snapjaw Brute 0\" to play as a snapjaw brute.\n[/list]\n\nRefer to the wiki to find the ID of the creature or item you're looking for: https://wiki.cavesofqud.com\n\nIt's also possible to mod in new character tiles into the game; see the repo for this mod for more details: https://github.com/kernelmethod/QudMods/tree/main/ChooseYourFighter",
+  "Tags": "Cosmetic",
+  "Visibility": "2",
+  "ImagePath": "preview.png"
+}
