@@ -5,9 +5,6 @@ using Kernelmethod.ChooseYourFighter;
 
 namespace XRL.CharacterBuilds.Qud {
     public class Kernelmethod_ChooseYourFighter_PlayerModelModule : EmbarkBuilderModule<PlayerModelData> {
-        private Dictionary<string, PlayerModel> _Models = null;
-        private PlayerModel currentReadingModelData = null;
-
         /// <summary>
         /// Return a dictionary containing all of the possible player models, keyed to
         /// model IDs.
@@ -15,27 +12,6 @@ namespace XRL.CharacterBuilds.Qud {
         public Dictionary<string, PlayerModel> ModelDict {
             get {
                 return TileFactory.ModelDict;
-                /*
-
-                if (_Models != null)
-                    return _Models;
-
-                // Initialize dictionary and populate with castes/callings
-                _Models = new Dictionary<string, PlayerModel>();
-
-                foreach (var entry in SubtypeFactory.Subtypes) {
-                    var id = entry.Name;
-                    var model = new PlayerModel {
-                        Id=id,
-                        Name="{{M|" + entry.DisplayName + "}}",
-                        Tile=entry.Tile,
-                        DetailColor=entry.DetailColor
-                    };
-                    _Models.Add(id, model);
-                }
-
-                return _Models;
-                */
             }
         }
 
