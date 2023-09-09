@@ -26,7 +26,7 @@ namespace XRL.World.Conversations.Parts {
                 return base.HandleEvent(E);
             }
 
-            var model = TileFactory.ChangePlayerAppearanceMenu();
+            var model = TileFactory.ChooseTileMenu();
             if (model == null)
                 return base.HandleEvent(E);
 

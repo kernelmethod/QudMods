@@ -116,7 +116,7 @@ namespace Kernelmethod.ChooseYourFighter {
         /// <summary>
         /// Create a menu for the player to change their appearance.
         /// </summary>
-        public static PlayerModel ChangePlayerAppearanceMenu() {
+        public static PlayerModel ChooseTileMenu() {
             var availableModels = new List<PlayerModel>(TileFactory.Models);
             availableModels.Sort();
             availableModels.Insert(0, new PlayerModel {

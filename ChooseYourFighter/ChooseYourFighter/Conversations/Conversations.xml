@@ -3,14 +3,14 @@
   <conversation ID="gutsmonger" Load="Merge">
 
     <node ID="Start" IfTrueKin="True" Load="Merge">
-      <choice ID="Kernelmethod_ChooseYourFighter_ChangeAppearance" GotoID="End">
+      <choice ID="Kernelmethod_ChooseYourFighter_ChangeAppearance" GotoID="End" Priority="1">
         <text>I'd like to change my appearance.</text>
         <part Name="Kernelmethod_ChooseYourFighter_ChangeAppearance" />
       </choice>
     </node>
 
     <node ID="Start" Load="Merge">
-      <choice ID="Kernelmethod_ChooseYourFighter_ChangeAppearance" GotoID="End">
+      <choice ID="Kernelmethod_ChooseYourFighter_ChangeAppearance" GotoID="End" Priority="1">
         <text>I'd like to change my appearance.</text>
         <part Name="Kernelmethod_ChooseYourFighter_ChangeAppearance" />
       </choice>
