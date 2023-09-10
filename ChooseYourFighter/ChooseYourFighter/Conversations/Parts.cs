@@ -1,11 +1,14 @@
 using XRL;
+using XRL.Liquids;
 using XRL.UI;
 using Kernelmethod.ChooseYourFighter;
 
 namespace XRL.World.Conversations.Parts {
     public class Kernelmethod_ChooseYourFighter_ChangeAppearance : IConversationPart {
+        public BaseLiquid Liquid = new LiquidWater();
+
         /// <summary>
-        /// Cost (in drams of water) to change appearance.
+        /// Cost (in drams) to change appearance.
         /// </summary>
         public const int ChangeAppearanceCost = 16;
 
@@ -16,13 +19,13 @@ namespace XRL.World.Conversations.Parts {
         }
 
         public override bool HandleEvent(GetChoiceTagEvent E) {
-            E.Tag += $"{{{{W|[{ChangeAppearanceCost} drams of water]}}}}";
+            E.Tag += $"{{{{g|[{ChangeAppearanceCost} drams of {Liquid.GetName()}]}}}}";
             return base.HandleEvent(E);
         }
 
         public override bool HandleEvent(EnterElementEvent E) {
-            if (The.Player.GetFreeDrams("water") < ChangeAppearanceCost) {
-                Popup.ShowFail("You don't have enough water.");
+            if (The.Player.GetFreeDrams(Liquid.ID) < ChangeAppearanceCost) {
+                Popup.ShowFail($"You don't have enough {Liquid.GetName()}.");
                 return base.HandleEvent(E);
             }
 
@@ -33,7 +36,7 @@ namespace XRL.World.Conversations.Parts {
             TileFactory.ChangePlayerAppearance(model);
 
             // Charge the player at the end
-            The.Player.UseDrams(ChangeAppearanceCost, "water");
+            The.Player.UseDrams(ChangeAppearanceCost, Liquid.ID);
             return base.HandleEvent(E);
         }
     }
