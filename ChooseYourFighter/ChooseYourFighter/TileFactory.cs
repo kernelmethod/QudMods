@@ -1,9 +1,11 @@
+using Qud.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using UnityEngine;
 using XRL;
+using XRL.Language;
 using XRL.UI;
 using XRL.World;
 using XRL.World.Parts;
@@ -155,6 +157,25 @@ namespace Kernelmethod.ChooseYourFighter {
                 part.SetForegroundColor(model.Foreground[0]);
             if (model.Background != null)
                 part.SetBackgroundColor(model.Background[0]);
+
+            var message = "You changed your appearance to look like ";
+            string name = null;
+
+            if (model.Blueprint != null) {
+                var gameObject = model.Blueprint.createOne();
+                name = gameObject.GetDisplayName(
+                    int.MaxValue, null, null, NoColor: false, Short: true,
+                    AsIfKnown: false, WithIndefiniteArticle: true, BaseOnly: false
+                );
+            }
+            else {
+                name = (Grammar.IndefiniteArticleShouldBeAn(model.Name) ? "an " : "a ") + model.Name;
+            }
+
+            message += name + ".";
+            JournalAPI.AddAccomplishment("You re-cast yourself in the image of " + name, muralWeight: JournalAccomplishment.MuralWeight.Nil);
+
+            Popup.Show(message);
         }
 
         public static PlayerModel GetModelFromBlueprint() {
