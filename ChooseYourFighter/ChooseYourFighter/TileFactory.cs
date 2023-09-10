@@ -172,14 +172,9 @@ namespace Kernelmethod.ChooseYourFighter {
                 return null;
             }
 
-            return new PlayerModel {
-                Id="BLUEPRINT:" + input,
-                Name="{{M|" + blueprint.DisplayName() + "}}",
-                Tile=gameObject.GetTile(),
-                Foreground=gameObject.GetForegroundColor(),
-                Background=gameObject.GetBackgroundColor(),
-                DetailColor=gameObject.GetDetailColor()
-            };
+            var model = new PlayerModel(blueprint);
+            model.Id = "BLUEPRINT:" + input;
+            return model;
         }
 
         private static void LogInfo(string message) {

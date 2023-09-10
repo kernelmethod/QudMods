@@ -119,14 +119,9 @@ namespace XRL.CharacterBuilds.Qud.UI {
                 return;
             }
 
-            base.module.data.model = new PlayerModel {
-                Id="BLUEPRINT:" + input,
-                Name="{{M|" + blueprint.DisplayName() + "}}",
-                Tile=gameObject.GetTile(),
-                Foreground=gameObject.GetForegroundColor(),
-                Background=gameObject.GetBackgroundColor(),
-                DetailColor=gameObject.GetDetailColor()
-            };
+            var model = new PlayerModel(blueprint);
+            model.Id = "BLUEPRINT:" + input;
+            base.module.data.model = model;
         }
 
         public override UIBreadcrumb GetBreadcrumb()
