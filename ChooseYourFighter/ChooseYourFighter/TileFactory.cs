@@ -160,7 +160,7 @@ namespace Kernelmethod.ChooseYourFighter {
 
             if (model.HFlip)
                 The.Player.RequirePart<Kernelmethod_ChooseYourFighter_FlipTile>();
-            else if (The.Player.HasPart("Kernelmethod_ChooseYourFighter_FlipTile"))
+            else
                 The.Player.RemovePart("Kernelmethod_ChooseYourFighter_FlipTile");
 
             var message = "You changed your appearance to look like ";
