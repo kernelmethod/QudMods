@@ -4,6 +4,6 @@
     "description": "Increase the chances of finding villages while navigating the overworld.",
     "version": "0.1.0",
     "author": "{{G|kernelmethod}}",
-    "tags": "Script",
+    "tags": "Script,Map,Settlement",
     "PreviewImage": "preview.png"
 }
