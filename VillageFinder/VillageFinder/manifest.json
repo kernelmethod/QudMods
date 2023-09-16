@@ -1,0 +1,9 @@
+{
+    "id": "Kernelmethod_VillageFinder",
+    "title": "Village Finder",
+    "description": "Increase the chances of finding villages while navigating the overworld.",
+    "version": "0.1.0",
+    "author": "{{G|kernelmethod}}",
+    "tags": "Script",
+    "PreviewImage": "preview.png"
+}
