@@ -8,7 +8,7 @@
     <object Name="Kernelmethod_Riftwalker_VortexJar" Inherits="Grenade">
         <part Name="Render" DisplayName="vortex jar" ColorString="&amp;M" DetailColor="y" Tile="Items/vortex_jar.png" />
         <part Name="Commerce" Value="100" />
-        <part Name="Description" Short="Mesmerizing folds of reality, sealed behind glass. These jars were once sold as festive ornaments for the festival of Ut yara Ux. After several unfortunate accidents called their safety into question, VoidCorp pivoted into emphasizing their combat applications."></part>
+        <part Name="Description" Short="Mesmerizing folds of reality, sealed behind glass. These jars were once sold as festive ornaments for the festival of Ut yara Ux. After several unfortunate accidents called their safety into question, VoidCorp pivoted into emphasizing their combat applications." />
         <part Name="Kernelmethod_Riftwalker_VortexBox" />
 
         <part Name="Commerce" Value="80" />
@@ -25,7 +25,7 @@
     <object Name="Kernelmethod_Riftwalker_VortexPack" Inherits="BaseCloak">
         <part Name="Armor" WornOn="Back" AV="1" DV="1" />
         <part Name="Render" DisplayName="{{extradimensional|riftwalker's}} {{m|backpack}}" ColorString="&amp;b" DetailColor="M" Tile="Items/vortex_pack.png" />
-        <part Name="Description" Short="Blackened chrome encases an intricate series of circuits and wires, wrapped around a phial of neutron flux." />
+        <part Name="Description" Short="Blackened chrome encases an intricate series of circuits and wires, wrapped around a phial of neutron flux. Atop, a small antenna hums, probing your neigborhood of the spacetime manifold." />
         <part Name="Commerce" Value="2000" />
         <part Name="Kernelmethod_Riftwalker_VortexPack" />
 

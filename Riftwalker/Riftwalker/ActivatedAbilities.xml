@@ -2,4 +2,11 @@
   <ability Command="CommandEscapeRift">
     <UITile Tile="Mutations/EscapeRift.png" Foreground="m" Detail="B" />
   </ability>
+
+  <ability Command="ActivateVortexPack">
+    <UITile Tile="Items/vortex_pack.png" Foreground="b" Detail="M" />
+    <description>
+      <p>Create a space-time vortex in an adjacent cell.</p>
+    </description>
+  </ability>
 </activatedabilities>
