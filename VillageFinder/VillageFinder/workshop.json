@@ -1,7 +1,7 @@
 {
   "WorkshopId": 3036277262,
   "Title": "Village Finder",
-  "Description": "[h1]Village Finder[/h1]\n\nA mini-mod!\n\nThis is a (very small) mod that improves your chances of finding villages while traversing the overworld, by giving you a large navigation bonus to villages when you pass by them.\n\nSource: https://github.com/kernelmethod/QudMods/tree/main/VillageFinder",
+  "Description": "[h1]Village Finder[/h1]\n\nA mini-mod!\n\nThis is a (very small) mod that improves your chances of finding villages while traversing the overworld, by giving you a large navigation bonus to villages when you pass by them.\n\nIf you like this mod, you should also check out petrak@'s \"Where Is Everybody?\" mod: https://github.com/gamma-delta/CoQ_where-is-everybody\n\nSource: https://github.com/kernelmethod/QudMods/tree/main/VillageFinder",
   "Tags": "Script,Map,Settlement",
   "Visibility": "0",
   "ImagePath": "preview.png"
