@@ -158,6 +158,11 @@ namespace Kernelmethod.ChooseYourFighter {
             if (model.Background != null)
                 part.SetBackgroundColor(model.Background[0]);
 
+            if (model.HFlip)
+                The.Player.RequirePart<Kernelmethod_ChooseYourFighter_FlipTile>();
+            else if (The.Player.HasPart("Kernelmethod_ChooseYourFighter_FlipTile"))
+                The.Player.RemovePart("Kernelmethod_ChooseYourFighter_FlipTile");
+
             var message = "You changed your appearance to look like ";
             string name = null;
 
@@ -195,6 +200,7 @@ namespace Kernelmethod.ChooseYourFighter {
 
             var model = new PlayerModel(blueprint);
             model.Id = "BLUEPRINT:" + input;
+            model.HFlip = true;
             return model;
         }
 

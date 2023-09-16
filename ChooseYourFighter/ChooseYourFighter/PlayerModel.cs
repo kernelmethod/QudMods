@@ -15,6 +15,7 @@ namespace Kernelmethod.ChooseYourFighter {
         public string Foreground = "y";
         public string Background = "k";
         public string DetailColor = null;
+        public bool HFlip = false;
 
         /// <summary>
         /// Blueprint associated to this model, if it exists.
