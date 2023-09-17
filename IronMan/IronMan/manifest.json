@@ -2,7 +2,7 @@
     "id": "Kernelmethod_IronMan",
     "title": "{{R|Iron Man}}",
     "description": "Changes to Caves of Qud's saving schedule to make save scumming more difficult in Classic mode.",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "author": "{{G|kernelmethod}}",
     "tags": "Script",
     "PreviewImage": "Preview.png"

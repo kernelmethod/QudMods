@@ -2,21 +2,25 @@ using XRL;
 using XRL.Core;
 using XRL.World;
 
+using Kernelmethod.IronMan.Parts;
+
 namespace Kernelmethod.IronMan
 {
 
     [PlayerMutator]
     public class SaveMutator : IPlayerMutator
     {
+        public static bool ApplicableGameState() {
+            var gameMode = The.Game.GetStringGameState("GameMode");
+            return gameMode == "Classic" || gameMode == "_Quickstart";
+        }
+
         public void mutate(GameObject player)
         {
-            // Only add parts to the player if the game mode is Classic
-            if (The.Game.GetStringGameState("GameMode", "Classic") == "Classic")
-            {
-                player.AddPart<SaveOnDeath>();
-                player.AddPart<SaveOnHealthThreshold>();
-                player.AddPart<SaveOnStatChange>();
-            }
+            if (!ApplicableGameState())
+                return;
+
+            player.AddPart<IronManSavePart>();
         }
     }
 
@@ -24,19 +28,14 @@ namespace Kernelmethod.IronMan
     public class AddSavePartsToPlayerHandler
     {
         [CallAfterGameLoadedAttribute]
-        public static void AddSaveOnDeathCallback()
+        public static void AddPartsCallback()
         {
             GameObject player = XRLCore.Core?.Game?.Player?.Body;
 
-            if (player == null)
+            if (player == null || !SaveMutator.ApplicableGameState())
                 return;
 
-            if (The.Game.GetStringGameState("GameMode", "Classic") != "Classic")
-                return;
-
-            player.RequirePart<SaveOnDeath>();
-            player.RequirePart<SaveOnHealthThreshold>();
-            player.RequirePart<SaveOnStatChange>();
+            player.RequirePart<IronManSavePart>();
         }
     }
 }
