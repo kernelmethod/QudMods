@@ -25,7 +25,9 @@
     <object Name="Kernelmethod_Riftwalker_VortexPack" Inherits="BaseCloak">
         <part Name="Armor" WornOn="Back" AV="1" DV="1" />
         <part Name="Render" DisplayName="{{extradimensional|riftwalker's}} {{m|backpack}}" ColorString="&amp;b" DetailColor="M" Tile="Items/vortex_pack.png" />
-        <part Name="Description" Short="Blackened chrome encases an intricate series of circuits and wires, wrapped around a phial of neutron flux. Atop, a small antenna hums, probing your neigborhood of the spacetime manifold." />
+        <part Name="Description" Short="Blackened chrome encases an intricate series of circuits and wires, wrapped around a phial of neutron flux. Atop, a small antenna hums, probing your neigborhood of the spacetime manifold.
+
+&amp;CWhen equipped and booted up, you may activate this item to create a space-time vortex in an adjacent cell." />
         <part Name="Commerce" Value="2000" />
         <part Name="Kernelmethod_Riftwalker_VortexPack" />
 
