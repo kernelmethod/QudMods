@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using XRL;
 using XRL.Core;
 using XRL.World;
@@ -40,11 +41,8 @@ namespace Kernelmethod.IronMan.Parts {
         }
 
         public override bool HandleEvent(AfterPlayerBodyChangeEvent E) {
-            if (E.NewBody != null)
-                E.NewBody.RequirePart<IronManSavePart>();
-
-            if (E.OldBody != null)
-                E.OldBody.RemovePart(typeof(IronManSavePart));
+            E.NewBody?.RequirePart<IronManSavePart>();
+            E.OldBody?.RemovePart(typeof(IronManSavePart));
 
             return base.HandleEvent(E);
         }
