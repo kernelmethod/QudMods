@@ -15,6 +15,7 @@ namespace Kernelmethod.IronMan
             {
                 player.AddPart<SaveOnDeath>();
                 player.AddPart<SaveOnHealthThreshold>();
+                player.AddPart<SaveOnStatChange>();
             }
         }
     }
