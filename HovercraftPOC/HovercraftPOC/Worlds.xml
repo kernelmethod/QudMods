@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<worlds>
+  <world Name="Interior" Load="Merge">
+    <cell Name="Kernelmethod_HovercraftPOC_Hovercraft">
+      <boolproperty Name="JoinPartyLeaderPossible" Value="false" />
+      <zone Level="10" x="1" y="1" Name="Control pit, Hovercraft" IncludeStratumInZoneDisplay="false">
+        <builder Class="InteriorGround" />
+        <builder Class="MapBuilder" FileName="Kernelmethod_HovercraftPOC_HovercraftInterior.rpm" Width="18" Height="9" ClearBeforePlace="true" />
+        <builder Class="AddWidgetBuilder" Blueprint="AmbientLight" />
+        <intproperty Name="AmbushChance" Value="10" />
+      </zone>
+    </cell>
+  </world>
+</worlds>

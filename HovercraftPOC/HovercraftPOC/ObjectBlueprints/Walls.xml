@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object Name="Kernelmethod_HovercraftPOC_HovercraftWall" Inherits="Verdigris">
+    <intproperty Name="InteriorRequired" Value="1" />
+  </object>
+
+  <object Name="Kernelmethod_HovercraftPOC_HovercraftLowWall" Inherits="HalfWall">
+    <intproperty Name="InteriorRequired" Value="1" />
+  </object>
+
+  <object Name="Kernelmethod_HovercraftPOC_HovercraftGlassWall" Inherits="GolemInteriorGlassWall">
+    <intproperty Name="InteriorRequired" Value="1" />
+  </object>
+
+  <object Name="Kernelmethod_HovercraftPOC_HovercraftSupportColumn" Inherits="VehicleGolemSupportColumn">
+    <intproperty Name="InteriorRequired" Value="1" />
+  </object>
+</objects>

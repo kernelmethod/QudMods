@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<bodies>
+  <anatomies>
+    <anatomy Name="Kernelmethod_HovercraftPOC_Hovercraft" Category="Mechanical">
+      <part Type="Control Unit">
+        <part Type="Sensor Array" />
+      </part>
+      <part Type="Chassis" />
+      <part Type="Hardpoint" Laterality="Left" />
+      <part Type="Hardpoint" Laterality="Right" />
+      <part Type="Undercarriage" />
+    </anatomy>
+  </anatomies>
+</bodies>

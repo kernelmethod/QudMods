@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object Name="Kernelmethod_HovercraftPOC_SnapjawPilot" Inherits="Snapjaw Scavenger">
+    <part Name="Brain" Hostile="false" Calm="true" Factions="Playerneutral-100" />
+  </object>
+</objects>

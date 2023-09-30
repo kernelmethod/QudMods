@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+
+  <!-- Seats -->
+  <object Name="Kernelmethod_HovercraftPOC_HovercraftSeat" Inherits="BasePortableChair">
+    <part Name="Render" DisplayName="pilot seat" TileColor="&amp;R" DetailColor="C" Tile="Furniture/sw_golem_interior_chair.bmp" />
+    <part Name="Description" Short="Teal foam pads the inside back and the deep seat well, and dials deck the curved armrests." />
+    <part Name="Physics" Weight="100" />
+    <part Name="Chair" Level="3" Securing="true" />
+    <stat Name="Hitpoints" Value="1000" />
+    <part Name="VehicleSeat" />
+
+    <!--
+    Uncomment to allow pilots to eject from this seat!
+
+    <part Name="EjectionSeat" />
+    -->
+    <tag Name="BodyType" Value="MetalChair" />
+    <tag Name="ExcludeFromDynamicEncounters" />
+
+    <intproperty Name="InteriorRequired" Value="1" />
+  </object>
+
+  <object Name="Kernelmethod_HovercraftPOC_HovercraftPassengerSeat" Inherits="Kernelmethod_HovercraftPOC_HovercraftSeat">
+    <part Name="Render" DisplayName="pilot seat" ColorString="&amp;W" TileColor="&amp;w" DetailColor="C" Tile="Furniture/sw_golem_interior_chair.bmp" />
+    <removepart Name="VehicleSeat" />
+  </object>
+
+  <!-- Vehicle entrance -->
+  <object Name="Kernelmethod_HovercraftPOC_HovercraftEntrance" Inherits="Stairs">
+    <part Name="Render" DisplayName="exit hatch" RenderLayer="1" ColorString="&amp;m" TileColor="&amp;M" DetailColor="W" RenderString="008" Tile="Furniture/sw_golem_interior_hatch_closed.bmp" />
+    <part Name="Description" Short="A pair of retractible chrome panels are fit on oiled tracks." />
+    <part Name="InteriorPortal" OpenTile="Furniture/sw_golem_interior_hatch_open.bmp" />
+    <tag Name="Gender" Value="neuter" />
+    <tag Name="ExcludeFromDynamicEncounters" />
+    <xtagGrammar iArticle="" />
+
+    <intproperty Name="InteriorRequired" Value="1" />
+  </object>
+</objects>

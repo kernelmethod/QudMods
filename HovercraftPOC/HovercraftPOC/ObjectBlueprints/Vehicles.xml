@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object Name="Kernelmethod_HovercraftPOC_Hovercraft" Inherits="Creature">
+    <part Name="Body" Anatomy="Kernelmethod_HovercraftPOC_Hovercraft" />
+    <part Name="Render" DisplayName="hovercraft" Tile="Kernelmethod_HovercraftPOC/Hovercraft.png" TileColor="&amp;r" DetailColor="y" RenderString="243" />
+
+    <!-- Vehicle is non-autonomous and shuts down without a driver -->
+    <part Name="Brain" Factions="Playerneutral-100" />
+    <!-- Use custom interior for hovercraft -->
+    <part Name="Interior" Cell="Kernelmethod_HovercraftPOC_Hovercraft" FallDistance="1" />
+    <part Name="Vehicle" Type="Hovercraft" Autonomous="true" IsEMPSensitive="false" />
+    <part Name="CannotBeInfluenced" Messages="Beguiling:The place where a mind should be is blank and smooth in =subject.the==subject.name=.,Persuasion_Proselytize:=subject.The==subject.name's= commitment to =pronouns.possessive= cause is unwavering.,LoveTonicApplicator:The tonic has no effect on =subject.the==subject.name=.,default:=subject.The==subject.name= =verb:are= insensible to your blandishments." />
+    <part Name="VehiclePilotPopulation" Blueprint="Kernelmethod_HovercraftPOC_SnapjawPilot" Table="" />
+
+    <stat Name="Level" Value="10" />
+    <stat Name="Hitpoints" Value="80" />
+    <stat Name="AV" Value="4" />
+    <stat Name="MoveSpeed" Value="-125" />
+    <stat Name="ElectricResistance" Value="-50" />
+
+    <inventoryobject Blueprint="Kernelmethod_HovercraftPOC_HovercraftTurret" Number="1" />
+    <inventoryobject Blueprint="Lead Slug" Number="200-300" />
+
+    <tag Name="ExcludeFromDynamicEncounters" />
+    <!--
+    <tag Name="Gigantic" />
+    -->
+  </object>
+
+  <!-- Natural weaponry -->
+  <object Name="Kernelmethod_HovercraftPOC_HovercraftTurret" Inherits="NaturalMissileWeapon">
+    <part Name="Render" DisplayName="turret" ColorString="&amp;y" DetailColor="c" Tile="items/sw_chain_gun.bmp" />
+    <part Name="Physics" Weight="120" UsesTwoSlots="true" />
+    <part Name="Commerce" Value="80" />
+
+    <part Name="MissileWeapon" AnimationDelay="0" Skill="HeavyWeapons" ShotsPerAction="5" AmmoPerAction="5" ShotsPerAnimation="1" WeaponAccuracy="10" RangeIncrement="6" />
+    <part Name="MagazineAmmoLoader" ProjectileObject="Kernelmethod_HovercraftPOC_ProjectileHovercraftTurretShell" AmmoPart="AmmoSlug" MaxAmmo="80" />
+
+    <part Name="Examiner" Alternate="UnknownStrangeTubes" Complexity="3" />
+    <part Name="TinkerItem" Bits="0023" CanDisassemble="true" CanBuild="false" />
+    <part Name="IntegratedPowerSystems" RequiresEvent="HasPowerConnectors" />
+    <part Name="Metal" />
+    <!--
+    <part Name="ModGigantic" />
+    -->
+
+    <tag Name="NoDefaultBehavior" />
+    <tag Name="Mods" Value="MissileWeaponMods,FirearmMods,CommonMods,RifleMods,ElectronicsMods,BeamWeaponMods" />
+    <tag Name="Tier" Value="7" />
+    <tag Name="MissileFireSound" Value="Sounds/Missile/Fires/Heavy Weapons/sfx_missile_chaingun_fire" />
+  </object>
+
+  <!-- Projectiles -->
+  <object Name="Kernelmethod_HovercraftPOC_ProjectileHovercraftTurretShell" Inherits="BaseLeadSlugProjectile">
+    <part Name="Projectile" BasePenetration="5" BaseDamage="1d4" />
+  </object>
+</objects>
