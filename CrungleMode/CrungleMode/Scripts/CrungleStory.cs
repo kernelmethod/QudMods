@@ -22,40 +22,41 @@ namespace XRL.World.Parts {
         }
 
         public override bool HandleEvent(BeforeTakeActionEvent E) {
-            if (Triggered)
-                goto Exit;
+            if (!Triggered) {
+                Triggered = true;
 
-            Triggered = true;
+                string day = Calendar.getDay();
+                string month = Calendar.getMonth();
+                var name = "{{M|" + The.Player.DisplayName + "}}";
+                var blueprint = "{{M|" + The.Player.GetBlueprint().DisplayName() + "}}";
 
-            string day = Calendar.getDay();
-            string month = Calendar.getMonth();
-            var name = "{{M|" + The.Player.DisplayName + "}}";
-            var blueprint = "{{M|" + The.Player.GetBlueprint().DisplayName() + "}}";
+                string text = "&yYou awaken from a fitful dream.\n\n";
+                text += $"On the {day} of {month}, you enter the body of {name}, a {blueprint}.";
+                string displayName = ParentObject.GetCurrentCell().ParentZone.DisplayName;
 
-            string text = "&yYou awaken from a fitful dream.\n\n";
-            text += $"On the {day} of {month}, you enter the body of {name}, a {blueprint}.";
-            string displayName = ParentObject.GetCurrentCell().ParentZone.DisplayName;
+                if (CapabilityManager.AllowKeyboardHotkeys)
+                    text += "\n\n<Press space, then press F1 for help.>";
 
-            if (CapabilityManager.AllowKeyboardHotkeys)
-                text += "\n\n<Press space, then press F1 for help.>";
+                ClassicFade();
 
-            ClassicFade();
+                // Create an initial checkpoint
+                if (CheckpointingSystem.IsCheckpointingEnabled())
+                    CheckpointingSystem.DoCheckpoint();
 
-            // Create an initial checkpoint
-            if (CheckpointingSystem.IsCheckpointingEnabled())
-                CheckpointingSystem.DoCheckpoint();
+                Popup.Show(text);
+                JournalAPI.AddAccomplishment(
+                    $"On the {day} of {month}, you awoke from a fitful dream.",
+                    $"On the terrible {day} of {month}, =name= entered a waking nightmare.",
+                    muralCategory: JournalAccomplishment.MuralCategory.IsBorn,
+                    muralWeight: JournalAccomplishment.MuralWeight.Medium,
+                    secretId: null,
+                    time: -1
+                );
 
-            Popup.Show(text);
-            JournalAPI.AddAccomplishment(
-                $"On the {day} of {month}, you awoke from a fitful dream.",
-                $"On the terrible {day} of {month}, =name= entered a waking nightmare.",
-                muralCategory: JournalAccomplishment.MuralCategory.IsBorn,
-                muralWeight: JournalAccomplishment.MuralWeight.Medium,
-                secretId: null,
-                time: -1
-            );
+                // Part is no longer needed
+                ParentObject.RemovePart(this);
+            }
 
-            Exit:
             return base.HandleEvent(E);
         }
 
