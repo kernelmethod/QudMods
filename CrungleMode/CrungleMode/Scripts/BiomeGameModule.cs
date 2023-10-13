@@ -1,5 +1,6 @@
 using Kernelmethod.CrungleMode;
 using Kernelmethod.CrungleMode.Utilities;
+using Kernelmethod.CrungleMode.Parts;
 using Kernelmethod.CrungleMode.ZoneSampling;
 
 using System;
@@ -187,28 +188,22 @@ namespace XRL.CharacterBuilds.Qud
             return new GlobalLocation(location);
         }
 
+        /// <summary>
+        /// Return the initial GameObject instance that should be used for the player object.
+        /// </summary>
         public object HandleBeforeBootPlayerObject(XRLGame game, EmbarkInfo info, object element = null)
         {
-            return Target;
-        }
-
-        public object HandleBootPlayerObject(XRLGame game, EmbarkInfo info, object element = null)
-        {
-            var player = element as GameObject;
-
-            player.RequirePart<Description>().Short = "It's you.";
-            player.pBrain.PartyLeader = null;
-            player.pBrain.Goals.Clear();
-            player.CurrentZone.SetActive();
-            player.AddPart(new Kernelmethod_CrungleMode_CrungleStory());
+            Target.RequirePart<Description>().Short = "It's you.";
+            Target.pBrain.PartyLeader = null;
+            Target.pBrain.Goals.Clear();
 
             // Remove problematic parts, if the player's body has them
-            player.RemovePart("CryptSitterBehavior");
+            Target.RemovePart("CryptSitterBehavior");
 
             // Change faction relationships to reflect current faction affiliation...
             foreach (Faction faction in Factions.loop()) {
                 int basePlayerReputation = faction.InitialPlayerReputation;
-                int baseplayerFeeling = faction.GetFeelingTowardsObject(player);
+                int baseplayerFeeling = faction.GetFeelingTowardsObject(Target);
 
                 int newReputation = basePlayerReputation;
 
@@ -224,8 +219,19 @@ namespace XRL.CharacterBuilds.Qud
             }
 
             // ... and then remove the current faction affiliation.
-            LogInfo($"HandleBootPlayerObject: removing faction membership (was: {player.pBrain.Factions})");
-            player.pBrain.FactionMembership.Clear();
+            LogInfo($"HandleBootPlayerObject: removing faction membership (was: {Target.pBrain.Factions})");
+            Target.pBrain.FactionMembership.Clear();
+
+            return Target;
+        }
+
+        public object HandleBootPlayerObject(XRLGame game, EmbarkInfo info, object element = null)
+        {
+            var player = element as GameObject;
+
+            player.CurrentZone.SetActive();
+            player.AddPart(new Kernelmethod_CrungleMode_CrungleStory());
+            player.SetStringProperty("Subtype", "");
 
             if (Options.SpawnWithWater) {
                 int numWaterskins = Kernelmethod_CrungleMode_Random.Next(3, 4);
@@ -290,9 +296,6 @@ namespace XRL.CharacterBuilds.Qud
 
         public object HandleBootGameStarting(XRLGame game, EmbarkInfo info, object element = null)
         {
-            game.Player.Body = Target;
-            game.PlayerName = Target.DisplayName;
-
             var renderPart = Target.GetPart("Render") as Render;
             renderPart.HFlip = true;
 
