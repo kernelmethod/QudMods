@@ -141,6 +141,8 @@ namespace XRL.CharacterBuilds.Qud
                 return HandleAfterInitializeHistory(game, info, element);
             if (id == QudGameBootModule.BOOTEVENT_BOOTSTARTINGLOCATION && base.data != null)
                 return HandleBootStartingLocation(game, info, element);
+            if (id == QudGameBootModule.BOOTEVENT_BEFOREBOOTPLAYEROBJECT)
+                return HandleBeforeBootPlayerObject(game, info, element);
             if (id == QudGameBootModule.BOOTEVENT_BOOTPLAYEROBJECT)
                 return HandleBootPlayerObject(game, info, element);
             if (id == QudGameBootModule.BOOTEVENT_GAMESTARTING)
@@ -179,30 +181,40 @@ namespace XRL.CharacterBuilds.Qud
         public object HandleBootStartingLocation(XRLGame game, EmbarkInfo info, object element = null)
         {
             string randomDestinationZoneID = SpaceTimeVortex.GetRandomDestinationZoneID("JoppaWorld", Validate: false);
-            return new GlobalLocation(Target.CurrentZone.ZoneID + "@37,22");
+            var cell = Target.CurrentCell;
+            var location = $"{Target.CurrentZone.ZoneID}@{cell.X},{cell.Y}";
+
+            return new GlobalLocation(location);
+        }
+
+        public object HandleBeforeBootPlayerObject(XRLGame game, EmbarkInfo info, object element = null)
+        {
+            return Target;
         }
 
         public object HandleBootPlayerObject(XRLGame game, EmbarkInfo info, object element = null)
         {
-            Target.RequirePart<Description>().Short = "It's you.";
-            Target.pBrain.PartyLeader = null;
-            Target.pBrain.Goals.Clear();
-            Target.CurrentZone.SetActive();
-            Target.AddPart(new Kernelmethod_CrungleMode_CrungleStory());
+            var player = element as GameObject;
+
+            player.RequirePart<Description>().Short = "It's you.";
+            player.pBrain.PartyLeader = null;
+            player.pBrain.Goals.Clear();
+            player.CurrentZone.SetActive();
+            player.AddPart(new Kernelmethod_CrungleMode_CrungleStory());
 
             // Remove problematic parts, if the player's body has them
-            Target.RemovePart("CryptSitterBehavior");
+            player.RemovePart("CryptSitterBehavior");
 
             // Change faction relationships to reflect current faction affiliation...
             foreach (Faction faction in Factions.loop()) {
                 int basePlayerReputation = faction.InitialPlayerReputation;
-                int baseTargetFeeling = faction.GetFeelingTowardsObject(Target);
+                int baseplayerFeeling = faction.GetFeelingTowardsObject(player);
 
                 int newReputation = basePlayerReputation;
 
-                if (baseTargetFeeling < 0 && basePlayerReputation > 0)
-                    newReputation = baseTargetFeeling * 6;
-                if (baseTargetFeeling > 0 && basePlayerReputation < 0)
+                if (baseplayerFeeling < 0 && basePlayerReputation > 0)
+                    newReputation = baseplayerFeeling * 6;
+                if (baseplayerFeeling > 0 && basePlayerReputation < 0)
                     newReputation = 0;
 
                 if (newReputation != basePlayerReputation) {
@@ -212,8 +224,8 @@ namespace XRL.CharacterBuilds.Qud
             }
 
             // ... and then remove the current faction affiliation.
-            LogInfo($"HandleBootPlayerObject: removing faction membership (was: {Target.pBrain.Factions})");
-            Target.pBrain.FactionMembership.Clear();
+            LogInfo($"HandleBootPlayerObject: removing faction membership (was: {player.pBrain.Factions})");
+            player.pBrain.FactionMembership.Clear();
 
             if (Options.SpawnWithWater) {
                 int numWaterskins = Kernelmethod_CrungleMode_Random.Next(3, 4);
@@ -235,14 +247,14 @@ namespace XRL.CharacterBuilds.Qud
                     }
 
                     AddObject:
-                    Target.Inventory.AddObject(waterskin);
+                    player.Inventory.AddObject(waterskin);
                 }
             }
 
             if (Options.SpawnWithLightSources)
-                RequireLightSource(Target);
+                RequireLightSource(player);
 
-            return base.handleBootEvent(QudGameBootModule.BOOTEVENT_BOOTPLAYEROBJECT, game, info, element);
+            return base.handleBootEvent(QudGameBootModule.BOOTEVENT_BOOTPLAYEROBJECT, game, info, player);
         }
 
         public void RequireLightSource(GameObject Object)
@@ -282,8 +294,6 @@ namespace XRL.CharacterBuilds.Qud
             var oldBody = game.Player.Body;
             game.Player.Body = Target;
             game.PlayerName = Target.DisplayName;
-
-            oldBody.Destroy();
 
             return null;
         }
