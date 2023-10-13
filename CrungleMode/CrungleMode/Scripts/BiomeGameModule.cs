@@ -298,6 +298,8 @@ namespace XRL.CharacterBuilds.Qud
             var renderPart = Target.GetPart("Render") as Render;
             renderPart.HFlip = true;
 
+            Target.RemovePart("OpeningStory");
+
             return null;
         }
 
