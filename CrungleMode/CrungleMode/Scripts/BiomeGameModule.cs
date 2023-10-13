@@ -254,7 +254,7 @@ namespace XRL.CharacterBuilds.Qud
             if (Options.SpawnWithLightSources)
                 RequireLightSource(player);
 
-            return base.handleBootEvent(QudGameBootModule.BOOTEVENT_BOOTPLAYEROBJECT, game, info, player);
+            return base.handleBootEvent(QudGameBootModule.BOOTEVENT_BOOTPLAYEROBJECT, game, info, element);
         }
 
         public void RequireLightSource(GameObject Object)
@@ -290,10 +290,11 @@ namespace XRL.CharacterBuilds.Qud
 
         public object HandleBootGameStarting(XRLGame game, EmbarkInfo info, object element = null)
         {
-            // Replace the player's old body with the new body
-            var oldBody = game.Player.Body;
             game.Player.Body = Target;
             game.PlayerName = Target.DisplayName;
+
+            var renderPart = Target.GetPart("Render") as Render;
+            renderPart.HFlip = true;
 
             return null;
         }
