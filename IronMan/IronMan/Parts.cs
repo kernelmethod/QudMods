@@ -9,11 +9,15 @@ using XRL.World;
 namespace Kernelmethod.IronMan.Parts {
     [Serializable]
     public class IronManSavePart : IPart {
-        public Dictionary<string, long> MinTurnsBetweenSaves = new Dictionary<string, long>() {
-            { "HealthSaveThreshold", 300 },
-            { "StatChange", 50 }
-        };
-        public Dictionary<string, long> LastSaveTurn = new Dictionary<string, long>();
+        [NonSerialized]
+        public long MinTurns = 50;
+        [NonSerialized]
+        public long PreviousSaveTurn = 0;
+
+        [Obsolete("Field replaced with MinTurns.")]
+        public Dictionary<string, long> MinTurnsBetweenSaves = null;
+        [Obsolete("Field replaced with PreviousSaveTurn.")]
+        public Dictionary<string, long> LastSaveTurn = null;
 
         /// <summary>
         /// The threshold below which a player's health must drop before triggering a new save.
@@ -62,10 +66,6 @@ namespace Kernelmethod.IronMan.Parts {
             if (!ParentObject.IsPlayer())
                 return base.HandleEvent(E);
 
-            // Check whether the damage we're about to take puts us below the threshold
-            // (but above 0 health).
-            // - We don't save if we're already below the threshold.
-            // - We only save a maximum of once every MinTurnsBetweenSaves rounds
             int currentHP = E.Object.hitpoints;
             int maxHP = E.Object.baseHitpoints;
 
@@ -76,7 +76,7 @@ namespace Kernelmethod.IronMan.Parts {
             if (afterDamageHealth <= 0 || afterDamageHealth > HealthSaveThreshold)
                 return false;
 
-            TriggerSave("HealthSaveThreshold");
+            TriggerSave();
 
             return base.HandleEvent(E);
         }
@@ -101,7 +101,7 @@ namespace Kernelmethod.IronMan.Parts {
                     if (newBaseValue >= oldBaseValue)
                         break;
 
-                    TriggerSave("StatChange");
+                    TriggerSave();
                     break;
                 default:
                     // Do nothing
@@ -115,17 +115,11 @@ namespace Kernelmethod.IronMan.Parts {
         /// Create a new save for the current game, if sufficiently many turns have
         /// passed.
         /// </summary>
-        public void TriggerSave(string key = null) {
-            if (key != null) {
-                var minTurns = MinTurnsBetweenSaves.GetValue(key, 0);
-                var lastTurn = LastSaveTurn.GetValue(key, -1);
+        public void TriggerSave() {
+            if (MinTurns > 0 && PreviousSaveTurn > 0 && XRLCore.CurrentTurn - MinTurns < PreviousSaveTurn)
+                return;
 
-                if (minTurns > 0 && lastTurn > 0 && XRLCore.CurrentTurn - minTurns < lastTurn)
-                    return;
-
-                LastSaveTurn[key] = XRLCore.CurrentTurn;
-            }
-
+            PreviousSaveTurn = XRLCore.CurrentTurn;
             The.Game.QuickSave();
         }
 
