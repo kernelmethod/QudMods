@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.IO;
 using XRL;
 using XRL.Core;
+using XRL.UI;
 using XRL.World;
 
 namespace Kernelmethod.IronMan.Parts {
@@ -110,6 +111,10 @@ namespace Kernelmethod.IronMan.Parts {
             return base.FireEvent(E);
         }
 
+        /// <summary>
+        /// Create a new save for the current game, if sufficiently many turns have
+        /// passed.
+        /// </summary>
         public void TriggerSave(string key = null) {
             if (key != null) {
                 var minTurns = MinTurnsBetweenSaves.GetValue(key, 0);
@@ -122,6 +127,17 @@ namespace Kernelmethod.IronMan.Parts {
             }
 
             The.Game.QuickSave();
+        }
+
+        /// <summary>
+        /// Delete the save for the current game.
+        /// </summary>
+        public void TriggerDelete() {
+            if (!Options.DisablePermadeath) {
+                var cacheDirectory = The.Game.GetCacheDirectory();
+                if (cacheDirectory != null)
+                    Directory.Delete(cacheDirectory, recursive: true);
+            }
         }
     }
 }
