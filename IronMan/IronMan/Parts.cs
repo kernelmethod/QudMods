@@ -57,7 +57,7 @@ namespace Kernelmethod.IronMan.Parts {
             if (!ParentObject.IsPlayer())
                 return base.HandleEvent(E);
 
-            TriggerSave();
+            TriggerDelete();
             return base.HandleEvent(E);
         }
 
@@ -121,6 +121,7 @@ namespace Kernelmethod.IronMan.Parts {
 
             PreviousSaveTurn = XRLCore.CurrentTurn;
             The.Game.QuickSave();
+            LogInfo($"triggered save on turn {XRLCore.CurrentTurn}");
         }
 
         /// <summary>
@@ -128,10 +129,25 @@ namespace Kernelmethod.IronMan.Parts {
         /// </summary>
         public void TriggerDelete() {
             if (!Options.DisablePermadeath) {
+                LogInfo($"triggered delete");
+
+                // Recursively delete flies in the directory but don't delete the directory itself,
+                // since the game will currently (2.0.206.10) crash if the directory is missing.
                 var cacheDirectory = The.Game.GetCacheDirectory();
-                if (cacheDirectory != null)
-                    Directory.Delete(cacheDirectory, recursive: true);
+
+                foreach (var entry in Directory.EnumerateFileSystemEntries(cacheDirectory)) {
+                    var attributes = File.GetAttributes(entry);
+                    if (attributes == FileAttributes.Directory)
+                        Directory.Delete(entry, recursive: true);
+                    else
+                        File.Delete(entry);
+                    LogInfo($"deleted {entry}");
+                }
             }
+        }
+
+        private void LogInfo(string message) {
+            MetricsManager.LogInfo($"Kernelmethod_Ironman::IronManSavePart: {message}");
         }
     }
 }
