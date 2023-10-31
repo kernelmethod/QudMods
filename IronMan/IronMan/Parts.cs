@@ -29,7 +29,7 @@ namespace Kernelmethod.IronMan.Parts {
         public override void Register(GameObject obj) {
             obj.RegisterPartEvent(this, "StatChange_Strength");
             obj.RegisterPartEvent(this, "StatChange_Agility");
-            obj.RegisterPartEvent(this, "statChange_Toughness");
+            obj.RegisterPartEvent(this, "StatChange_Toughness");
             obj.RegisterPartEvent(this, "StatChange_Willpower");
             obj.RegisterPartEvent(this, "StatChange_Intelligence");
             obj.RegisterPartEvent(this, "StatChange_Ego");
