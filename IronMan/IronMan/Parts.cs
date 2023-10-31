@@ -42,7 +42,8 @@ namespace Kernelmethod.IronMan.Parts {
             return base.WantEvent(ID, cascade)
                 || ID == AfterPlayerBodyChangeEvent.ID
                 || ID == AfterDieEvent.ID
-                || ID == BeforeTookDamageEvent.ID;
+                || ID == BeforeTookDamageEvent.ID
+                || ID == ReputationChangeEvent.ID;
         }
 
         public override bool HandleEvent(AfterPlayerBodyChangeEvent E) {
@@ -78,6 +79,11 @@ namespace Kernelmethod.IronMan.Parts {
 
             TriggerSave();
 
+            return base.HandleEvent(E);
+        }
+
+        public override bool HandleEvent(ReputationChangeEvent E) {
+            TriggerSave();
             return base.HandleEvent(E);
         }
 
