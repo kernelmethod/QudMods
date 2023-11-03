@@ -11,8 +11,7 @@ namespace Kernelmethod.IronMan
     public class SaveMutator : IPlayerMutator
     {
         public static bool ApplicableGameState() {
-            var gameMode = The.Game.GetStringGameState("GameMode");
-            return gameMode == "Classic" || gameMode == "_Quickstart";
+            return The.Game.GetStringGameState("Checkpointing") != "Enabled";
         }
 
         public void mutate(GameObject player)
