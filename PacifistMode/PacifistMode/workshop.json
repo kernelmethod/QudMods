@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 3070465102,
+  "Title": "Pacifist Mode",
+  "Description": "This mod makes some changes to Wander mode and adds a new game mode, [b]Pacifist Mode[/b].\n\n[list]\n[*] Changes Wander mode to [b]Permadeath Wander Mode[/b], which is a Wander mode variant where:\n[list]\n[*] You don't get any XP for killing creatures.\n[*] You get more XP for discoveries and performing water rituals.\n[*] You permanently lose your character when you die.\n[/list]\n[*] [b]Pacifist Mode[/b]: a Permadeath Wander Mode variant where you die if you kill [i]any[/i] creature*.\n[/list]\n\n* Excluding Templar and Nephilim.",
+  "Tags": "Game Mode,Permadeath",
+  "Visibility": "2",
+  "ImagePath": "preview.png"
+}

@@ -1,0 +1,9 @@
+{
+    "id": "Kernelmethod_PacifistMode",
+    "title": "{{R|Pacifist Mode}}",
+    "description": "Adds a new game mode, pacifist mode. Modifies wander mode to use permadeath.",
+    "version": "0.1.0",
+    "author": "{{G|kernelmethod}}",
+    "tags": "Game Mode",
+    "PreviewImage": "preview.png"
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<embarkmodules>
+  <module Class="XRL.CharacterBuilds.Qud.QudGamemodeModule">
+    <modes>
+      <mode ID="Wander" Title="Wander (Permadeath)">
+        <icon Tile="UI/sw_wander_mode.bmp" Foreground="R" Detail="r"></icon>
+        <description>
+          {{c|&#249;}} No XP for killing.
+          {{c|&#249;}} More XP for discoveries and performing the water ritual.
+          {{c|&#249;}} Permadeath: lose your character when you die.
+        </description>
+        <stringgamestate Name="WanderEnabled" Value="yes" />
+        <stringgamestate Name="GameMode" Value="Permadeath Wander" />
+        <stringgamestate Name="Checkpointing" Value="Disabled" />
+      </mode>
+
+      <mode ID="Kernelmethod_PacifistMode_Pacifist" Title="Pacifist">
+        <icon Tile="Creatures/sw_oboroqoru.bmp" Foreground="Y" Detail="w"></icon>
+        <description>
+          {{c|&#249;}} You die if you kill any creature (excluding Templar and Nephilim).
+          {{c|&#249;}} More XP for discoveries and performing the water ritual.
+          {{c|&#249;}} Permadeath: lose your character when you die.
+        </description>
+        <stringgamestate Name="WanderEnabled" Value="yes" />
+        <stringgamestate Name="GameMode" Value="Pacifist" />
+        <stringgamestate Name="Checkpointing" Value="Disabled" />
+      </mode>
+    </modes>
+  </module>
+</embarkmodules>

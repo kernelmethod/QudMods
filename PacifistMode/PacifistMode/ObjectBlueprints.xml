@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object Name="Templar" Load="Merge">
+    <tag Name="Kernelmethod_PacifistMode_OkayToKill" />
+  </object>
+
+  <object Name="BaseNephal" Load="Merge">
+    <tag Name="Kernelmethod_PacifistMode_OkayToKill" />
+  </object>
+
+  <object Name="VehicleTemplarMech" Load="Merge">
+    <tag Name="Kernelmethod_PacifistMode_OkayToKill" />
+  </object>
+</objects>
