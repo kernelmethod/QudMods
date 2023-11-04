@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<embarkmodules>
+  <module Class="XRL.CharacterBuilds.Qud.Kernelmethod_ChooseYourFighter_PlayerModelModule">
+    <window ID="Chargen/Kernelmethod_ChooseYourFighter_PlayerModel" Prefab="VertScroll" Class="XRL.CharacterBuilds.Qud.UI.Kernelmethod_ChooseYourFighter_PlayerModelWindow">
+      <name>Customize</name>
+      <title>:customize character:</title>
+    </window>
+  </module>
+</embarkmodules>

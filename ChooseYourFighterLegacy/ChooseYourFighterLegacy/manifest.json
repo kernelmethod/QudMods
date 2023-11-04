@@ -1,0 +1,9 @@
+{
+    "id": "Kernelmethod_ChooseYourFighter",
+    "title": "Choose Your Fighter",
+    "description": "Legacy version of the Choose Your Fighter mod, compatible with game versions < 2.0.206.0.",
+    "version": "0.3.2",
+    "author": "{{G|kernelmethod}}",
+    "tags": "Cosmetic",
+    "PreviewImage": "preview.png"
+}

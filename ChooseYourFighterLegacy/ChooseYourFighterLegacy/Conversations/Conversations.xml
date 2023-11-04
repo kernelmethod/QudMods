@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<conversations>
+
+  <!--
+    Override gutsmonger conversation to include an option to change appearance.
+
+    Give Priority="-2000" so that it appears after the trade option but before the
+    "end conversation" option.
+  -->
+  <conversation ID="gutsmonger" Load="Merge">
+
+    <node ID="Start" IfTrueKin="True" Load="Merge">
+      <choice ID="Kernelmethod_ChooseYourFighter_ChangeAppearance" GotoID="End" Priority="-2000">
+        <text>I'd like to change my appearance.</text>
+        <part Name="Kernelmethod_ChooseYourFighter_ChangeAppearance" />
+      </choice>
+    </node>
+
+    <node ID="Start" Load="Merge">
+      <choice ID="Kernelmethod_ChooseYourFighter_ChangeAppearance" GotoID="End" Priority="-2000">
+        <text>I'd like to change my appearance.</text>
+        <part Name="Kernelmethod_ChooseYourFighter_ChangeAppearance" />
+      </choice>
+    </node>
+
+  </conversation>
+</conversations>
