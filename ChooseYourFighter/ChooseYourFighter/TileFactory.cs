@@ -178,7 +178,7 @@ namespace Kernelmethod.ChooseYourFighter {
             }
 
             message += name + ".";
-            JournalAPI.AddAccomplishment("You re-cast yourself in the image of " + name, muralWeight: JournalAccomplishment.MuralWeight.Nil);
+            JournalAPI.AddAccomplishment("You re-cast yourself in the image of " + name, muralWeight: MuralWeight.Nil);
 
             Popup.Show(message);
         }
