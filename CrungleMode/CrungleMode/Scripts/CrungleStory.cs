@@ -2,7 +2,6 @@ using ConsoleLib.Console;
 using Qud.API;
 using Qud.UI;
 using UnityEngine;
-using XRL;
 using XRL.UI;
 
 namespace XRL.World.Parts {
@@ -47,8 +46,9 @@ namespace XRL.World.Parts {
                 JournalAPI.AddAccomplishment(
                     $"On the {day} of {month}, you awoke from a fitful dream.",
                     $"On the terrible {day} of {month}, =name= entered a waking nightmare.",
-                    muralCategory: JournalAccomplishment.MuralCategory.IsBorn,
-                    muralWeight: JournalAccomplishment.MuralWeight.Medium,
+                    // TODO: uncomment when beta gets merged into stable.
+                    // muralCategory: MuralCategory.IsBorn,
+                    // muralWeight: MuralWeight.Medium,
                     secretId: null,
                     time: -1
                 );
