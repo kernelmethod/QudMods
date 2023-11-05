@@ -95,20 +95,20 @@ namespace Kernelmethod.PrecogSecrets {
             // Search for journal entries with the IDs that were inserted into the dictionary, and
             // use them to remember or forget secrets.
             foreach (IBaseJournalEntry entry in JournalAPI.GetAllNotes()) {
-                var secretid = entry.secretid;
+                var secretid = entry.ID;
                 if (secretid == null || !secrets.ContainsKey(secretid))
                     continue;
 
-                var known = secrets[entry.secretid];
+                var known = secrets[entry.ID];
                 LogInfo($"restoring secret {secretid} (known = {known})");
 
                 if (known)
-                    entry.Reveal(silent: true);
+                    entry.Reveal(Silent: true);
                 else
                     entry.Forget();
 
                 // Pop key from the dictionary
-                secrets.Remove(entry.secretid);
+                secrets.Remove(entry.ID);
 
                 // Exit if there are no more secrets left to process
                 if (secrets.Count == 0)
@@ -125,17 +125,17 @@ namespace Kernelmethod.PrecogSecrets {
             else if (E.ID == "BeforeSecretRevealed" && Activated) {
                 // Register that the secret was revealed
                 IBaseJournalEntry secret = E.GetParameter<IBaseJournalEntry>("Secret");
-                if (secret.secretid != null) {
-                    KnownSecrets[secret.secretid] = true;
-                    LogInfo($"learned secret {secret.secretid} during precognition");
+                if (secret.ID != null) {
+                    KnownSecrets[secret.ID] = true;
+                    LogInfo($"learned secret {secret.ID} during precognition");
                 }
             }
             else if (E.ID == "BeforeSecretForgotten" && Activated) {
                 // Register that the secret was forgotten
                 IBaseJournalEntry secret = E.GetParameter<IBaseJournalEntry>("Secret");
-                if (secret.secretid != null) {
-                    KnownSecrets[secret.secretid] = false;
-                    LogInfo($"forgot secret {secret.secretid} during precognition");
+                if (secret.ID != null) {
+                    KnownSecrets[secret.ID] = false;
+                    LogInfo($"forgot secret {secret.ID} during precognition");
                 }
             }
 
