@@ -126,7 +126,7 @@ namespace Kernelmethod.IronMan.Parts {
                 return;
 
             PreviousSaveTurn = XRLCore.CurrentTurn;
-            The.Game.QuickSave();
+            The.ActionManager.EnqueueAction("AutoSave", null, 0);
             LogInfo($"triggered save on turn {XRLCore.CurrentTurn}");
         }
 
