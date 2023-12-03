@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 3103598856,
+  "Title": "More Legendary Gyre Wights",
+  "Description": "Does exactly what it says on the tin: makes legendary Gyre Wights spawn more frequently* in the game.\n\nSource code: https://github.com/kernelmethod/QudMods/tree/main/MoreLegendaryWights/\n\n* Currently, about 6x as frequently (subject to change).",
+  "Tags": "Creatures",
+  "Visibility": "0",
+  "ImagePath": "preview.png"
+}

@@ -4,5 +4,6 @@
     "description": "Makes legendary Gyre Wights more common.",
     "version": "0.1.0",
     "author": "{{G|kernelmethod}}",
-    "tags": "Creatures"
+    "tags": "Creatures",
+    "PreviewImage": "preview.png"
 }
