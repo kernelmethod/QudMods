@@ -48,7 +48,7 @@
   <population Name="QonShrine" Load="Merge">
     <group Name="Contents" Load="Merge">
       <group Name="Gyre wights" Chance="65" Load="Merge">
-        <object Weight="30" Blueprint="Uplifted Still Gyre Wight of Qon" Hint="AdjacentToWithTag:NephilimShrine" />
+        <object Weight="20" Blueprint="Uplifted Still Gyre Wight of Qon" Hint="AdjacentToWithTag:NephilimShrine" />
       </group>
     </group>
   </population>
