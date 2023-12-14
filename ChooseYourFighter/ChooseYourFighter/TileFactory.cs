@@ -178,8 +178,7 @@ namespace Kernelmethod.ChooseYourFighter {
             }
 
             message += name + ".";
-            // TODO: change muralWeight to MuralWeight.Nil when the beta merges into weekly.
-            JournalAPI.AddAccomplishment("You re-cast yourself in the image of " + name);
+            JournalAPI.AddAccomplishment("You re-cast yourself in the image of " + name, muralWeight: MuralWeight.Nil);
 
             Popup.Show(message);
         }
