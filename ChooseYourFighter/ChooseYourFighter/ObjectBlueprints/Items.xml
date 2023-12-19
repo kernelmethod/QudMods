@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object Name="Kernelmethod_ChooseYourFighter_Magic Mirror" Inherits="Trinket">
+    <part Name="Render" ColorString="&amp;o" DetailColor="b" DisplayName="magic mirror" Tile="Kernelmethod_ChooseYourFighter/MagicMirror.png" />
+    <part Name="Description" Short="Faces emerge and dissipate before you, a kaleidoscope of you in every possible timeline." />
+    <part Name="Kernelmethod_ChooseYourFighter_MagicMirror" />
+    <part Name="Commerce" Value="80" />
+  </object>
+</objects>

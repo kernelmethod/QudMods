@@ -304,6 +304,9 @@ namespace Kernelmethod.ChooseYourFighter {
         /// blueprint.
         /// </summary>
         public static void ChangePlayerAppearance(PlayerModel model) {
+            if (model == null)
+                return;
+
             var part = The.Player.RequirePart<Render>();
             if (model.Tile != null)
                 part.Tile = model.Tile;

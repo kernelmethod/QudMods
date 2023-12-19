@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<populations>
+  <population Name="Trinkets 1" Load="Merge">
+    <group Name="Items" Load="Merge">
+      <object Weight="1" Blueprint="Kernelmethod_ChooseYourFighter_Magic Mirror" />
+    </group>
+  </population>
+
+  <population Name="Trinkets 2" Load="Merge">
+    <group Name="Items" Load="Merge">
+      <object Weight="1" Blueprint="Kernelmethod_ChooseYourFighter_Magic Mirror" />
+    </group>
+  </population>
+
+  <population Name="Trinkets 3" Load="Merge">
+    <group Name="Items" Load="Merge">
+      <object Weight="1" Blueprint="Kernelmethod_ChooseYourFighter_Magic Mirror" />
+    </group>
+  </population>
+
+  <population Name="Trinkets 4" Load="Merge">
+    <group Name="Items" Load="Merge">
+      <object Weight="1" Blueprint="Kernelmethod_ChooseYourFighter_Magic Mirror" />
+    </group>
+  </population>
+
+  <population Name="Trinkets 5" Load="Merge">
+    <group Name="Items" Load="Merge">
+      <object Weight="1" Blueprint="Kernelmethod_ChooseYourFighter_Magic Mirror" />
+    </group>
+  </population>
+
+  <population Name="Trinkets 6" Load="Merge">
+    <group Name="Items" Load="Merge">
+      <object Weight="1" Blueprint="Kernelmethod_ChooseYourFighter_Magic Mirror" />
+    </group>
+  </population>
+
+  <population Name="Trinkets 7" Load="Merge">
+    <group Name="Items" Load="Merge">
+      <object Weight="1" Blueprint="Kernelmethod_ChooseYourFighter_Magic Mirror" />
+    </group>
+  </population>
+
+  <population Name="Trinkets 8" Load="Merge">
+    <group Name="Items" Load="Merge">
+      <object Weight="1" Blueprint="Kernelmethod_ChooseYourFighter_Magic Mirror" />
+    </group>
+  </population>
+</populations>
