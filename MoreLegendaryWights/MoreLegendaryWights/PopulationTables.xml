@@ -29,7 +29,7 @@
     </group>
   </population>
 
-  <population Name="ShugruithSrine" Load="Merge">
+  <population Name="ShugruithShrine" Load="Merge">
     <group Name="Contents" Load="Merge">
       <group Name="Gyre wights" Chance="65" Load="Merge">
         <object Weight="20" Blueprint="Uplifted Still Gyre Wight of Shug'ruith" Hint="AdjacentToWithTag:NephilimShrine" />
