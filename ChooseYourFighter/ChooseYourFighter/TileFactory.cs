@@ -2,6 +2,7 @@ using Qud.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml;
 using UnityEngine;
 using XRL;
@@ -159,6 +160,40 @@ namespace Kernelmethod.ChooseYourFighter {
             return model;
         }
 
+        public static async Task<PlayerModel> ChooseTileMenuAsync() {
+            PlayerModel model = null;
+
+            while (model == null) {
+                var options = new List<string> {
+                    "{{W|Choose tile from blueprint}}",
+                    "Castes and callings"
+                };
+
+                if (HasExpansionModels()) {
+                    options.Add("Expansions");
+                }
+
+                int num = await Popup.ShowOptionListAsync(
+                    "Choose model",
+                    options.ToArray(),
+                    AllowEscape: true
+                );
+
+                if (num == 0) {
+                    model = await GetModelFromBlueprintAsync();
+
+                }
+                else if (num == 1)
+                    model = await ChooseTileMenuWithCategoryAsync(ModelType.CasteOrCalling);
+                else if (num == 2)
+                    model = await ChooseTileMenuWithCategoryAsync(ModelType.Expansion);
+                else
+                    break;
+            }
+
+            return model;
+        }
+
         public static PlayerModel ChooseTileMenuWithCategory(ModelType category) {
             var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category));
             models.Sort();
@@ -182,6 +217,75 @@ namespace Kernelmethod.ChooseYourFighter {
                 return null;
 
             return models[num];
+        }
+
+        public static async Task<PlayerModel> ChooseTileMenuWithCategoryAsync(ModelType category) {
+            var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category));
+            models.Sort();
+
+            models.Insert(0, new PlayerModel {
+                Id="RETURN",
+                Name="{{W|< go back}}"
+            });
+
+            var names = models.Select((PlayerModel m) => m.Name);
+            var icons = models.Select((PlayerModel m) => m.Icon());
+
+            int num = await Popup.ShowOptionListAsync(
+                "Choose model",
+                names.ToArray(),
+                AllowEscape: true,
+                Icons: icons.ToArray()
+            );
+
+            if (models[num].Id == "RETURN")
+                return null;
+
+            return models[num];
+        }
+
+        public static PlayerModel GetModelFromBlueprint() {
+            var input = Popup.AskString("Enter blueprint:", "", 999, 0, null, ReturnNullForEscape: false, EscapeNonMarkupFormatting: true, false);
+            var blueprint = GameObjectFactory.Factory.GetBlueprintIfExists(input);
+
+            if (blueprint == null) {
+                Popup.ShowFail($"The blueprint {input} could not be found.");
+                return null;
+            }
+
+            var gameObject = blueprint.createOne();
+            if (gameObject.GetTile() == null) {
+                Popup.ShowFail($"No tile could be found for the blueprint {input}");
+                return null;
+            }
+
+            var model = new PlayerModel(blueprint);
+            model.Id = "BLUEPRINT:" + input;
+            model.HFlip = true;
+            return model;
+        }
+
+        public static async Task<PlayerModel> GetModelFromBlueprintAsync() {
+            var input = await Popup.AskStringAsync(
+                "Enter blueprint:", "", 999, 0, null, ReturnNullForEscape: false, EscapeNonMarkupFormatting: true, false
+            );
+            var blueprint = GameObjectFactory.Factory.GetBlueprintIfExists(input);
+
+            if (blueprint == null) {
+                await Popup.ShowAsync($"The blueprint {input} could not be found.", LogMessage: false);
+                return null;
+            }
+
+            var gameObject = blueprint.createOne();
+            if (gameObject.GetTile() == null) {
+                await Popup.ShowAsync($"No tile could be found for the blueprint {input}", LogMessage: false);
+                return null;
+            }
+
+            var model = new PlayerModel(blueprint);
+            model.Id = "BLUEPRINT:" + input;
+            model.HFlip = true;
+            return model;
         }
 
         /// <summary>
@@ -222,27 +326,6 @@ namespace Kernelmethod.ChooseYourFighter {
             JournalAPI.AddAccomplishment("You re-cast yourself in the image of " + name, muralWeight: MuralWeight.Nil);
 
             Popup.Show(message);
-        }
-
-        public static PlayerModel GetModelFromBlueprint() {
-            var input = Popup.AskString("Enter blueprint:", "", 999, 0, null, ReturnNullForEscape: false, EscapeNonMarkupFormatting: true, false);
-            var blueprint = GameObjectFactory.Factory.GetBlueprintIfExists(input);
-
-            if (blueprint == null) {
-                Popup.ShowFail($"The blueprint {input} could not be found.");
-                return null;
-            }
-
-            var gameObject = blueprint.createOne();
-            if (gameObject.GetTile() == null) {
-                Popup.ShowFail($"No tile could be found for the blueprint {input}");
-                return null;
-            }
-
-            var model = new PlayerModel(blueprint);
-            model.Id = "BLUEPRINT:" + input;
-            model.HFlip = true;
-            return model;
         }
 
         private static void LogInfo(string message) {

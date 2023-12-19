@@ -64,64 +64,10 @@ namespace XRL.CharacterBuilds.Qud.UI {
         public async void SelectMenuOption(FrameworkDataElement dataElement)
         {
             if (dataElement.Id == "Model") {
-                await OnChooseModel();
+                base.module.data.model = await TileFactory.ChooseTileMenuAsync();
             }
 
             UpdateUI();
-        }
-
-        /// <summary>
-        /// Create a popup menu to select the player model that should be used.
-        /// </summary>
-        public async Task OnChooseModel()
-        {
-            var availableModels = new List<PlayerModel>(base.module.Models);
-            availableModels.Sort();
-            availableModels.Insert(0, new PlayerModel {
-                Id="ENTER_FROM_BLUEPRINT",
-                Name="{{W|Choose tile from blueprint}}",
-            });
-            availableModels.Insert(0, new PlayerModel {
-                Id=null,
-                Name="{{W|default}}",
-            });
-
-            var names = availableModels.Select((PlayerModel m) => m.Name);
-            var icons = availableModels.Select((PlayerModel m) => m.Icon());
-
-            int num = await Popup.ShowOptionListAsync("Choose model", names.ToArray(), null, 0, null, 60, Icons: icons.ToArray());
-
-            if (base.module.data.model == null)
-                base.module.data.model = new PlayerModel();
-
-            if (num <= 0)
-                base.module.data.model = null;
-            else if (availableModels[num].Id == "ENTER_FROM_BLUEPRINT")
-                await GetModelFromBlueprint();
-            else
-                base.module.data.model = availableModels[num];
-
-            base.module.setData(base.module.data);
-        }
-
-        public async Task GetModelFromBlueprint() {
-            var input = await Popup.AskStringAsync("Enter blueprint:", "", 999, 0, null, ReturnNullForEscape: false, EscapeNonMarkupFormatting: true, false);
-            var blueprint = GameObjectFactory.Factory.GetBlueprintIfExists(input);
-
-            if (blueprint == null) {
-                await Popup.ShowAsync($"The blueprint {input} could not be found.");
-                return;
-            }
-
-            var gameObject = blueprint.createOne();
-            if (gameObject.GetTile() == null) {
-                await Popup.ShowAsync($"No tile could be found for the blueprint {input}");
-                return;
-            }
-
-            var model = new PlayerModel(blueprint);
-            model.Id = "BLUEPRINT:" + input;
-            base.module.data.model = model;
         }
 
         public override UIBreadcrumb GetBreadcrumb()
