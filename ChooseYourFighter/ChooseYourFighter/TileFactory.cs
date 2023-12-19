@@ -122,6 +122,19 @@ namespace Kernelmethod.ChooseYourFighter {
                 HandleNodes(item);
             }
 
+            // Population dictionary with pregens
+            foreach (var (key, value) in PresetLoader.Presets) {
+                var id = value.Name;
+                var model = new PlayerModel {
+                    Id=id,
+                    Name="{{M|" + value.Name + "}}",
+                    Tile=value.Tile,
+                    DetailColor=value.Detail,
+                    Category=ModelType.Preset
+                };
+                _Models.Add(id, model);
+            }
+
             LogInfo("Finishing init...");
         }
 
@@ -134,7 +147,8 @@ namespace Kernelmethod.ChooseYourFighter {
             while (model == null) {
                 var options = new List<string> {
                     "{{W|Choose tile from blueprint}}",
-                    "Castes and callings"
+                    "Castes and callings",
+                    "Presets"
                 };
 
                 if (HasExpansionModels()) {
@@ -152,6 +166,8 @@ namespace Kernelmethod.ChooseYourFighter {
                 else if (num == 1)
                     model = ChooseTileMenuWithCategory(ModelType.CasteOrCalling);
                 else if (num == 2)
+                    model = ChooseTileMenuWithCategory(ModelType.Preset);
+                else if (num == 3)
                     model = ChooseTileMenuWithCategory(ModelType.Expansion);
                 else
                     break;
@@ -166,7 +182,8 @@ namespace Kernelmethod.ChooseYourFighter {
             while (model == null) {
                 var options = new List<string> {
                     "{{W|Choose tile from blueprint}}",
-                    "Castes and callings"
+                    "Castes and callings",
+                    "Presets"
                 };
 
                 if (HasExpansionModels()) {
@@ -186,6 +203,8 @@ namespace Kernelmethod.ChooseYourFighter {
                 else if (num == 1)
                     model = await ChooseTileMenuWithCategoryAsync(ModelType.CasteOrCalling);
                 else if (num == 2)
+                    model = await ChooseTileMenuWithCategoryAsync(ModelType.Preset);
+                else if (num == 3)
                     model = await ChooseTileMenuWithCategoryAsync(ModelType.Expansion);
                 else
                     break;

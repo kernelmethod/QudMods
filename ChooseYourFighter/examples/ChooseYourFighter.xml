@@ -1,0 +1,5 @@
+<KernelmethodChooseYourFighter>
+  <model ID="Eater Statue" Name="{{M|Eater Statue 1}}">
+    <tile Path="Terrain/sw_ueater1.bmp" Foreground="y" DetailColor="g" />
+  </model>
+</KernelmethodChooseYourFighter>
