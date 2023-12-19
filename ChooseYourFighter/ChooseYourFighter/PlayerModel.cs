@@ -8,6 +8,13 @@ namespace Kernelmethod.ChooseYourFighter {
         public PlayerModel model = null;
     }
 
+    public enum ModelType {
+        Preset,
+        CasteOrCalling,
+        Expansion,
+        Unknown
+    }
+
     public class PlayerModel : IComparable<PlayerModel> {
         public string Id;
         public string Name;
@@ -16,6 +23,7 @@ namespace Kernelmethod.ChooseYourFighter {
         public string Background = "k";
         public string DetailColor = null;
         public bool HFlip = false;
+        public ModelType Category = ModelType.Unknown;
 
         /// <summary>
         /// Blueprint associated to this model, if it exists.

@@ -42,6 +42,13 @@ namespace Kernelmethod.ChooseYourFighter {
             }
         }
 
+        /// <summary>
+        /// Returns true if we have any character models from CYF expansions.
+        /// </summary>
+        public static bool HasExpansionModels() {
+            return ModelDict.Values.Any(model => model.Category == ModelType.Expansion);
+        }
+
         public static Dictionary<string, Action<XmlDataHelper>> XmlNodeHandlers => new Dictionary<string, Action<XmlDataHelper>>
         {
             {
@@ -59,6 +66,7 @@ namespace Kernelmethod.ChooseYourFighter {
 
                     if (!_Models.TryGetValue(id, out currentReadingModelData)) {
                         currentReadingModelData = new PlayerModel();
+                        currentReadingModelData.Category = ModelType.Expansion;
                         _Models.Add(id, currentReadingModelData);
                     }
 
@@ -101,7 +109,8 @@ namespace Kernelmethod.ChooseYourFighter {
                     Id=id,
                     Name="{{M|" + entry.DisplayName + "}}",
                     Tile=entry.Tile,
-                    DetailColor=entry.DetailColor
+                    DetailColor=entry.DetailColor,
+                    Category=ModelType.CasteOrCalling,
                 };
                 _Models.Add(id, model);
             }
@@ -119,28 +128,60 @@ namespace Kernelmethod.ChooseYourFighter {
         /// Create a menu for the player to change their appearance.
         /// </summary>
         public static PlayerModel ChooseTileMenu() {
-            var availableModels = new List<PlayerModel>(TileFactory.Models);
-            availableModels.Sort();
-            availableModels.Insert(0, new PlayerModel {
-                Id="ENTER_FROM_BLUEPRINT",
-                Name="{{W|Choose tile from blueprint}}",
-            });
-
-            var names = availableModels.Select((PlayerModel m) => m.Name);
-            var icons = availableModels.Select((PlayerModel m) => m.Icon());
-
-            int num = Popup.ShowOptionList("Choose model", names.ToArray(), null, 0, null, 60, Icons: icons.ToArray());
-
             PlayerModel model = null;
 
-            if (num >= 0) {
-                if (availableModels[num].Id == "ENTER_FROM_BLUEPRINT")
+            while (model == null) {
+                var options = new List<string> {
+                    "{{W|Choose tile from blueprint}}",
+                    "Castes and callings"
+                };
+
+                if (HasExpansionModels()) {
+                    options.Add("Expansions");
+                }
+
+                int num = Popup.ShowOptionList(
+                    "Choose model",
+                    options.ToArray(),
+                    AllowEscape: true
+                );
+
+                if (num == 0)
                     model = GetModelFromBlueprint();
+                else if (num == 1)
+                    model = ChooseTileMenuWithCategory(ModelType.CasteOrCalling);
+                else if (num == 2)
+                    model = ChooseTileMenuWithCategory(ModelType.Expansion);
                 else
-                    model = availableModels[num];
+                    break;
             }
 
             return model;
+        }
+
+        public static PlayerModel ChooseTileMenuWithCategory(ModelType category) {
+            var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category));
+            models.Sort();
+
+            models.Insert(0, new PlayerModel {
+                Id="RETURN",
+                Name="{{W|< go back}}"
+            });
+
+            var names = models.Select((PlayerModel m) => m.Name);
+            var icons = models.Select((PlayerModel m) => m.Icon());
+
+            int num = Popup.ShowOptionList(
+                "Choose model",
+                names.ToArray(),
+                AllowEscape: true,
+                Icons: icons.ToArray()
+            );
+
+            if (models[num].Id == "RETURN")
+                return null;
+
+            return models[num];
         }
 
         /// <summary>
