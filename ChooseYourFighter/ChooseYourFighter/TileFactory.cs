@@ -171,6 +171,8 @@ namespace Kernelmethod.ChooseYourFighter {
                     model = ChooseTileMenuWithCategory(ModelType.Expansion);
                 else
                     break;
+
+                MetricsManager.LogInfo($"model = {model}");
             }
 
             return model;
@@ -217,11 +219,6 @@ namespace Kernelmethod.ChooseYourFighter {
             var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category));
             models.Sort();
 
-            models.Insert(0, new PlayerModel {
-                Id="RETURN",
-                Name="{{W|< go back}}"
-            });
-
             var names = models.Select((PlayerModel m) => m.Name);
             var icons = models.Select((PlayerModel m) => m.Icon());
 
@@ -232,7 +229,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 Icons: icons.ToArray()
             );
 
-            if (models[num].Id == "RETURN")
+            if (num < 0)
                 return null;
 
             return models[num];
@@ -241,11 +238,6 @@ namespace Kernelmethod.ChooseYourFighter {
         public static async Task<PlayerModel> ChooseTileMenuWithCategoryAsync(ModelType category) {
             var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category));
             models.Sort();
-
-            models.Insert(0, new PlayerModel {
-                Id="RETURN",
-                Name="{{W|< go back}}"
-            });
 
             var names = models.Select((PlayerModel m) => m.Name);
             var icons = models.Select((PlayerModel m) => m.Icon());
@@ -257,7 +249,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 Icons: icons.ToArray()
             );
 
-            if (models[num].Id == "RETURN")
+            if (num < 0)
                 return null;
 
             return models[num];
