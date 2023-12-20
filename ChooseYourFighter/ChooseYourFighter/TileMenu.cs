@@ -19,6 +19,25 @@ namespace Kernelmethod.ChooseYourFighter {
             return "{{W|Select player model}}";
         }
 
+        public static List<string> MainMenuOptions() {
+            var options = new List<string> {
+                "Choose tile from blueprint",
+                "Castes and callings",
+                "Presets",
+            };
+
+            if (TileFactory.HasExpansionModels())
+                options.Add("Expansions");
+            else
+                options.Add("{{K|Expansions}}");
+
+            return options;
+        }
+
+        public static List<char> MainMenuHotkeys() {
+            return new List<char> { 'b', 'c', 'p', 'x' };
+        }
+
         /// <summary>
         /// Create a menu for the player to change their appearance.
         /// </summary>
@@ -26,19 +45,10 @@ namespace Kernelmethod.ChooseYourFighter {
             PlayerModel model = null;
 
             while (model == null) {
-                var options = new List<string> {
-                    "{{W|Choose tile from blueprint}}",
-                    "Castes and callings",
-                    "Presets"
-                };
-
-                if (TileFactory.HasExpansionModels()) {
-                    options.Add("Expansions");
-                }
-
                 int num = Popup.ShowOptionList(
                     MenuTitle(),
-                    options.ToArray(),
+                    MainMenuOptions().ToArray(),
+                    Hotkeys: MainMenuHotkeys(),
                     AllowEscape: true,
                     IntroIcon: MenuIcon(),
                     centerIntro: true
@@ -50,8 +60,13 @@ namespace Kernelmethod.ChooseYourFighter {
                     model = ChooseTileMenuWithCategory(ModelType.CasteOrCalling);
                 else if (num == 2)
                     model = ChooseTileMenuWithCategory(ModelType.Preset);
-                else if (num == 3)
+                else if (num == 3) {
+                    if (!TileFactory.HasExpansionModels()) {
+                        Popup.Show("You don't have any expansions installed for Choose Your Fighter.");
+                        continue;
+                    }
                     model = ChooseTileMenuWithCategory(ModelType.Expansion);
+                }
                 else
                     break;
 
@@ -65,19 +80,10 @@ namespace Kernelmethod.ChooseYourFighter {
             PlayerModel model = null;
 
             while (model == null) {
-                var options = new List<string> {
-                    "{{W|Choose tile from blueprint}}",
-                    "Castes and callings",
-                    "Presets"
-                };
-
-                if (TileFactory.HasExpansionModels()) {
-                    options.Add("Expansions");
-                }
-
                 int num = await Popup.ShowOptionListAsync(
                     MenuTitle(),
-                    options.ToArray(),
+                    MainMenuOptions().ToArray(),
+                    Hotkeys: MainMenuHotkeys().ToArray(),
                     AllowEscape: true,
                     IntroIcon: MenuIcon(),
                     centerIntro: true
@@ -91,8 +97,13 @@ namespace Kernelmethod.ChooseYourFighter {
                     model = await ChooseTileMenuWithCategoryAsync(ModelType.CasteOrCalling);
                 else if (num == 2)
                     model = await ChooseTileMenuWithCategoryAsync(ModelType.Preset);
-                else if (num == 3)
+                else if (num == 3) {
+                    if (!TileFactory.HasExpansionModels()) {
+                        await Popup.ShowAsync("You don't have any expansions installed for Choose Your Fighter.");
+                        continue;
+                    }
                     model = await ChooseTileMenuWithCategoryAsync(ModelType.Expansion);
+                }
                 else
                     break;
             }
