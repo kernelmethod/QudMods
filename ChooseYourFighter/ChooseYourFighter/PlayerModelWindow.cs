@@ -63,9 +63,8 @@ namespace XRL.CharacterBuilds.Qud.UI {
 
         public async void SelectMenuOption(FrameworkDataElement dataElement)
         {
-            if (dataElement.Id == "Model") {
-                base.module.data.model = await TileMenu.ChooseTileMenuAsync();
-            }
+            if (dataElement.Id == "Model")
+                base.module.data.model = await TileMenu.ChooseTileMenuAsync(base.module);
 
             UpdateUI();
         }

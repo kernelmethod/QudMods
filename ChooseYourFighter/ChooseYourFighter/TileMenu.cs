@@ -3,16 +3,35 @@ using XRL.UI;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XRL;
+using XRL.CharacterBuilds.Qud;
 using XRL.World;
 
 namespace Kernelmethod.ChooseYourFighter {
     public static class TileMenu {
-        public static IRenderable MenuIcon() {
+        public static IRenderable MenuIconGameStart(Kernelmethod_ChooseYourFighter_PlayerModelModule module) {
+            if (module.data.model != null)
+                return module.data.model.Icon();
+
+            var builder = module.builder;
+            var tile = builder.fireBootEvent<string>(QudGameBootModule.BOOTEVENT_BOOTPLAYERTILE, null);
+            var fgColor = builder.fireBootEvent<string>(QudGameBootModule.BOOTEVENT_BOOTPLAYERTILEFOREGROUND, null) ?? "&Y";
+            var bgColor = builder.fireBootEvent<string>(QudGameBootModule.BOOTEVENT_BOOTPLAYERTILEBACKGROUND, null);
+            var detailColor = builder.fireBootEvent<string>(QudGameBootModule.BOOTEVENT_BOOTPLAYERTILEDETAIL, null);
+
+            if (tile == null)
+                return null;
+
             var Icon = new Renderable();
-            Icon.Tile = "items/sw_mask_kesil.bmp";
-            Icon.ColorString = "&M";
-            Icon.DetailColor = 'K';
+            Icon.Tile = tile;
+            Icon.ColorString = fgColor;
+            Icon.DetailColor = detailColor[0];
+
             return Icon;
+        }
+
+        public static IRenderable MenuIcon() {
+            return The.Player?.RenderForUI() ?? null;
         }
 
         public static string MenuTitle() {
@@ -76,7 +95,7 @@ namespace Kernelmethod.ChooseYourFighter {
             return model;
         }
 
-        public static async Task<PlayerModel> ChooseTileMenuAsync() {
+        public static async Task<PlayerModel> ChooseTileMenuAsync(Kernelmethod_ChooseYourFighter_PlayerModelModule module) {
             PlayerModel model = null;
 
             while (model == null) {
@@ -85,7 +104,7 @@ namespace Kernelmethod.ChooseYourFighter {
                     MainMenuOptions().ToArray(),
                     Hotkeys: MainMenuHotkeys().ToArray(),
                     AllowEscape: true,
-                    IntroIcon: MenuIcon(),
+                    IntroIcon: MenuIconGameStart(module),
                     centerIntro: true
                 );
 
@@ -94,15 +113,15 @@ namespace Kernelmethod.ChooseYourFighter {
 
                 }
                 else if (num == 1)
-                    model = await ChooseTileMenuWithCategoryAsync(ModelType.CasteOrCalling);
+                    model = await ChooseTileMenuWithCategoryAsync(module, ModelType.CasteOrCalling);
                 else if (num == 2)
-                    model = await ChooseTileMenuWithCategoryAsync(ModelType.Preset);
+                    model = await ChooseTileMenuWithCategoryAsync(module, ModelType.Preset);
                 else if (num == 3) {
                     if (!TileFactory.HasExpansionModels()) {
                         await Popup.ShowAsync("You don't have any expansions installed for Choose Your Fighter.");
                         continue;
                     }
-                    model = await ChooseTileMenuWithCategoryAsync(ModelType.Expansion);
+                    model = await ChooseTileMenuWithCategoryAsync(module, ModelType.Expansion);
                 }
                 else
                     break;
@@ -133,7 +152,7 @@ namespace Kernelmethod.ChooseYourFighter {
             return models[num];
         }
 
-        public static async Task<PlayerModel> ChooseTileMenuWithCategoryAsync(ModelType category) {
+        public static async Task<PlayerModel> ChooseTileMenuWithCategoryAsync(Kernelmethod_ChooseYourFighter_PlayerModelModule module, ModelType category) {
             var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category));
             models.Sort();
 
@@ -145,7 +164,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 names.ToArray(),
                 AllowEscape: true,
                 Icons: icons.ToArray(),
-                IntroIcon: MenuIcon(),
+                IntroIcon: MenuIconGameStart(module),
                 centerIntro: true
             );
 
