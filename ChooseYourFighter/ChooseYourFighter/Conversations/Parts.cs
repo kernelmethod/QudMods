@@ -13,7 +13,7 @@ namespace XRL.World.Conversations.Parts {
         }
 
         public override bool HandleEvent(EnterElementEvent E) {
-            var model = TileFactory.ChooseTileMenu();
+            var model = TileMenu.ChooseTileMenu();
             if (model == null)
                 return base.HandleEvent(E);
 

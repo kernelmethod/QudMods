@@ -30,7 +30,7 @@ namespace XRL.World.Parts {
 
         public override bool HandleEvent(InventoryActionEvent E) {
             if (E.Command == INVENTORY_COMMAND_ID && E.Actor.IsPlayer()) {
-                var model = TileFactory.ChooseTileMenu();
+                var model = TileMenu.ChooseTileMenu();
                 TileFactory.ChangePlayerAppearance(model);
                 E.RequestInterfaceExit();
             }
