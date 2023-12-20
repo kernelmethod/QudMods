@@ -200,7 +200,7 @@ namespace XRL.CharacterBuilds.Qud
             Target.RemovePart("CryptSitterBehavior");
 
             // Change faction relationships to reflect current faction affiliation...
-            foreach (Faction faction in Factions.loop()) {
+            foreach (Faction faction in Factions.Loop()) {
                 int basePlayerReputation = faction.InitialPlayerReputation;
                 int baseplayerFeeling = faction.GetFeelingTowardsObject(Target);
 
@@ -213,7 +213,7 @@ namespace XRL.CharacterBuilds.Qud
 
                 if (newReputation != basePlayerReputation) {
                     LogInfo($"HandleBootPlayerObject: changing reputation with {faction.DisplayName} from {basePlayerReputation} to {newReputation}");
-                    Faction.PlayerReputation.set(faction, newReputation);
+                    Faction.PlayerReputation.Set(faction, newReputation);
                 }
             }
 
@@ -238,7 +238,7 @@ namespace XRL.CharacterBuilds.Qud
                 // Fill the first two waterskins with a random amount of water; remaining waterskins
                 // should be empty.
                 for (int i = 0; i < numWaterskins; i++) {
-                    GameObject waterskin = GameObject.create("Waterskin");
+                    GameObject waterskin = GameObject.Create("Waterskin");
                     LiquidVolume liquidVolume = waterskin.GetPart("LiquidVolume") as LiquidVolume;
 
                     if (liquidVolume == null)
@@ -285,7 +285,7 @@ namespace XRL.CharacterBuilds.Qud
             if (slots.Count > 0)
             {
                 LogInfo("RequireLightSource: provisioning player with glowsphere");
-                GameObject glowsphere = GameObject.create("Floating Glowsphere");
+                GameObject glowsphere = GameObject.Create("Floating Glowsphere");
                 Object.ForceEquipObject(glowsphere, slots[0], Silent: true);
                 return;
             }
