@@ -178,10 +178,8 @@ namespace Kernelmethod.ChooseYourFighter {
             var input = Popup.AskString("Enter blueprint:", "", 999, 0, null, ReturnNullForEscape: false, EscapeNonMarkupFormatting: true, false);
             var blueprint = GameObjectFactory.Factory.GetBlueprintIfExists(input);
 
-            if (blueprint == null) {
-                Popup.ShowFail($"The blueprint {input} could not be found.");
+            if (blueprint == null)
                 return null;
-            }
 
             var gameObject = blueprint.createOne();
             if (gameObject.GetTile() == null) {
@@ -201,10 +199,8 @@ namespace Kernelmethod.ChooseYourFighter {
             );
             var blueprint = GameObjectFactory.Factory.GetBlueprintIfExists(input);
 
-            if (blueprint == null) {
-                await Popup.ShowAsync($"The blueprint {input} could not be found.", LogMessage: false);
+            if (blueprint == null)
                 return null;
-            }
 
             var gameObject = blueprint.createOne();
             if (gameObject.GetTile() == null) {
