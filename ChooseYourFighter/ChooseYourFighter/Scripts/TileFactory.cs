@@ -6,7 +6,7 @@ using System.Xml;
 using UnityEngine;
 using XRL;
 using XRL.Language;
-using XRL.UI;
+using XRL.Messages;
 using XRL.World;
 using XRL.World.Parts;
 
@@ -153,6 +153,8 @@ namespace Kernelmethod.ChooseYourFighter {
             if (model == null)
                 return;
 
+            The.Player.RequirePart<DefaultModel>();
+
             var part = The.Player.RequirePart<Render>();
             if (model.Tile != null)
                 part.Tile = model.Tile;
@@ -168,24 +170,24 @@ namespace Kernelmethod.ChooseYourFighter {
             else
                 The.Player.RemovePart("Kernelmethod_ChooseYourFighter_FlipTile");
 
-            var message = "You changed your appearance to look like ";
-            string name = null;
+            if (model.Blueprint != null || model.Name != null) {
+                var message = "You changed your appearance to look like ";
+                string name = null;
 
-            if (model.Blueprint != null) {
-                var gameObject = model.Blueprint.createOne();
-                name = gameObject.GetDisplayName(
-                    int.MaxValue, null, null, NoColor: false, Short: true,
-                    AsIfKnown: false, WithIndefiniteArticle: true, BaseOnly: false
-                );
+                if (model.Blueprint != null) {
+                    var gameObject = model.Blueprint.createOne();
+                    name = gameObject.GetDisplayName(
+                        int.MaxValue, null, null, NoColor: false, Short: true,
+                        AsIfKnown: false, WithIndefiniteArticle: true, BaseOnly: false
+                    );
+                }
+                else {
+                    name = (Grammar.IndefiniteArticleShouldBeAn(model.Name) ? "an " : "a ") + model.Name;
+                }
+
+                message += name + ".";
+                MessageQueue.AddPlayerMessage(message);
             }
-            else {
-                name = (Grammar.IndefiniteArticleShouldBeAn(model.Name) ? "an " : "a ") + model.Name;
-            }
-
-            message += name + ".";
-            JournalAPI.AddAccomplishment("You re-cast yourself in the image of " + name, muralWeight: MuralWeight.Nil);
-
-            Popup.Show(message);
         }
 
         private static void LogInfo(string message) {

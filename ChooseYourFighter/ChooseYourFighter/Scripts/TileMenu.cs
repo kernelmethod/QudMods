@@ -50,11 +50,16 @@ namespace Kernelmethod.ChooseYourFighter {
             else
                 options.Add("{{K|Expansions}}");
 
+            if (The.Player?.HasPart(typeof(DefaultModel)) ?? true)
+                options.Add("Reset to default");
+            else
+                options.Add("{{K|Reset to default}}");
+
             return options;
         }
 
         public static List<char> MainMenuHotkeys() {
-            return new List<char> { 'b', 'c', 'p', 'x' };
+            return new List<char> { 'b', 'c', 'p', 'x', 'd' };
         }
 
         /// <summary>
@@ -86,6 +91,16 @@ namespace Kernelmethod.ChooseYourFighter {
                         continue;
                     }
                     model = ChooseTileMenuWithCategory(ModelType.Expansion);
+                }
+                else if (num == 4) {
+                    DefaultModel defaultModel = null;
+                    if (The.Player?.TryGetPart<DefaultModel>(out defaultModel) ?? false) {
+                        model = defaultModel.Model;
+                        MetricsManager.LogInfo($"default model = {model}");
+                        MetricsManager.LogInfo($"tile = {model.Tile}");
+                    }
+                    else
+                        Popup.Show("You are already using your character's original model.", LogMessage: false);
                 }
                 else
                     break;
@@ -120,11 +135,14 @@ namespace Kernelmethod.ChooseYourFighter {
                     model = await ChooseTileMenuWithCategoryAsync(module, ModelType.Preset);
                 else if (num == 3) {
                     if (!TileFactory.HasExpansionModels()) {
-                        await Popup.ShowAsync("You don't have any expansions installed for Choose Your Fighter.");
+                        await Popup.ShowAsync("You don't have any expansions installed for Choose Your Fighter.", LogMessage: false);
                         continue;
                     }
                     model = await ChooseTileMenuWithCategoryAsync(module, ModelType.Expansion);
                 }
+                else if (num == 4)
+                    // Model will automatically be set to null
+                    break;
                 else
                     break;
             }
