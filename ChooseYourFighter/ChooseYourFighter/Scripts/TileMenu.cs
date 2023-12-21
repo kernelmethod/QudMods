@@ -67,6 +67,7 @@ namespace Kernelmethod.ChooseYourFighter {
         /// </summary>
         public static PlayerModel ChooseTileMenu() {
             PlayerModel model = null;
+            bool RequireDefault = true;
 
             while (model == null) {
                 int num = Popup.ShowOptionList(
@@ -96,8 +97,8 @@ namespace Kernelmethod.ChooseYourFighter {
                     DefaultModel defaultModel = null;
                     if (The.Player?.TryGetPart<DefaultModel>(out defaultModel) ?? false) {
                         model = defaultModel.Model;
-                        MetricsManager.LogInfo($"default model = {model}");
-                        MetricsManager.LogInfo($"tile = {model.Tile}");
+                        The.Player.RemovePart<DefaultModel>();
+                        RequireDefault = false;
                     }
                     else
                         Popup.Show("You are already using your character's original model.", LogMessage: false);
@@ -108,6 +109,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 MetricsManager.LogInfo($"model = {model}");
             }
 
+            TileFactory.ChangePlayerAppearance(model, RequireDefault);
             return model;
         }
 

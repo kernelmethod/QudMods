@@ -149,11 +149,12 @@ namespace Kernelmethod.ChooseYourFighter {
         /// Change a player's appearance using a given PlayerModel instance as a
         /// blueprint.
         /// </summary>
-        public static void ChangePlayerAppearance(PlayerModel model) {
+        public static void ChangePlayerAppearance(PlayerModel model, bool RequireDefault = true) {
             if (model == null)
                 return;
 
-            The.Player.RequirePart<DefaultModel>();
+            if (RequireDefault)
+                The.Player.RequirePart<DefaultModel>();
 
             var part = The.Player.RequirePart<Render>();
             if (model.Tile != null)

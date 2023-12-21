@@ -8,9 +8,7 @@ namespace Kernelmethod.ChooseYourFighter {
         public static bool WishCommand(string rest) {
             switch (rest) {
             case "change":
-                var model = TileMenu.ChooseTileMenu();
-                if (model != null)
-                    TileFactory.ChangePlayerAppearance(model);
+                TileMenu.ChooseTileMenu();
                 break;
             default:
                 Popup.ShowFail($"Unknown wish command for Kernelmethod.ChooseYourFighter: {rest}");
