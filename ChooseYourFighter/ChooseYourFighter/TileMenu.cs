@@ -40,7 +40,7 @@ namespace Kernelmethod.ChooseYourFighter {
 
         public static List<string> MainMenuOptions() {
             var options = new List<string> {
-                "Choose tile from blueprint",
+                "Enter blueprint ID for tile",
                 "Castes and callings",
                 "Presets",
             };
@@ -67,6 +67,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 int num = Popup.ShowOptionList(
                     MenuTitle(),
                     MainMenuOptions().ToArray(),
+                    Intro: "{{W|Choose an option to see available character tiles.}}",
                     Hotkeys: MainMenuHotkeys(),
                     AllowEscape: true,
                     IntroIcon: MenuIcon(),
@@ -102,6 +103,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 int num = await Popup.ShowOptionListAsync(
                     MenuTitle(),
                     MainMenuOptions().ToArray(),
+                    Intro: "{{W|Choose an option to see available character tiles.}}",
                     Hotkeys: MainMenuHotkeys().ToArray(),
                     AllowEscape: true,
                     IntroIcon: MenuIconGameStart(module),
@@ -140,6 +142,7 @@ namespace Kernelmethod.ChooseYourFighter {
             int num = Popup.ShowOptionList(
                 MenuTitle(),
                 names.ToArray(),
+                Intro: "{{W|Choose a tile for your character from the list below.}}",
                 AllowEscape: true,
                 Icons: icons.ToArray(),
                 IntroIcon: MenuIcon(),
@@ -162,6 +165,7 @@ namespace Kernelmethod.ChooseYourFighter {
             int num = await Popup.ShowOptionListAsync(
                 MenuTitle(),
                 names.ToArray(),
+                Intro: "{{W|Choose a tile for your character from the list below.}}",
                 AllowEscape: true,
                 Icons: icons.ToArray(),
                 IntroIcon: MenuIconGameStart(module),
