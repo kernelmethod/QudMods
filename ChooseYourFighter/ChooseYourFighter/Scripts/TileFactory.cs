@@ -171,20 +171,12 @@ namespace Kernelmethod.ChooseYourFighter {
             else
                 The.Player.RemovePart("Kernelmethod_ChooseYourFighter_FlipTile");
 
-            if (model.Blueprint != null || model.Name != null) {
+            if (model.Name != null) {
                 var message = "You changed your appearance to look like ";
                 string name = null;
 
-                if (model.Blueprint != null) {
-                    var gameObject = model.Blueprint.createOne();
-                    name = gameObject.GetDisplayName(
-                        int.MaxValue, null, null, NoColor: false, Short: true,
-                        AsIfKnown: false, WithIndefiniteArticle: true, BaseOnly: false
-                    );
-                }
-                else {
-                    name = (Grammar.IndefiniteArticleShouldBeAn(model.Name) ? "an " : "a ") + model.Name;
-                }
+
+                name = (Grammar.IndefiniteArticleShouldBeAn(model.Name) ? "an " : "a ") + model.Name;
 
                 message += name + ".";
                 MessageQueue.AddPlayerMessage(message);

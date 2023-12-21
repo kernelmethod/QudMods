@@ -1,9 +1,11 @@
+using System;
 using XRL.World;
 
 namespace Kernelmethod.ChooseYourFighter {
     /// <summary>
     /// A part that stores the original tile that was used by an object.
     /// </summary>
+    [Serializable]
     public class DefaultModel : IPart {
         public PlayerModel Model = null;
 

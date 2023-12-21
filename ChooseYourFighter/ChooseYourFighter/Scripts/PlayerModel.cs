@@ -8,6 +8,7 @@ namespace Kernelmethod.ChooseYourFighter {
         public PlayerModel model = null;
     }
 
+    [Serializable]
     public enum ModelType {
         Preset,
         CasteOrCalling,
@@ -15,6 +16,7 @@ namespace Kernelmethod.ChooseYourFighter {
         Unknown
     }
 
+    [Serializable]
     public class PlayerModel : IComparable<PlayerModel> {
         public string Id;
         public string Name;
@@ -25,19 +27,12 @@ namespace Kernelmethod.ChooseYourFighter {
         public bool HFlip = false;
         public ModelType Category = ModelType.Unknown;
 
-        /// <summary>
-        /// Blueprint associated to this model, if it exists.
-        /// </summary>
-        public GameObjectBlueprint Blueprint = null;
-
         public PlayerModel() {}
 
         /// <summary>
         /// Construct a new PlayerModel from a blueprint.
         /// </summary>
         public PlayerModel(GameObjectBlueprint blueprint) {
-            Blueprint = blueprint;
-
             var gameObject = blueprint.createOne();
             Name = blueprint.DisplayName();
             Tile = gameObject.GetTile();
