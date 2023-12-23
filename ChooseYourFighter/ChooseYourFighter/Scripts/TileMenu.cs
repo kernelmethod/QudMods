@@ -88,7 +88,7 @@ namespace Kernelmethod.ChooseYourFighter {
                     model = ChooseTileMenuWithCategory(ModelType.Preset);
                 else if (num == 3) {
                     if (!TileFactory.HasExpansionModels()) {
-                        Popup.Show("You don't have any expansions installed for Choose Your Fighter.");
+                        Popup.Show("You don't have any expansions enabled for Choose Your Fighter.");
                         continue;
                     }
                     model = ChooseTileMenuWithCategory(ModelType.Expansion);
