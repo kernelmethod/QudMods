@@ -14,7 +14,7 @@ directory using the following steps:
 - Download the code in this repository as a ZIP file by pressing the
   `<> Code v` button and then pressing `Download ZIP`.
 
-![assets/download_zip.png](Screenshot showing the location of the "Download Zip" button on the GitHub repository.)
+![Screenshot showing the location of the "Download Zip" button on the GitHub repository.](assets/download_zip.png)
 
 - Unzip the `QudMods-main.zip` file that you downloaded. The unzipped folder
   should contain all of the mods in this repository, for example:
