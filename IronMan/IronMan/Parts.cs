@@ -5,6 +5,7 @@ using XRL;
 using XRL.Core;
 using XRL.UI;
 using XRL.World;
+using XRL.World.Effects;
 
 namespace Kernelmethod.IronMan.Parts {
     [Serializable]
@@ -134,8 +135,12 @@ namespace Kernelmethod.IronMan.Parts {
         /// Delete the save for the current game.
         /// </summary>
         public void TriggerDelete() {
-            if (!Options.DisablePermadeath) {
-                LogInfo($"triggered delete");
+            if (!Options.DisablePermadeath || !ParentObject.IsPlayer()) {
+                // Check whether the player is in a dreamcrungle's waking dream
+                if (ParentObject.HasEffect(typeof(WakingDream)))
+                    return;
+
+                LogInfo("triggered delete");
 
                 // Recursively delete flies in the directory but don't delete the directory itself,
                 // since the game will currently (2.0.206.10) crash if the directory is missing.
@@ -143,10 +148,16 @@ namespace Kernelmethod.IronMan.Parts {
 
                 foreach (var entry in Directory.EnumerateFileSystemEntries(cacheDirectory)) {
                     var attributes = File.GetAttributes(entry);
-                    if (attributes == FileAttributes.Directory)
-                        Directory.Delete(entry, recursive: true);
-                    else
-                        File.Delete(entry);
+
+                    try {
+                        if (attributes == FileAttributes.Directory)
+                            Directory.Delete(entry, recursive: true);
+                        else
+                            File.Delete(entry);
+                    }
+                    catch (Exception ex) {
+                        LogInfo($"error deleting {entry}: {ex.ToString()}");
+                    }
                     LogInfo($"deleted {entry}");
                 }
             }
