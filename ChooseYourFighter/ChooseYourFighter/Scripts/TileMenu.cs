@@ -200,20 +200,16 @@ namespace Kernelmethod.ChooseYourFighter {
 
         public static PlayerModel GetModelFromBlueprint() {
             var input = Popup.AskString("Enter blueprint:", "", 999, 0, null, ReturnNullForEscape: false, EscapeNonMarkupFormatting: true, false);
-            var blueprint = GameObjectFactory.Factory.GetBlueprintIfExists(input);
+            var blueprint = WishSearcher.SearchForBlueprint(input).Result;
 
             if (blueprint == null)
                 return null;
 
-            var gameObject = blueprint.createOne();
-            if (gameObject.GetTile() == null) {
+            var model = GetModelFromBlueprintName(blueprint);
+            if (model == null) {
                 Popup.ShowFail($"No tile could be found for the blueprint {input}");
-                return null;
             }
 
-            var model = new PlayerModel(blueprint);
-            model.Id = "BLUEPRINT:" + input;
-            model.HFlip = true;
             return model;
         }
 
@@ -221,19 +217,26 @@ namespace Kernelmethod.ChooseYourFighter {
             var input = await Popup.AskStringAsync(
                 "Enter blueprint:", "", 999, 0, null, ReturnNullForEscape: false, EscapeNonMarkupFormatting: true, false
             );
-            var blueprint = GameObjectFactory.Factory.GetBlueprintIfExists(input);
+            var blueprint = WishSearcher.SearchForBlueprint(input).Result;
 
             if (blueprint == null)
                 return null;
 
-            var gameObject = blueprint.createOne();
-            if (gameObject.GetTile() == null) {
+            var model = GetModelFromBlueprintName(blueprint);
+            if (model == null) {
                 await Popup.ShowAsync($"No tile could be found for the blueprint {input}", LogMessage: false);
-                return null;
             }
 
-            var model = new PlayerModel(blueprint);
-            model.Id = "BLUEPRINT:" + input;
+            return model;
+        }
+
+        private static PlayerModel GetModelFromBlueprintName(string Blueprint) {
+            var gameObject = GameObjectFactory.Factory.CreateObject(Blueprint);
+            if (gameObject.GetTile() == null)
+                return null;
+
+            var model = new PlayerModel(gameObject.GetBlueprint());
+            model.Id = "BLUEPRINT:" + Blueprint;
             model.HFlip = true;
             return model;
         }
