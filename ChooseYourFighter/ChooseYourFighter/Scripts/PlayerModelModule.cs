@@ -31,7 +31,7 @@ namespace XRL.CharacterBuilds.Qud {
         /// Do not include the information from this module in build codes.
         /// </summary>
         public override bool IncludeInBuildCodes() {
-            return false;
+            return true;
         }
 
         /// <summary>
