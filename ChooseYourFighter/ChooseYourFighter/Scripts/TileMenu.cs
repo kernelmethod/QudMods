@@ -262,7 +262,7 @@ namespace Kernelmethod.ChooseYourFighter {
                     choiceName = ColorUtility.ApplyColor(choiceName, "W");
                 }
                 else if (!choice.IsGroup && !ColorUtility.HasFormatting(choiceName)) {
-                    choiceName = ColorUtility.ApplyColor(choiceName, "m");
+                    choiceName = ColorUtility.ApplyColor(choiceName, "M");
                 }
 
                 yield return choiceName;
