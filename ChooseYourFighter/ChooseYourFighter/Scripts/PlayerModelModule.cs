@@ -55,11 +55,6 @@ namespace XRL.CharacterBuilds.Qud {
                 return model.Background;
             if (id == QudGameBootModule.BOOTEVENT_BOOTPLAYERTILEDETAIL)
                 return model.DetailColor;
-            if (id == QudGameBootModule.BOOTEVENT_BOOTPLAYEROBJECT) {
-                var player = element as GameObject;
-                if (model.HFlip)
-                    player.RequirePart<Kernelmethod_ChooseYourFighter_FlipTile>();
-            }
 
             return base.handleBootEvent(id, game, info, element);
         }

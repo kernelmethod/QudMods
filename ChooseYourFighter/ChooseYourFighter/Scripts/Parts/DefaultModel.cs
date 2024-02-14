@@ -1,5 +1,6 @@
 using System;
 using XRL.World;
+using XRL.World.Parts;
 
 namespace Kernelmethod.ChooseYourFighter {
     /// <summary>
@@ -16,6 +17,11 @@ namespace Kernelmethod.ChooseYourFighter {
             Model.Foreground = ParentObject.GetForegroundColor();
             Model.Background = ParentObject.GetBackgroundColor();
             Model.DetailColor = ParentObject.GetDetailColor();
+
+            var pRender = ParentObject.GetPart<Render>();
+            if (pRender != null) {
+                Model.HFlip = ParentObject.IsPlayer() ? pRender.HFlip : !pRender.HFlip;
+            }
         }
     }
 }

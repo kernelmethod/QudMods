@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <KernelmethodChooseYourFighter>
   <model ID="WardenUne" Name="Warden Une">
-    <tile Path="Creatures/sw_une.bmp" DetailColor="B" />
+    <!--
+      Une's tile points to the left by default, but player tiles in the game always point
+      to the right. So we set HFlip="True" (HFlip = "horizontal flip") to make the tile
+      point to the right.
+    -->
+    <tile Path="Creatures/sw_une.bmp" DetailColor="B" HFlip="True" />
   </model>
 
   <!--

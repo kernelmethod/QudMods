@@ -128,6 +128,10 @@ namespace Kernelmethod.ChooseYourFighter {
                         currentReadingModelData.Background = xml.GetAttribute("Background");
                     if (xml.HasAttribute("DetailColor"))
                         currentReadingModelData.DetailColor = xml.GetAttribute("DetailColor");
+                    if (xml.HasAttribute("HFlip")) {
+                        var HFlip = xml.GetAttribute("HFlip");
+                        currentReadingModelData.HFlip = (HFlip == null) ? false : bool.Parse(HFlip);
+                    }
                 }
             }
         };
@@ -197,21 +201,19 @@ namespace Kernelmethod.ChooseYourFighter {
             if (model.Background != null)
                 part.SetBackgroundColor(model.Background[0]);
 
-            if (model.HFlip)
-                Object.RequirePart<Kernelmethod_ChooseYourFighter_FlipTile>();
-            else
-                Object.RemovePart("Kernelmethod_ChooseYourFighter_FlipTile");
+            part.HFlip = (Object.IsPlayer() && model.HFlip) || (!Object.IsPlayer() && !model.HFlip);
 
+            /*
             if (model.Name != null) {
                 var message = "You changed your appearance to look like ";
                 string name = null;
-
 
                 name = (Grammar.IndefiniteArticleShouldBeAn(model.Name) ? "an " : "a ") + model.ColorizedName;
 
                 message += name + ".";
                 MessageQueue.AddPlayerMessage(message);
             }
+            */
         }
 
         private static void LogInfo(string message) {
