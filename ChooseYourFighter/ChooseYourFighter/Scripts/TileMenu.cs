@@ -83,15 +83,15 @@ namespace Kernelmethod.ChooseYourFighter {
                 if (num == 0)
                     model = GetModelFromBlueprint();
                 else if (num == 1)
-                    model = ChooseTileMenuWithCategory(ModelType.CasteOrCalling);
+                    model = ChooseTileMenuFiltered(ModelType.CasteOrCalling);
                 else if (num == 2)
-                    model = ChooseTileMenuWithCategory(ModelType.Preset);
+                    model = ChooseTileMenuFiltered(ModelType.Preset);
                 else if (num == 3) {
                     if (!TileFactory.HasExpansionModels()) {
                         Popup.Show("You don't have any expansions enabled for Choose Your Fighter.");
                         continue;
                     }
-                    model = ChooseTileMenuWithCategory(ModelType.Expansion);
+                    model = ChooseTileMenuFiltered(ModelType.Expansion);
                 }
                 else if (num == 4) {
                     DefaultModel defaultModel = null;
@@ -132,15 +132,15 @@ namespace Kernelmethod.ChooseYourFighter {
 
                 }
                 else if (num == 1)
-                    model = await ChooseTileMenuWithCategoryAsync(module, ModelType.CasteOrCalling);
+                    model = await ChooseTileMenuFilteredAsync(module, ModelType.CasteOrCalling);
                 else if (num == 2)
-                    model = await ChooseTileMenuWithCategoryAsync(module, ModelType.Preset);
+                    model = await ChooseTileMenuFilteredAsync(module, ModelType.Preset);
                 else if (num == 3) {
                     if (!TileFactory.HasExpansionModels()) {
                         await Popup.ShowAsync("You don't have any expansions installed for Choose Your Fighter.", LogMessage: false);
                         continue;
                     }
-                    model = await ChooseTileMenuWithCategoryAsync(module, ModelType.Expansion);
+                    model = await ChooseTileMenuFilteredAsync(module, ModelType.Expansion);
                 }
                 else if (num == 4)
                     // Model will automatically be set to null
@@ -152,8 +152,8 @@ namespace Kernelmethod.ChooseYourFighter {
             return model;
         }
 
-        public static PlayerModel ChooseTileMenuWithCategory(ModelType category) {
-            var models = new List<PlayerModel>(TileFactory.ModelsFromCategory(category));
+        public static PlayerModel ChooseTileMenuFiltered(ModelType category, string Group = null) {
+            var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
             models.Sort();
 
             var names = models.Select((PlayerModel m) => m.Name);
@@ -175,8 +175,12 @@ namespace Kernelmethod.ChooseYourFighter {
             return models[num];
         }
 
-        public static async Task<PlayerModel> ChooseTileMenuWithCategoryAsync(Kernelmethod_ChooseYourFighter_PlayerModelModule module, ModelType category) {
-            var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category));
+        public static async Task<PlayerModel> ChooseTileMenuFilteredAsync(
+            Kernelmethod_ChooseYourFighter_PlayerModelModule module,
+            ModelType category,
+            string Group = null
+        ) {
+            var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
             models.Sort();
 
             var names = models.Select((PlayerModel m) => m.Name);
