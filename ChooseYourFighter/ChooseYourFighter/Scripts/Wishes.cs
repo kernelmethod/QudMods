@@ -1,3 +1,4 @@
+using XRL;
 using XRL.UI;
 using XRL.Wish;
 
@@ -8,7 +9,7 @@ namespace Kernelmethod.ChooseYourFighter {
         public static bool WishCommand(string rest) {
             switch (rest) {
             case "change":
-                TileMenu.ChooseTileMenu();
+                TileMenu.ChooseTileMenu(The.Player);
                 break;
             default:
                 Popup.ShowFail($"Unknown wish command for Kernelmethod.ChooseYourFighter: {rest}");

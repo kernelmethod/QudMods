@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using UnityEngine;
 using XRL;
 using XRL.Language;
 using XRL.Messages;
@@ -178,17 +177,17 @@ namespace Kernelmethod.ChooseYourFighter {
         }
 
         /// <summary>
-        /// Change a player's appearance using a given PlayerModel instance as a
+        /// Change an object's appearance using a given PlayerModel instance as a
         /// blueprint.
         /// </summary>
-        public static void ChangePlayerAppearance(PlayerModel model, bool RequireDefault = true) {
+        public static void ChangeAppearance(GameObject Object, PlayerModel model, bool RequireDefault = true) {
             if (model == null)
                 return;
 
             if (RequireDefault)
-                The.Player.RequirePart<DefaultModel>();
+                Object.RequirePart<DefaultModel>();
 
-            var part = The.Player.RequirePart<Render>();
+            var part = Object.RequirePart<Render>();
             if (model.Tile != null)
                 part.Tile = model.Tile;
             if (model.DetailColor != null)
@@ -199,9 +198,9 @@ namespace Kernelmethod.ChooseYourFighter {
                 part.SetBackgroundColor(model.Background[0]);
 
             if (model.HFlip)
-                The.Player.RequirePart<Kernelmethod_ChooseYourFighter_FlipTile>();
+                Object.RequirePart<Kernelmethod_ChooseYourFighter_FlipTile>();
             else
-                The.Player.RemovePart("Kernelmethod_ChooseYourFighter_FlipTile");
+                Object.RemovePart("Kernelmethod_ChooseYourFighter_FlipTile");
 
             if (model.Name != null) {
                 var message = "You changed your appearance to look like ";

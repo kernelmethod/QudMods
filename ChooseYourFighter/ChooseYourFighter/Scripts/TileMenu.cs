@@ -30,15 +30,15 @@ namespace Kernelmethod.ChooseYourFighter {
             return Icon;
         }
 
-        public static IRenderable MenuIcon() {
-            return The.Player?.RenderForUI() ?? null;
+        public static IRenderable MenuIcon(GameObject Object) {
+            return Object?.RenderForUI() ?? null;
         }
 
         public static string MenuTitle() {
             return "{{Y|Select player model}}";
         }
 
-        public static List<string> MainMenuOptions() {
+        public static List<string> MainMenuOptions(GameObject Object) {
             var options = new List<string> {
                 "Enter blueprint ID for tile",
                 "Castes and callings",
@@ -50,7 +50,7 @@ namespace Kernelmethod.ChooseYourFighter {
             else
                 options.Add("{{K|Expansions}}");
 
-            if (The.Player?.HasPart(typeof(DefaultModel)) ?? true)
+            if (Object?.HasPart(typeof(DefaultModel)) ?? true)
                 options.Add("Reset to default");
             else
                 options.Add("{{K|Reset to default}}");
@@ -63,41 +63,41 @@ namespace Kernelmethod.ChooseYourFighter {
         }
 
         /// <summary>
-        /// Create a menu for the player to change their appearance.
+        /// Create a menu for the player to change the appearance of themselves or another object.
         /// </summary>
-        public static PlayerModel ChooseTileMenu() {
+        public static PlayerModel ChooseTileMenu(GameObject Object) {
             PlayerModel model = null;
             bool RequireDefault = true;
 
             while (model == null) {
                 int num = Popup.ShowOptionList(
                     MenuTitle(),
-                    MainMenuOptions().ToArray(),
+                    MainMenuOptions(Object).ToArray(),
                     Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys(),
                     AllowEscape: true,
-                    IntroIcon: MenuIcon(),
+                    IntroIcon: MenuIcon(Object),
                     centerIntro: true
                 );
 
                 if (num == 0)
                     model = GetModelFromBlueprint();
                 else if (num == 1)
-                    model = ChooseTileMenuFiltered(ModelType.CasteOrCalling);
+                    model = ChooseTileMenuFiltered(Object, ModelType.CasteOrCalling);
                 else if (num == 2)
-                    model = ChooseTileMenuFiltered(ModelType.Preset);
+                    model = ChooseTileMenuFiltered(Object, ModelType.Preset);
                 else if (num == 3) {
                     if (!TileFactory.HasExpansionModels()) {
                         Popup.Show("You don't have any expansions enabled for Choose Your Fighter.");
                         continue;
                     }
-                    model = ChooseTileMenuFiltered(ModelType.Expansion);
+                    model = ChooseTileMenuFiltered(Object, ModelType.Expansion);
                 }
                 else if (num == 4) {
                     DefaultModel defaultModel = null;
-                    if (The.Player?.TryGetPart<DefaultModel>(out defaultModel) ?? false) {
+                    if (Object?.TryGetPart<DefaultModel>(out defaultModel) ?? false) {
                         model = defaultModel.Model;
-                        The.Player.RemovePart<DefaultModel>();
+                        Object.RemovePart<DefaultModel>();
                         RequireDefault = false;
                     }
                     else
@@ -109,7 +109,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 MetricsManager.LogInfo($"model = {model}");
             }
 
-            TileFactory.ChangePlayerAppearance(model, RequireDefault);
+            TileFactory.ChangeAppearance(Object, model, RequireDefault);
             return model;
         }
 
@@ -125,7 +125,7 @@ namespace Kernelmethod.ChooseYourFighter {
             while (model == null) {
                 int num = await Popup.ShowOptionListAsync(
                     MenuTitle(),
-                    MainMenuOptions().ToArray(),
+                    MainMenuOptions(null).ToArray(),
                     Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys().ToArray(),
                     AllowEscape: true,
@@ -158,7 +158,7 @@ namespace Kernelmethod.ChooseYourFighter {
             return model;
         }
 
-        public static PlayerModel ChooseTileMenuFiltered(ModelType category, string Group = null) {
+        public static PlayerModel ChooseTileMenuFiltered(GameObject Object, ModelType category, string Group = null) {
             while (true) {
                 var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
                 models.Sort();
@@ -172,7 +172,7 @@ namespace Kernelmethod.ChooseYourFighter {
                     Intro: "Choose a tile for your character from the list below.",
                     AllowEscape: true,
                     Icons: icons.ToArray(),
-                    IntroIcon: MenuIcon(),
+                    IntroIcon: MenuIcon(Object),
                     centerIntro: true
                 );
 
@@ -183,7 +183,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 if (!choice.IsGroup)
                     return choice;
 
-                choice = ChooseTileMenuFiltered(category, Group: choice.Id);
+                choice = ChooseTileMenuFiltered(Object, category, Group: choice.Id);
 
                 if (choice != null)
                     return choice;
