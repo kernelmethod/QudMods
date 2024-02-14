@@ -20,7 +20,7 @@ namespace Kernelmethod.ChooseYourFighter {
 
             var pRender = ParentObject.GetPart<Render>();
             if (pRender != null) {
-                Model.HFlip = ParentObject.IsPlayer() ? pRender.HFlip : !pRender.HFlip;
+                Model.HFlip = TileFactory.CheckFlip(ParentObject) ? pRender.HFlip : !pRender.HFlip;
             }
         }
     }

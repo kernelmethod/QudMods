@@ -6,6 +6,7 @@ using System.Xml;
 using XRL;
 using XRL.Language;
 using XRL.Messages;
+using XRL.UI;
 using XRL.World;
 using XRL.World.Parts;
 
@@ -191,17 +192,17 @@ namespace Kernelmethod.ChooseYourFighter {
             if (RequireDefault)
                 Object.RequirePart<DefaultModel>();
 
-            var part = Object.RequirePart<Render>();
             if (model.Tile != null)
-                part.Tile = model.Tile;
+                Object.pRender.Tile = model.Tile;
             if (model.DetailColor != null)
-                part.DetailColor = model.DetailColor;
+                Object.pRender.DetailColor = model.DetailColor;
             if (model.Foreground != null)
-                part.SetForegroundColor(model.Foreground[0]);
+                Object.pRender.SetForegroundColor(model.Foreground[0]);
             if (model.Background != null)
-                part.SetBackgroundColor(model.Background[0]);
+                Object.pRender.SetBackgroundColor(model.Background[0]);
 
-            part.HFlip = (Object.IsPlayer() && model.HFlip) || (!Object.IsPlayer() && !model.HFlip);
+            LogInfo($"CheckFlip = {CheckFlip(Object)}");
+            Object.pRender.HFlip = CheckFlip(Object) ? model.HFlip : !model.HFlip;
 
             /*
             if (model.Name != null) {
@@ -214,6 +215,20 @@ namespace Kernelmethod.ChooseYourFighter {
                 MessageQueue.AddPlayerMessage(message);
             }
             */
+        }
+
+        public static bool CheckFlip(GameObject Object) {
+            if (Object == null)
+                return false;
+
+            if (Object.IsPlayer() && Object.IsOriginalPlayerBody()) {
+                return !Options.OptionNoPlayerTileFlipOriginalBody;
+            }
+
+            if (Object.IsPlayer() || Object.IsPlayerLed())
+                return false;
+
+            return true;
         }
 
         private static void LogInfo(string message) {
