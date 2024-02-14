@@ -19,15 +19,21 @@ namespace Kernelmethod.ChooseYourFighter {
     [Serializable]
     public class PlayerModel : IComparable<PlayerModel> {
         public string Id;
+        // TODO: replace with a private field and getter / setter after next breaking
+        // game update.
         public string Name;
         public string Tile = null;
         public string Foreground = "y";
         public string Background = "k";
         public string DetailColor = null;
-        public string Group = null;
-        public bool IsGroup = false;
         public bool HFlip = false;
         public ModelType Category = ModelType.Unknown;
+
+        // TODO: serialize these fields after next breaking game update.
+        [NonSerialized]
+        public string Group = null;
+        [NonSerialized]
+        public bool IsGroup = false;
 
         public string ColorizedName {
             get {
