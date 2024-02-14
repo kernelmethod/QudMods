@@ -113,7 +113,13 @@ namespace Kernelmethod.ChooseYourFighter {
             return model;
         }
 
-        public static async Task<PlayerModel> ChooseTileMenuAsync(Kernelmethod_ChooseYourFighter_PlayerModelModule module) {
+        /// <summary>
+        /// Player model selector for character creation.
+        ///
+        /// Returns `null` if no option was selected, and returns a `PlayerModel` with `model.Id == null`
+        /// if "default" was selected.
+        /// </summary>
+        public static async Task<PlayerModel> CharacterCreationChooseTileMenu(Kernelmethod_ChooseYourFighter_PlayerModelModule module) {
             PlayerModel model = null;
 
             while (model == null) {
@@ -143,8 +149,8 @@ namespace Kernelmethod.ChooseYourFighter {
                     model = await ChooseTileMenuFilteredAsync(module, ModelType.Expansion);
                 }
                 else if (num == 4)
-                    // Model will automatically be set to null
-                    break;
+                    // Model ID will automatically be set to null
+                    model = new PlayerModel();
                 else
                     break;
             }
