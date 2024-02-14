@@ -163,7 +163,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
                 models.Sort();
 
-                var names = new List<string>(GetChoiceNames(models));
+                var names = models.Select((PlayerModel m) => m.ColorizedName);
                 var icons = models.Select((PlayerModel m) => m.Icon());
 
                 int num = Popup.ShowOptionList(
@@ -199,7 +199,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
                 models.Sort();
 
-                var names = new List<string>(GetChoiceNames(models));
+                var names = models.Select((PlayerModel m) => m.ColorizedName);
                 var icons = models.Select((PlayerModel m) => m.Icon());
 
                 int num = await Popup.ShowOptionListAsync(
@@ -256,23 +256,6 @@ namespace Kernelmethod.ChooseYourFighter {
             }
 
             return model;
-        }
-
-        private static IEnumerable<string> GetChoiceNames(List<PlayerModel> Choices) {
-            foreach (var choice in Choices) {
-                var choiceName = choice.Name;
-
-                // Groups are colorized yellow by default
-                // Tiles are colorized magenta by default
-                if (choice.IsGroup && !ColorUtility.HasFormatting(choiceName)) {
-                    choiceName = ColorUtility.ApplyColor(choiceName, "W");
-                }
-                else if (!choice.IsGroup && !ColorUtility.HasFormatting(choiceName)) {
-                    choiceName = ColorUtility.ApplyColor(choiceName, "M");
-                }
-
-                yield return choiceName;
-            }
         }
 
         private static PlayerModel GetModelFromBlueprintName(string Blueprint) {

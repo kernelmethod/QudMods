@@ -29,6 +29,25 @@ namespace Kernelmethod.ChooseYourFighter {
         public bool HFlip = false;
         public ModelType Category = ModelType.Unknown;
 
+        public string ColorizedName {
+            get {
+                var choiceName = Name;
+
+                // Colorize name based on whether it corresponds to a group or a tile
+                if (IsGroup && !ColorUtility.HasFormatting(choiceName)) {
+                    choiceName = ColorUtility.ApplyColor(choiceName, "W");
+                }
+                else if (!IsGroup && !ColorUtility.HasFormatting(choiceName)) {
+                    choiceName = ColorUtility.ApplyColor(choiceName, "M");
+                }
+
+                return choiceName;
+            }
+            set {
+                Name = value;
+            }
+        }
+
         public PlayerModel() {}
 
         /// <summary>

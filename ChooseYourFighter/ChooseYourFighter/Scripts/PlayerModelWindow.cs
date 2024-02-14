@@ -44,7 +44,7 @@ namespace XRL.CharacterBuilds.Qud.UI {
             {
                 Id = "Model",
                 Prefix = "Model: ",
-                Description = (base.module.data?.model?.Name ?? "{{W|default}}")
+                Description = (base.module.data?.model?.ColorizedName ?? "{{W|default}}")
             };
         }
 

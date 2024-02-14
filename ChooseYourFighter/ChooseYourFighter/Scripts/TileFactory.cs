@@ -166,7 +166,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 var id = value.Name;
                 var model = new PlayerModel {
                     Id=id,
-                    Name="{{M|" + value.Name + "}}",
+                    Name=value.Name,
                     Tile=value.Tile,
                     DetailColor=value.Detail,
                     Category=ModelType.Preset
@@ -208,7 +208,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 string name = null;
 
 
-                name = (Grammar.IndefiniteArticleShouldBeAn(model.Name) ? "an " : "a ") + model.Name;
+                name = (Grammar.IndefiniteArticleShouldBeAn(model.Name) ? "an " : "a ") + model.ColorizedName;
 
                 message += name + ".";
                 MessageQueue.AddPlayerMessage(message);
