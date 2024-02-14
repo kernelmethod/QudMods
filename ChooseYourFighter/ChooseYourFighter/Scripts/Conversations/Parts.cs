@@ -13,7 +13,7 @@ namespace XRL.World.Conversations.Parts {
         }
 
         public override bool HandleEvent(EnterElementEvent E) {
-            TileMenu.ChooseTileMenu(The.Player);
+            TileMenu.ChangeAppearanceMenu();
             return base.HandleEvent(E);
         }
     }

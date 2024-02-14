@@ -63,6 +63,33 @@ namespace Kernelmethod.ChooseYourFighter {
         }
 
         /// <summary>
+        /// Create a menu for the player to select between themselves or a follower for a change
+        /// of appearance.
+        /// </summary>
+        public static void ChangeAppearanceMenu() {
+            var objects = The.Player.GetCompanionsReadonly();
+            if (objects.Count == 0) {
+                ChooseTileMenu(The.Player);
+                return;
+            }
+
+            objects.Insert(0, The.Player);
+
+            int selection = Popup.ShowOptionList(
+                "Whose appearance would you like to change?",
+                objects.Select((GameObject o) => o.DisplayName).ToArray(),
+                Icons: objects.Select((GameObject o) => o.RenderForUI()).ToArray(),
+                AllowEscape: true,
+                centerIntro: true
+            );
+
+            if (selection == -1)
+                return;
+
+            ChooseTileMenu(objects[selection]);
+        }
+
+        /// <summary>
         /// Create a menu for the player to change the appearance of themselves or another object.
         /// </summary>
         public static PlayerModel ChooseTileMenu(GameObject Object) {

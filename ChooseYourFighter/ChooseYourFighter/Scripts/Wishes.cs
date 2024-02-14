@@ -9,7 +9,7 @@ namespace Kernelmethod.ChooseYourFighter {
         public static bool WishCommand(string rest) {
             switch (rest) {
             case "change":
-                TileMenu.ChooseTileMenu(The.Player);
+                TileMenu.ChangeAppearanceMenu();
                 break;
             default:
                 Popup.ShowFail($"Unknown wish command for Kernelmethod.ChooseYourFighter: {rest}");
