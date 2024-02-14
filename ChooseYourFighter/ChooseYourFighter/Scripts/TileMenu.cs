@@ -206,6 +206,9 @@ namespace Kernelmethod.ChooseYourFighter {
                     centerIntro: true
                 );
 
+                if (num < 0)
+                    return null;
+
                 var choice = models[num];
                 if (!choice.IsGroup)
                     return choice;
