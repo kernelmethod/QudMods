@@ -1,5 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <KernelmethodChooseYourFighter>
-  <model ID="Eater Statue" Name="{{M|Eater Statue 1}}">
-    <tile Path="Terrain/sw_ueater1.bmp" Foreground="y" DetailColor="g" />
+  <model ID="WardenUne" Name="Warden Une">
+    <tile Path="Creatures/sw_une.bmp" DetailColor="B" />
   </model>
+
+  <!--
+    Here, we colorize the name of our tile, so that it'll appear colorized in the tile
+    selection menu.
+  -->
+  <model ID="BigCrabTile" Name="{{R|big crab}}">
+    <tile Path="creatures/sw_magmacrab.png" DetailColor="W" />
+  </model>
+
+  <!--
+    This is an example of a group. Models here will be grouped together when the player
+    goes to select their tile.
+  -->
+  <group ID="EaterStatues" Name="Eater Statues">
+    <model ID="EaterStatue1" Name="Eater Statue 1">
+      <tile Path="Terrain/sw_ueater1.bmp" Foreground="y" DetailColor="g" />
+    </model>
+
+    <model ID="EaterStatue2" Name="Eater Statue 2">
+      <tile Path="Terrain/sw_ueater2.bmp" Foreground="y" DetailColor="g" />
+    </model>
+  </group>
 </KernelmethodChooseYourFighter>
