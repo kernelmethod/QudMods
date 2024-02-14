@@ -35,7 +35,7 @@ namespace Kernelmethod.ChooseYourFighter {
         }
 
         public static string MenuTitle() {
-            return "{{W|Select player model}}";
+            return "{{Y|Select player model}}";
         }
 
         public static List<string> MainMenuOptions() {
@@ -73,7 +73,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 int num = Popup.ShowOptionList(
                     MenuTitle(),
                     MainMenuOptions().ToArray(),
-                    Intro: "{{W|Choose an option to see available character tiles.}}",
+                    Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys(),
                     AllowEscape: true,
                     IntroIcon: MenuIcon(),
@@ -120,7 +120,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 int num = await Popup.ShowOptionListAsync(
                     MenuTitle(),
                     MainMenuOptions().ToArray(),
-                    Intro: "{{W|Choose an option to see available character tiles.}}",
+                    Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys().ToArray(),
                     AllowEscape: true,
                     IntroIcon: MenuIconGameStart(module),
@@ -153,26 +153,35 @@ namespace Kernelmethod.ChooseYourFighter {
         }
 
         public static PlayerModel ChooseTileMenuFiltered(ModelType category, string Group = null) {
-            var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
-            models.Sort();
+            while (true) {
+                var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
+                models.Sort();
 
-            var names = models.Select((PlayerModel m) => m.Name);
-            var icons = models.Select((PlayerModel m) => m.Icon());
+                var names = models.Select((PlayerModel m) => m.Name);
+                var icons = models.Select((PlayerModel m) => m.Icon());
 
-            int num = Popup.ShowOptionList(
-                MenuTitle(),
-                names.ToArray(),
-                Intro: "{{W|Choose a tile for your character from the list below.}}",
-                AllowEscape: true,
-                Icons: icons.ToArray(),
-                IntroIcon: MenuIcon(),
-                centerIntro: true
-            );
+                int num = Popup.ShowOptionList(
+                    MenuTitle(),
+                    names.ToArray(),
+                    Intro: "Choose a tile for your character from the list below.",
+                    AllowEscape: true,
+                    Icons: icons.ToArray(),
+                    IntroIcon: MenuIcon(),
+                    centerIntro: true
+                );
 
-            if (num < 0)
-                return null;
+                if (num < 0)
+                    return null;
 
-            return models[num];
+                var choice = models[num];
+                if (!choice.IsGroup)
+                    return choice;
+
+                choice = ChooseTileMenuFiltered(category, Group: choice.Name);
+
+                if (choice != null)
+                    return choice;
+            }
         }
 
         public static async Task<PlayerModel> ChooseTileMenuFilteredAsync(
@@ -180,26 +189,32 @@ namespace Kernelmethod.ChooseYourFighter {
             ModelType category,
             string Group = null
         ) {
-            var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
-            models.Sort();
+            while (true) {
+                var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
+                models.Sort();
 
-            var names = models.Select((PlayerModel m) => m.Name);
-            var icons = models.Select((PlayerModel m) => m.Icon());
+                var names = models.Select((PlayerModel m) => m.Name);
+                var icons = models.Select((PlayerModel m) => m.Icon());
 
-            int num = await Popup.ShowOptionListAsync(
-                MenuTitle(),
-                names.ToArray(),
-                Intro: "{{W|Choose a tile for your character from the list below.}}",
-                AllowEscape: true,
-                Icons: icons.ToArray(),
-                IntroIcon: MenuIconGameStart(module),
-                centerIntro: true
-            );
+                int num = await Popup.ShowOptionListAsync(
+                    MenuTitle(),
+                    names.ToArray(),
+                    Intro: "Choose a tile for your character from the list below.",
+                    AllowEscape: true,
+                    Icons: icons.ToArray(),
+                    IntroIcon: MenuIconGameStart(module),
+                    centerIntro: true
+                );
 
-            if (num < 0)
-                return null;
+                var choice = models[num];
+                if (!choice.IsGroup)
+                    return choice;
 
-            return models[num];
+                choice = await ChooseTileMenuFilteredAsync(module, category, Group: choice.Name);
+
+                if (choice != null)
+                    return choice;
+            }
         }
 
         public static PlayerModel GetModelFromBlueprint() {

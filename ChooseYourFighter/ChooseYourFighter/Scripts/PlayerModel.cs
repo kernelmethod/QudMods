@@ -25,6 +25,7 @@ namespace Kernelmethod.ChooseYourFighter {
         public string Background = "k";
         public string DetailColor = null;
         public string Group = null;
+        public bool IsGroup = false;
         public bool HFlip = false;
         public ModelType Category = ModelType.Unknown;
 
