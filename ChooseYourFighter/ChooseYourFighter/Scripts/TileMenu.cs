@@ -177,7 +177,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 if (!choice.IsGroup)
                     return choice;
 
-                choice = ChooseTileMenuFiltered(category, Group: choice.Name);
+                choice = ChooseTileMenuFiltered(category, Group: choice.Id);
 
                 if (choice != null)
                     return choice;
@@ -210,7 +210,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 if (!choice.IsGroup)
                     return choice;
 
-                choice = await ChooseTileMenuFilteredAsync(module, category, Group: choice.Name);
+                choice = await ChooseTileMenuFilteredAsync(module, category, Group: choice.Id);
 
                 if (choice != null)
                     return choice;

@@ -17,6 +17,9 @@ namespace Kernelmethod.ChooseYourFighter {
         private static PlayerModel currentReadingModelData;
 
         [ModSensitiveStaticCache(false)]
+        private static string currentReadingGroupId = null;
+
+        [ModSensitiveStaticCache(false)]
         private static Dictionary<string, PlayerModel> _Models = null;
 
         /// <summary>
@@ -67,22 +70,51 @@ namespace Kernelmethod.ChooseYourFighter {
                 }
             },
             {
+                "group",
+                delegate(XmlDataHelper xml)
+                {
+                    if (currentReadingGroupId != null)
+                        throw new Exception($"already processing the group {currentReadingGroupId}; you cannot nest tile groups inside one another");
+
+                    // Add a player option corresponding to the new group
+                    try {
+                        currentReadingGroupId = xml.GetAttribute("ID");
+                        var groupChoice = new PlayerModel();
+                        groupChoice.Id = currentReadingGroupId;
+                        groupChoice.Name = xml.GetAttribute("Name");
+                        groupChoice.Category = ModelType.Expansion;
+                        groupChoice.IsGroup = true;
+                        _Models.Add(currentReadingGroupId, groupChoice);
+
+                        xml.HandleNodes(XmlNodeHandlers);
+                    }
+                    finally {
+                        currentReadingGroupId = null;
+                    }
+                }
+            },
+            {
                 "model",
                 delegate(XmlDataHelper xml)
                 {
                     string id = xml.GetAttribute("ID");
 
-                    if (!_Models.TryGetValue(id, out currentReadingModelData)) {
-                        currentReadingModelData = new PlayerModel();
+                    try {
+                        if (!_Models.TryGetValue(id, out currentReadingModelData)) {
+                            currentReadingModelData = new PlayerModel();
+                            _Models.Add(id, currentReadingModelData);
+                        }
+
+                        currentReadingModelData.Id = id;
+                        currentReadingModelData.Name = xml.GetAttribute("Name");
+                        currentReadingModelData.Group = currentReadingGroupId;
                         currentReadingModelData.Category = ModelType.Expansion;
-                        _Models.Add(id, currentReadingModelData);
+
+                        xml.HandleNodes(XmlNodeHandlers);
                     }
-
-                    currentReadingModelData.Id = id;
-                    currentReadingModelData.Name = xml.GetAttribute("Name");
-
-                    xml.HandleNodes(XmlNodeHandlers);
-                    currentReadingModelData = null;
+                    finally {
+                        currentReadingModelData = null;
+                    }
                 }
             },
             {

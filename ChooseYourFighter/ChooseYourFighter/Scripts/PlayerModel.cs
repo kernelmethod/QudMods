@@ -59,6 +59,12 @@ namespace Kernelmethod.ChooseYourFighter {
         }
 
         public int CompareTo(PlayerModel model) {
+            if (IsGroup && !model.IsGroup)
+                return -1;
+
+            if (!IsGroup && model.IsGroup)
+                return 1;
+
             return -model.Id.CompareTo(Id);
         }
     }
