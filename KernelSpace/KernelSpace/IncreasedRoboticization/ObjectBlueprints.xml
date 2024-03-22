@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <!--
+    Increase the rate at which creatures spawn roboticized.
+    The default rate in-game is 1/20,000.
+  -->
+  <object Name="Creature" Load="Merge">
+    <part Name="Roboticized" ChanceOneIn="5000" />
+  </object>
+</objectS>
