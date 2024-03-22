@@ -10,15 +10,4 @@
   <object Name="Helping Hands" Load="Merge">
     <part Name="TinkerItem" Bits="0135" CanDisassemble="true" CanBuild="true" />
   </object>
-
-  <!--
-    ================================
-    Fungal infections modifications
-    ================================
-
-    * Make fungal infections appear as physical features
-  -->
-  <object Name="FungalInfection" Load="Merge">
-    <tag Name="ShowAsPhysicalFeature" />
-  </object>
 </objects>
