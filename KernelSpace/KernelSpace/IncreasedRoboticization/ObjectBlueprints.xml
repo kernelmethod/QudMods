@@ -7,4 +7,4 @@
   <object Name="Creature" Load="Merge">
     <part Name="Roboticized" ChanceOneIn="5000" />
   </object>
-</objectS>
+</objects>
