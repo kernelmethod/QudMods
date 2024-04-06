@@ -48,8 +48,10 @@ namespace Kernelmethod.SubmoduleManagement {
                 if (submod.IsEnabled())
                     continue;
 
-                if (Path.StartsWith(submod.Path))
+                if (Path.StartsWith(submod.Path)) {
+                    LogInfo($"path disabled: {Path}");
                     return false;
+                }
             }
 
             return true;
