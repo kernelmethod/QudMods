@@ -1,13 +1,23 @@
 # submodule-management
 
-This mod is intended to be used by other mod developers to make it easier to
-toggle different options in mods. It is intended to be included alongside other
-mods, rather than used as a standalone mod.
+**Table of contents**
+
+- [Rationale](#rationale)
+- [Usage instructions](#usage-instructions)
+- [Current limitations](#current-limitations)
+- [Best practices](#best-practices)
+
+This directory contains the source for the submodule-management mod. It is
+designed to be used by other modders to make it easier to toggle different
+options in mods. This mod is intended to be included alongside other mods,
+rather than used as a standalone mod.
 
 ## Rationale
 
 submodule-management is a helper mod, designed to allow other modders to
-conditionally load XML for their mods. 
+conditionally load XML for their mods. The intention is to make it easier to
+enable or disable object blueprint changes, population table merges, and more,
+all via the options menu.
 
 ### Base game features
 
@@ -15,10 +25,50 @@ There are currently two outstanding feature requests functionality similar to
 what this mod offers:
 
 https://bitbucket.org/bbucklew/cavesofqud-public-issue-tracker/issues/8720
+
 https://bitbucket.org/bbucklew/cavesofqud-public-issue-tracker/issues/9208
 
 Depending on how these feature requests are eventually resolved, this mod may
 become irrelevant in the future.
+
+## Usage instructions
+
+A basic example of a folder utilizing submodule-management is provided in the
+[examples/](examples) directory. The [Kernel Space](../Kernel Space) mod is a
+more extensive example of how to use submodule-management alongside traditional
+options management.
+
+In general, to use submodule-management, your mod should contain multiple
+subdirectories with a file `Submodules.xml` in the top-level directory, e.g.:
+
+```
+examples
+├── Options.xml
+├── RecolorSnapjawScavengers
+│   └── ObjectBlueprints.xml
+├── ReplaceJoppaTile
+│   └── WorldTerrain.xml
+└── Submodules.xml
+```
+
+`Submodules.xml` should be structured as follows:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<submodules>
+  <submodule Path="RecolorSnapjawScavengers">
+    <optionenable ID="OptionRecolorSnapjawScavengers" />
+  </submodule>
+
+  <submodule Path="ReplaceJoppaTile">
+    <optionenable ID="OptionReplaceJoppaTile" />
+  </submodule>
+</submodules>
+```
+
+Each `<submodule>` tag specifies a subdirectory that serves as a submodule. XML
+files inside of that subdirectory are included or excluded, conditional on the
+value of the option selected by `optionenable`.
 
 ## Current limitations
 
