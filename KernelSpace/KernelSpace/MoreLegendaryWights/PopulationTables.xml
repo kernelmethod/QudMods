@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<populations>
+
+  <!--
+  Make uplifted wight variants more common in shrines
+  -->
+
+  <population Name="AgolgotShrine" Load="Merge">
+    <group Name="Contents" Load="Merge">
+      <group Name="Gyre wights" Chance="65" Load="Merge">
+        <object Weight="20" Blueprint="Uplifted Still Gyre Wight of Agolgot" Hint="AdjacentToWithTag:NephilimShrine" />
+      </group>
+    </group>
+  </population>
+
+  <population Name="BethsaidaShrine" Load="Merge">
+    <group Name="Contents" Load="Merge">
+      <group Name="Gyre wights" Chance="65" Load="Merge">
+        <object Weight="20" Blueprint="Uplifted Still Gyre Wight of Bethsaida" Hint="AdjacentToWithTag:NephilimShrine" />
+      </group>
+    </group>
+  </population>
+
+  <population Name="RermadonShrine" Load="Merge">
+    <group Name="Contents" Load="Merge">
+      <group Name="Gyre wights" Chance="65" Load="Merge">
+        <object Weight="20" Blueprint="Uplifted Still Gyre Wight of Rermadon" Hint="AdjacentToWithTag:NephilimShrine" />
+      </group>
+    </group>
+  </population>
+
+  <population Name="ShugruithShrine" Load="Merge">
+    <group Name="Contents" Load="Merge">
+      <group Name="Gyre wights" Chance="65" Load="Merge">
+        <object Weight="20" Blueprint="Uplifted Still Gyre Wight of Shug'ruith" Hint="AdjacentToWithTag:NephilimShrine" />
+      </group>
+    </group>
+  </population>
+
+  <population Name="QasShrine" Load="Merge">
+    <group Name="Contents" Load="Merge">
+      <group Name="Gyre wights" Chance="65" Load="Merge">
+        <object Weight="20" Blueprint="Uplifted Still Gyre Wight of Qas" Hint="AdjacentToWithTag:NephilimShrine" />
+      </group>
+    </group>
+  </population>
+
+  <population Name="QonShrine" Load="Merge">
+    <group Name="Contents" Load="Merge">
+      <group Name="Gyre wights" Chance="65" Load="Merge">
+        <object Weight="20" Blueprint="Uplifted Still Gyre Wight of Qon" Hint="AdjacentToWithTag:NephilimShrine" />
+      </group>
+    </group>
+  </population>
+
+  <!--
+  Sample uplifted wight variants more frequently from the GyreWights table (used in e.g. the Six-Day Stilt)
+  -->
+
+  <population Name="Gyre Wights" Load="Merge">
+    <group Name="Type" Load="Merge">
+      <group Weight="20" Name="Legendary" Load="Merge">
+      </group>
+    </group>
+  </population>
+</populations>

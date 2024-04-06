@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+    <!--
+        Wiki reference page: https://wiki.cavesofqud.com/wiki/Fungal_infections
+    -->
+
+    <object Name="Seedsprout Worm" Load="Merge">
+        <tag Name="NoCure" />
+    </object>
+
+    <object Name="Electric Snail" Load="Merge">
+        <tag Name="NoCure" />
+    </object>
+</objects>
