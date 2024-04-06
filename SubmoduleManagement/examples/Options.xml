@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<options>
+  <option ID="OptionRecolorSnapjawScavengers" Category="submodule-management test mod" Type="Checkbox" Default="Yes" DisplayText="Recolor snapjaw scavengers" />
+</options>

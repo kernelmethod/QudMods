@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<submodules>
+  <submodule Path="RecolorSnapjawScavengers">
+    <!--
+      This submodule is enabled when the "OptionEnableExampleMod1" option is
+      set in the options menu.
+    -->
+    <optionenable ID="OptionRecolorSnapjawScavengers" />
+  </submodule>
+</submodules>
