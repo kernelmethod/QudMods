@@ -5,10 +5,10 @@
       This submodule is enabled when the "OptionEnableExampleMod1" option is
       set in the options menu.
     -->
-    <optionenable ID="OptionRecolorSnapjawScavengers" />
+    <optiontoggle ID="OptionRecolorSnapjawScavengers" />
   </submodule>
 
   <submodule Path="ReplaceJoppaTile">
-    <optionenable ID="OptionReplaceJoppaTile" />
+    <optiontoggle ID="OptionReplaceJoppaTile" />
   </submodule>
 </submodules>

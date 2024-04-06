@@ -2,7 +2,7 @@
     "id": "Kernelmethod_SubmoduleManagement",
     "title": "submodule-management",
     "description": "Helper mod to allow other mods to be separated into submodules.\n\nThis module should not be installed by itself; it was probably brought in as a dependency of another mod.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "{{G|kernelmethod}}",
     "tags": "Modding,Helper Mods",
     "PreviewImage": "preview.png",

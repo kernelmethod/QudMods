@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <submodules>
   <submodule Path="DataDiskAdjustments">
-    <optionenable ID="Option_KernelSpace_DataDiskAdjustments" />
+    <optiontoggle ID="Option_KernelSpace_DataDiskAdjustments" />
   </submodule>
 
   <submodule Path="MoreLegendaryWights">
-    <optionenable ID="Option_KernelSpace_MoreLegendaryWights" />
+    <optiontoggle ID="Option_KernelSpace_MoreLegendaryWights" />
   </submodule>
 
   <submodule Path="EasierFungalCures">
-    <optionenable ID="Option_KernelSpace_EasierFungalCures" />
+    <optiontoggle ID="Option_KernelSpace_EasierFungalCures" />
   </submodule>
 
   <submodule Path="IncreasedRoboticization">
-    <optionenable ID="Option_KernelSpace_IncreasedRoboticization" />
+    <optiontoggle ID="Option_KernelSpace_IncreasedRoboticization" />
   </submodule>
 </submodules>

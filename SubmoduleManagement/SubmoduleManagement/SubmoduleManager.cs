@@ -100,18 +100,29 @@ namespace Kernelmethod.SubmoduleManagement {
         {
             // Enable the submodule with an option
             {
-                "optionenable",
+                "optiontoggle",
                 delegate (XmlDataHelper xml) {
                     var optionID = xml.GetAttribute("ID");
                     CurrentReadingSubmodule.IsEnabled = () => {
                         return Options.GetOption(optionID).EqualsNoCase("Yes");
                     };
                 }
+            },
+            {
+                "optionenable",
+                delegate (XmlDataHelper xml) {
+                    LogWarning("optionenable is deprecated and will be removed in 0.2.0; use optiontoggle instead");
+                    SubmoduleXmlNodeHandlers["optiontoggle"](xml);
+                }
             }
         };
 
         private static void LogInfo(string message) {
             MetricsManager.LogInfo($"Kernelmethod_SubmoduleManagement::SubmoduleManager: {message}");
+        }
+
+        private static void LogWarning(string message) {
+            MetricsManager.LogWarning($"Kernelmethod_SubmoduleManagement::SubmoduleManager: {message}");
         }
     }
 }
