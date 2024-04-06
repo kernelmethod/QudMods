@@ -57,18 +57,18 @@ examples
 <?xml version="1.0" encoding="utf-8" ?>
 <submodules>
   <submodule Path="RecolorSnapjawScavengers">
-    <optionenable ID="OptionRecolorSnapjawScavengers" />
+    <optiontoggle ID="OptionRecolorSnapjawScavengers" />
   </submodule>
 
   <submodule Path="ReplaceJoppaTile">
-    <optionenable ID="OptionReplaceJoppaTile" />
+    <optiontoggle ID="OptionReplaceJoppaTile" />
   </submodule>
 </submodules>
 ```
 
 Each `<submodule>` tag specifies a subdirectory that serves as a submodule. XML
 files inside of that subdirectory are included or excluded, conditional on the
-value of the option selected by `optionenable`.
+value of the option selected by `optiontoggle`.
 
 ## Current limitations
 
