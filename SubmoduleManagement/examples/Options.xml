@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <options>
-  <option ID="OptionRecolorSnapjawScavengers" Category="submodule-management test mod" Type="Checkbox" Default="Yes" DisplayText="Recolor snapjaw scavengers" />
+  <option ID="OptionRecolorSnapjawScavengers" Category="submodule-management test mod" Type="Checkbox" Default="Yes" DisplayText="Recolor snapjaw scavengers (requires restart)" />
+  <option ID="OptionReplaceJoppaTile" Category="submodule-management test mod" Type="Checkbox" Default="No" DisplayText="Replace the default tile used by Joppa on the world map (requires restart) (only applies to new worlds)" />
 </options>

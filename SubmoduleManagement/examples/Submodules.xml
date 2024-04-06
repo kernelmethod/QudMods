@@ -7,4 +7,8 @@
     -->
     <optionenable ID="OptionRecolorSnapjawScavengers" />
   </submodule>
+
+  <submodule Path="ReplaceJoppaTile">
+    <optionenable ID="OptionReplaceJoppaTile" />
+  </submodule>
 </submodules>
