@@ -34,7 +34,7 @@ become irrelevant in the future.
 ## Usage instructions
 
 A basic example of a folder utilizing submodule-management is provided in the
-[examples/](examples) directory. The [Kernel Space](../Kernel Space) mod is a
+[examples/](examples) directory. The [Kernel Space](../Kernel_Space) mod is a
 more extensive example of how to use submodule-management alongside traditional
 options management.
 
@@ -72,6 +72,8 @@ value of the option selected by `optiontoggle`.
 
 ## Current limitations
 
+### Mod dependencies
+
 Caves of Qud does not currently offer any means of ensuring that Mod A is only
 loaded if Mod B is also loaded. As a result, it is feasible that the features
 offered by submodule-management may not be available.
@@ -84,14 +86,29 @@ some mod dependence system into the game:
 
 https://bitbucket.org/bbucklew/cavesofqud-public-issue-tracker/issues/11264
 
+### Game restarts
+
+Right now submodule-management is configured such that submodules that are
+toggled are not enabled or disabled until the game is restarted. This is a
+limitation that I am currently seeking to resolve for future versions of the
+mod.
+
 ## Best practices
 
-### C# code
+### What to include in submodules
 
-**Do not include any C# code inside submodules.** Any C# code that appears
-inside a submodule will be compiled regardless of whether the submodule is
-enabled.  This mod is intended to enable conditional loading of XML files; I
-don't currently have any plans to extend this to conditional compilation of C#.
+In general, **submodules should be designed with the knowledge that players may
+enable or disable them at will on a save**. You should design them defensively
+to ensure that you don't accidentally mess up saves.
+
+Here are some recommendations on content **not** to include in submodules:
+
+> **Do not include any C# code inside submodules.**
+
+Any C# code that appears inside a submodule will be compiled regardless of
+whether the submodule is enabled. This mod is intended to enable conditional
+loading of XML files; I don't currently have any plans to extend this to
+conditional compilation of C#.
 
 The problem is that objects that are defined in submodules may be serialized and
 saved. If a player disables a submodule that defines a serialized object and
@@ -106,6 +123,19 @@ For instance:
 if (XRL.UI.Options.GetOption("OptionRecolorSnapjaws").EqualsNoCase("Yes"))
     ...
 ```
+
+> **Don't put object blueprint definitions in submodules** (it _is_ okay to
+> `Load="Merge"` into existing blueprints in submodules).
+
+The risk is that a player disables a module and reloads a save where that object
+was previously defined.  If you want an object to be conditionally present, you
+should first define the object globally (i.e. outside of any submodules), and
+give it `<tag Name="ExcludeFromDynamicEncounters" />`. Then in your submodule,
+add any population tables that cause the object to spawn, and merge `<removetag
+Name="ExcludeFromDynamicEncounters" />` into your object's blueprint (unless you
+want to prevent the object from appearing in dynamic tables). This will ensure
+that the object only spawns when that submodule is enabled, and will remain
+defined (but not spawn anywhere) when the submodule is disabled.
 
 ### Mod priority
 
