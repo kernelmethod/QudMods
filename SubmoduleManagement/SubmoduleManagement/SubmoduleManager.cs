@@ -12,9 +12,6 @@ namespace Kernelmethod.SubmoduleManagement {
         [ModSensitiveStaticCache(true)]
         public static List<SubmoduleInfo> Submodules = new List<SubmoduleInfo>();
 
-        [ModSensitiveStaticCache(true)]
-        public static List<string> DisabledPaths = new List<string>();
-
         private static string CurrentReadingSubmoduleFile = null;
 
         private static SubmoduleInfo CurrentReadingSubmodule = null;
@@ -29,8 +26,6 @@ namespace Kernelmethod.SubmoduleManagement {
                 AddSubmodule(file, file.Mod);
 
             LogInfo($"found {Submodules.Count} submodules");
-
-            ApplySubmodules();
         }
 
         public static void AddSubmodule(string Path, ModInfo modInfo) {
@@ -48,14 +43,16 @@ namespace Kernelmethod.SubmoduleManagement {
             }
         }
 
-        public static void ApplySubmodules() {
+        public static bool PathEnabled(string Path) {
             foreach (var submod in Submodules) {
                 if (submod.IsEnabled())
                     continue;
 
-                DisabledPaths.Add(submod.Path);
-                LogInfo($"excluding files from {submod.Path}");
+                if (Path.StartsWith(submod.Path))
+                    return false;
             }
+
+            return true;
         }
 
         public static void HandleNodes(XmlDataHelper xml) {

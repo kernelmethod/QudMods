@@ -11,14 +11,7 @@ namespace Kernelmethod.SubmoduleManagement.Patches {
             // Filter out files that have been excluded by the submodule
             // manager
             __result = __result
-                .Where(file => {
-                    foreach (var path in SubmoduleManager.DisabledPaths) {
-                        if (file.Path.StartsWith(path))
-                            return false;
-                    }
-
-                    return true;
-                })
+                .Where(file => SubmoduleManager.PathEnabled(file))
                 .ToList();
         }
     }
