@@ -2,8 +2,8 @@
 <options>
   <option ID="Option_KernelSpace_VillageNavBonus" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Add nav bonus for finding villages" />
   <option ID="Option_KernelSpace_DataDiskAdjustments" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Tinkering merchants carry more data disks (requires restart)" />
-  <option ID="Option_KernelSpace_EasierFungalCures" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Make electric snails and seedsprout worms ineligible for fungal cures (restart required)" />
-  <option ID="Option_KernelSpace_MoreLegendaryWights" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Increase spawn rate for legendary gyre wights (requires restart) (only applies to new games)" />
+  <option ID="Option_KernelSpace_EasierFungalCures" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Make electric snails and seedsprout worms ineligible for fungal cures (restart required) (only applies to new games)" />
+  <option ID="Option_KernelSpace_MoreLegendaryWights" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Increase spawn rate for legendary gyre wights (requires restart)" />
   <option ID="Option_KernelSpace_IncreasedRoboticization" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Slightly increase NPC roboticization rates (requires restart)" />
 
   <!--

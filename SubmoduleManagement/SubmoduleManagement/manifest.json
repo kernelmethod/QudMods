@@ -4,7 +4,7 @@
     "description": "Helper mod to allow other mods to be separated into submodules.\n\nThis module should not be installed by itself; it was probably brought in as a dependency of another mod.",
     "version": "0.1.0",
     "author": "{{G|kernelmethod}}",
-    "tags": "",
+    "tags": "Modding,Helper Mods",
     "PreviewImage": "preview.png",
     "LoadOrder": "-5000"
 }

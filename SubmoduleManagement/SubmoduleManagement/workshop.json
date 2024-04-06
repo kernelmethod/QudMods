@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 3213911728,
+  "Title": "submodule-management",
+  "Description": "Helper mod for conditionally enabling and disabling XML files in a given mod.\n\nThis mod is primarily required by other mods; you probably don't want to install it by itself.\n\nIf you're a modder interested in using this mod, please check out the mod's repository: https://github.com/kernelmethod/QudMods/tree/main/SubmoduleManagement",
+  "Tags": "Modding,Helper Mods",
+  "Visibility": "2",
+  "ImagePath": "preview.png"
+}
