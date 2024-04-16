@@ -15,4 +15,8 @@
   <submodule Path="IncreasedRoboticization">
     <optiontoggle ID="Option_KernelSpace_IncreasedRoboticization" />
   </submodule>
+
+  <submodule Path="MakeTinkerable">
+    <optiontoggle ID="Option_KernelSpace_MakeTinkerable" />
+  </submodule>
 </submodules>
