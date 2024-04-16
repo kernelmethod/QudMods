@@ -55,6 +55,14 @@ namespace XRL.CharacterBuilds.Qud {
                 return model.Background;
             if (id == QudGameBootModule.BOOTEVENT_BOOTPLAYERTILEDETAIL)
                 return model.DetailColor;
+            if (id == QudGameBootModule.BOOTEVENT_GAMESTARTING) {
+                try {
+                    The.Player.pRender.HFlip = model.HFlip;
+                }
+                catch (Exception ex) {
+                    LogInfo("Error setting final tile properties: " + ex.ToString());
+                }
+            }
 
             return base.handleBootEvent(id, game, info, element);
         }
