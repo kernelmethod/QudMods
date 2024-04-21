@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <!--
+    Zetachrome warhammer does 4d6 (avg. 14)
+    Zetachrome long sword does 2d12 (avg. 13)
+
+    This adjusts the damage dice for zetachrome halberds so that they land
+    right between both weapons on average
+  -->
+
+  <object Name="Battle Axe8th" Load="Merge">
+    <part Name="MeleeWeapon" BaseDamage="1d10+8" />
+  </object>
+</objects>

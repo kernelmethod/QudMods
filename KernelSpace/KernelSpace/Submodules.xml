@@ -19,4 +19,8 @@
   <submodule Path="MakeTinkerable">
     <optiontoggle ID="Option_KernelSpace_MakeTinkerable" />
   </submodule>
+
+  <submodule Path="ZetachromeHalberdRebalance">
+    <optiontoggle ID="Option_KernelSpace_RebalanceZetachromeHalberd" />
+  </submodule>
 </submodules>
