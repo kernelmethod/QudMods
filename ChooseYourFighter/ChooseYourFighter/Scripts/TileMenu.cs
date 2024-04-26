@@ -9,8 +9,8 @@ using XRL.World;
 
 namespace Kernelmethod.ChooseYourFighter {
     public static class TileMenu {
-        public static IRenderable MenuIconGameStart(Kernelmethod_ChooseYourFighter_PlayerModelModule module) {
-            if (module.data.model != null)
+        public static IRenderable MenuIconCharacterCreation(Kernelmethod_ChooseYourFighter_PlayerModelModule module) {
+            if (module.data?.model != null)
                 return module.data.model.Icon();
 
             var builder = module.builder;
@@ -156,7 +156,7 @@ namespace Kernelmethod.ChooseYourFighter {
                     Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys().ToArray(),
                     AllowEscape: true,
-                    IntroIcon: MenuIconGameStart(module),
+                    IntroIcon: MenuIconCharacterCreation(module),
                     centerIntro: true
                 );
 
@@ -235,7 +235,7 @@ namespace Kernelmethod.ChooseYourFighter {
                     Intro: "Choose a tile for your character from the list below.",
                     AllowEscape: true,
                     Icons: icons.ToArray(),
-                    IntroIcon: MenuIconGameStart(module),
+                    IntroIcon: MenuIconCharacterCreation(module),
                     centerIntro: true
                 );
 

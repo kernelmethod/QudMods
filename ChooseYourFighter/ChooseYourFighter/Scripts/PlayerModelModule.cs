@@ -8,8 +8,8 @@ using Kernelmethod.ChooseYourFighter;
 namespace XRL.CharacterBuilds.Qud {
     public class Kernelmethod_ChooseYourFighter_PlayerModelModule : EmbarkBuilderModule<PlayerModelData> {
         /// <summary>
-        /// Return a dictionary containing all of the possible player models, keyed to
-        /// model IDs.
+        /// Return a dictionary containing all of the possible player tiles, keyed to
+        /// tile IDs.
         /// </summary>
         public Dictionary<string, PlayerModel> ModelDict {
             get {
@@ -18,7 +18,7 @@ namespace XRL.CharacterBuilds.Qud {
         }
 
         /// <summary>
-        /// Return an iterator over all of the usable player models.
+        /// Return an iterator over all of the usable player tiles.
         /// </summary>
         public IEnumerable<PlayerModel> Models {
             get {

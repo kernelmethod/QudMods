@@ -49,7 +49,7 @@ namespace XRL.CharacterBuilds.Qud.UI {
         }
 
         /// <summary>
-        /// Randomize the choice of player model.
+        /// Randomize the choice of player tile.
         /// </summary>
         public override void RandomSelection()
         {
@@ -75,11 +75,15 @@ namespace XRL.CharacterBuilds.Qud.UI {
 
         public override UIBreadcrumb GetBreadcrumb()
         {
+            var tilePath = TileMenu.MenuIconCharacterCreation(base.module)?
+                .getTile()
+                ?? "items/sw_mask.bmp";
+
             return new UIBreadcrumb
             {
                 Id = GetType().FullName,
-                Title = "Player model",
-                IconPath = "items/sw_mask.bmp",
+                Title = "Player tile",
+                IconPath = tilePath,
                 IconDetailColor = Color.clear,
                 IconForegroundColor = The.Color.Gray
             };
