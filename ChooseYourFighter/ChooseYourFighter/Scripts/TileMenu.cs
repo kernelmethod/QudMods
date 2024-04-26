@@ -35,7 +35,7 @@ namespace Kernelmethod.ChooseYourFighter {
         }
 
         public static string MenuTitle() {
-            return "{{Y|Select player model}}";
+            return "{{Y|Select player tile}}";
         }
 
         public static List<string> MainMenuOptions(GameObject Object) {
@@ -128,12 +128,10 @@ namespace Kernelmethod.ChooseYourFighter {
                         RequireDefault = false;
                     }
                     else
-                        Popup.Show("You are already using your character's original model.", LogMessage: false);
+                        Popup.Show("You are already using your character's original tile.", LogMessage: false);
                 }
                 else
                     break;
-
-                MetricsManager.LogInfo($"model = {model}");
             }
 
             TileFactory.ChangeAppearance(Object, model, RequireDefault);
