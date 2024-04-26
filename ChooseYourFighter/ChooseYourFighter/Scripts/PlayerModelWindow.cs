@@ -42,8 +42,8 @@ namespace XRL.CharacterBuilds.Qud.UI {
         {
             yield return new PrefixMenuOption
             {
-                Id = "Model",
-                Prefix = "Model: ",
+                Id = "Tile",
+                Prefix = "Tile: ",
                 Description = (base.module.data?.model?.ColorizedName ?? "{{W|default}}")
             };
         }
@@ -55,7 +55,7 @@ namespace XRL.CharacterBuilds.Qud.UI {
         {
             FrameworkDataElement dataAt = base.prefabComponent.scrollContext.GetDataAt(base.prefabComponent.scrollContext.selectedPosition);
 
-            if (dataAt?.Id == "Model")
+            if (dataAt?.Id == "Tile")
                 base.module.data.model = base.module.Models.GetRandomElement();
 
             UpdateUI();
@@ -63,7 +63,7 @@ namespace XRL.CharacterBuilds.Qud.UI {
 
         public async void SelectMenuOption(FrameworkDataElement dataElement)
         {
-            if (dataElement.Id == "Model") {
+            if (dataElement.Id == "Tile") {
                 var model = await TileMenu.CharacterCreationChooseTileMenu(base.module);
 
                 if (model != null)

@@ -1,7 +1,7 @@
 {
     "id": "Kernelmethod_ChooseYourFighter",
     "title": "Choose Your Fighter",
-    "description": "Select the tile for your character in the  character creation model.",
+    "description": "Customize your character's tile, in-game or during character creation.",
     "version": "0.6.0",
     "author": "{{G|kernelmethod}}",
     "tags": "Cosmetic",
