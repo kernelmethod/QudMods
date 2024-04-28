@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<options>
+  <option ID="Option_KernelDebug_ShowTemperature" Category="Debug" Type="Checkbox" Default="No" DisplayText="Show object temperatures in short descriptions" />
+</options>
