@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<populations>
+  <!--
+    Corpse butchering
+  -->
+  <population Name="Kernelmethod_KernelSpace_Croc Corpse">
+    <group Name="Items" Style="pickone">
+      <object Blueprint="Raw Croc Meat" Number="1" Weight="50" />
+      <object Blueprint="Croccasins" Number="1" Weight="10" />
+    </group>
+  </population>
+</populations>

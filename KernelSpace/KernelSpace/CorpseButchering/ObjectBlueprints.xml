@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <!--
+    Allow crocs to be butchered into croccasins.
+  -->
+  <object Name="Croc Corpse" Load="Merge">
+    <part Name="Butcherable" OnSuccess="@Kernelmethod_KernelSpace_Croc Corpse" />
+  </object>
+</objects>
