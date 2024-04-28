@@ -14,7 +14,7 @@ namespace XRL.World.Parts {
         public override bool HandleEvent(GetShortDescriptionEvent E) {
             if (Options.ShowTemperature && ParentObject.TryGetPart<Physics>(out var part)) {
                 E.Postfix
-                    .Append("\n{{c|Temperature: ")
+                    .Append("\n{{rules|Temperature: ")
                     .Append(part.Temperature.ToString())
                     .Append("ø}}");
             }
