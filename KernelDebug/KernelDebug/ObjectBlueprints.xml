@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <objects>
+  <!--
+    Add new debugging part to all objects.
+  -->
   <object Name="Object" Load="Merge">
     <part Name="Kernelmethod_KernelDebug_ShowObjectAttributes" />
+  </object>
+
+  <!--
+    "Punching bag" creature with high health, can be used to test
+    damage of different weapons/builds.
+  -->
+  <object Name="Punching Bag" Inherits="NPC">
+    <part Name="Render" DisplayName="Punching Bag" ColorString="&amp;y" RenderString="p" Tile="Creatures/sw_farmer1.bmp" />
+    <part Name="Brain" Hostile="false" Calm="true" />
+    <stat Name="Hitpoints" Value="99999" />
+
+    <stat Name="HeatResistance" Value="0" />
+    <stat Name="ColdResistance" Value="0" />
+    <stat Name="ElectricResistance" Value="0" />
+    <stat Name="AcidResistance" Value="0" />
+
+    <tag Name="ExcludeFromDynamicEncounters" />
   </object>
 </objects>
