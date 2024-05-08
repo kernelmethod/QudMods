@@ -35,6 +35,15 @@ namespace Kernelmethod.ChooseYourFighter {
         [NonSerialized]
         public bool IsGroup = false;
 
+        public string ColorString {
+            get {
+                if (Background.IsNullOrEmpty())
+                    return "&" + Foreground;
+
+                return "&" + Foreground + "^" + Background;
+            }
+        }
+
         public string ColorizedName {
             get {
                 var choiceName = Name;
@@ -63,7 +72,7 @@ namespace Kernelmethod.ChooseYourFighter {
             var gameObject = blueprint.createOne();
             Name = blueprint.DisplayName();
             Tile = gameObject.GetTile();
-            Foreground = gameObject.GetForegroundColor();
+            Foreground = gameObject.Render.GetTileForegroundColor();
             Background = gameObject.GetBackgroundColor();
             DetailColor = gameObject.GetDetailColor();
         }
@@ -74,7 +83,7 @@ namespace Kernelmethod.ChooseYourFighter {
 
             var icon = new Renderable();
             icon.Tile = Tile;
-            icon.ColorString = Foreground;
+            icon.ColorString = ColorString;
             icon.DetailColor = DetailColor[0];
             return icon;
         }
