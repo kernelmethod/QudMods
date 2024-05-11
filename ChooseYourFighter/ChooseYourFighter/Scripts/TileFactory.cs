@@ -193,28 +193,16 @@ namespace Kernelmethod.ChooseYourFighter {
                 Object.RequirePart<DefaultModel>();
 
             if (model.Tile != null)
-                Object.pRender.Tile = model.Tile;
+                Object.Render.Tile = model.Tile;
             if (model.DetailColor != null)
-                Object.pRender.DetailColor = model.DetailColor;
+                Object.Render.DetailColor = model.DetailColor;
             if (model.Foreground != null)
-                Object.pRender.SetForegroundColor(model.Foreground[0]);
+                Object.Render.SetForegroundColor(model.Foreground[0]);
             if (model.Background != null)
-                Object.pRender.SetBackgroundColor(model.Background[0]);
+                Object.Render.SetBackgroundColor(model.Background[0]);
 
             LogInfo($"CheckFlip = {CheckFlip(Object)}");
-            Object.pRender.HFlip = CheckFlip(Object) ? model.HFlip : !model.HFlip;
-
-            /*
-            if (model.Name != null) {
-                var message = "You changed your appearance to look like ";
-                string name = null;
-
-                name = (Grammar.IndefiniteArticleShouldBeAn(model.Name) ? "an " : "a ") + model.ColorizedName;
-
-                message += name + ".";
-                MessageQueue.AddPlayerMessage(message);
-            }
-            */
+            Object.Render.HFlip = CheckFlip(Object) ? model.HFlip : !model.HFlip;
         }
 
         public static bool CheckFlip(GameObject Object) {

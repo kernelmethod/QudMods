@@ -57,7 +57,7 @@ namespace XRL.CharacterBuilds.Qud {
                 return model.DetailColor;
             if (id == QudGameBootModule.BOOTEVENT_GAMESTARTING) {
                 try {
-                    The.Player.pRender.HFlip = model.HFlip;
+                    The.Player.Render.HFlip = model.HFlip;
                 }
                 catch (Exception ex) {
                     LogInfo("Error setting final tile properties: " + ex.ToString());
