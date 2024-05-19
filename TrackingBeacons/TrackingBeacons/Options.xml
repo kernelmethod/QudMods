@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<options>
+  <option ID="Option_TrackingBeacons_DebugMessages" Category="Debug" DisplayText="(Tracking Beacons) display debug messages for beacon tracking" Type="Checkbox" Default="No" />
+</options>

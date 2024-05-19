@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object Name="Kernelmethod_TrackingBeacons_Magnetic Tracking Beacon" Inherits="Item">
+    <part Name="Render" DisplayName="magnetic tracking beacon" Tile="items/sw_magnet.bmp" TileColor="&amp;K" DetailColor="y" RenderString="015" RenderLayer="5" />
+    <part Name="Physics" Category="Artifacts" Weight="1" />
+    <part Name="Description" Short="Its sleek metal surface emits a soft hum." />
+    <part Name="Applicator" />
+    <part Name="TinkerItem" Bits="0045" CanDisassemble="true" CanBuild="true" />
+    <part Name="Examiner" Unknown="UnknownOddTrinket" Complexity="4" />
+    <part Name="Metal" />
+    <part Name="RulesDescription" Text="Applies a beacon, which keeps track of a creature or object's location in your journal.
+
+Can only be applied to metallic creatures and objects." />
+    <part Name="Kernelmethod_TrackingBeacons_MagneticBeacon" />
+
+    <tag Name="TinkerCategory" Value="utility" />
+    <tag Name="NoAIEquip" />
+    <stag Name="Electromagnetic" />
+  </object>
+
+  <object Name="Kernelmethod_TrackingBeacons_Tracking Beacon Injector" Inherits="Item">
+    <part Name="Render" DisplayName="beacon injector" ColorString="&amp;c" DetailColor="y" RenderString="011" Tile="Items/sw_injector.bmp" />
+    <part Name="Physics" Category="Artifacts" Weight="0" />
+    <part Name="Description" Short="A slender metal tube. Thousands of nanites float in a silver suspension." />
+    <part Name="Applicator" />
+    <part Name="Kernelmethod_TrackingBeacons_TrackerInjector" />
+    <part Name="Examiner" Unknown="UnknownMed" Alternate="UnknownMed" Complexity="4" />
+
+    <part Name="TinkerItem" Bits="0045" CanDisassemble="true" CanBuild="true" />
+    <part Name="RulesDescription" Text="Applies a beacon, which keeps track of a creature or object's location in your journal.
+
+Can only be applied to creatures or objects that are organic and have a circulatory system." />
+
+    <tag Name="TinkerCategory" Value="utility" />
+    <tag Name="NoAIEquip" />
+  </object>
+</objects>
