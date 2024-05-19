@@ -1,5 +1,6 @@
 using Qud.API;
 using System;
+using System.Linq;
 using XRL;
 using XRL.World;
 using XRL.World.Effects;
@@ -11,14 +12,14 @@ namespace Kernelmethod.TrackingBeacons.Effects {
     public abstract class Tracked : Effect {
         public GameObject Tracker = null;
 
-        public string JournalNoteID;
+        public string TrackerID;
         public JournalMapNote TrackerNote = null;
 
         public Tracked(GameObject Tracker = null) {
             this.Tracker = Tracker;
             DisplayName = "tracked";
             Duration = Effect.DURATION_INDEFINITE;
-            JournalNoteID = Guid.NewGuid().ToString();
+            TrackerID = Guid.NewGuid().ToString();
         }
 
         public override string GetDetails() {
@@ -34,23 +35,31 @@ namespace Kernelmethod.TrackingBeacons.Effects {
                 // Not being tracked by player; do nothing.
                 return;
 
+            var noteID = Guid.NewGuid().ToString();
             JournalAPI.AddMapNote(
                 "JoppaWorld",
                 Object.DisplayName,
                 "Tracking Beacons",
-                secretId: JournalNoteID,
+                secretId: noteID,
                 revealed: false,
                 sold: true,
                 silent: true
             );
+            TrackObject.TrackerNoteMapping.Add(TrackerID, noteID);
+
             var part = Object.RequirePart<TrackObject>();
-            part.AddTrackingNote(JournalNoteID);
+            part.LocallyTracked.Add(TrackerID);
             part.UpdateMapNotes(Object.CurrentZone);
         }
 
         public override bool Apply(GameObject Object) {
             // Remove existing trackers from the object
-            Object.RemoveEffect(typeof(Tracked));
+            var trackingEffects = Object.Effects
+                .Where(e => e is Tracked)
+                .ToList();
+
+            foreach (var effect in trackingEffects)
+                Object.RemoveEffect(effect);
 
             CreateTrackingNote(Object);
             return base.Apply(Object);
@@ -58,11 +67,18 @@ namespace Kernelmethod.TrackingBeacons.Effects {
 
         public void RemoveTracker(GameObject Object) {
             if (Object.TryGetPart<TrackObject>(out var part))
-                part.RemoveTrackingNote(JournalNoteID);
+                part.StopTracking(TrackerID);
 
-            var note = JournalAPI.GetMapNote(JournalNoteID);
-            if (note != null)
-                JournalAPI.DeleteMapNote(note);
+            if (TrackerID == null)
+                return;
+
+            if (TrackObject.TrackerNoteMapping.TryGetValue(TrackerID, out var noteID)) {
+                var note = JournalAPI.GetMapNote(noteID);
+                if (note != null)
+                    JournalAPI.DeleteMapNote(note);
+            }
+
+            TrackObject.TrackerNoteMapping.Remove(TrackerID);
         }
 
         public override void Remove(GameObject Object) {
@@ -92,7 +108,7 @@ namespace Kernelmethod.TrackingBeacons.Effects {
         public override bool WantEvent(int ID, int cascade) {
             return base.WantEvent(ID, cascade)
                 || ID == BeforeDestroyObjectEvent.ID
-                || ID == WasReplicatedEvent.ID;
+                || ID == ReplicaCreatedEvent.ID;
         }
 
         public override bool HandleEvent(BeforeDestroyObjectEvent E) {
@@ -100,9 +116,12 @@ namespace Kernelmethod.TrackingBeacons.Effects {
             return base.HandleEvent(E);
         }
 
-        public override bool HandleEvent(WasReplicatedEvent E) {
-            if (base.Object == E.Replica) {
-                // Don't track the replica
+        public override bool HandleEvent(ReplicaCreatedEvent E) {
+            // Don't track the replica
+            if (base.Object == E.Object) {
+                // Set tracker ID to null so that removing the effect doesn't delete
+                // the map note for the original object.
+                TrackerID = null;
                 base.Object.RemoveEffect(this);
             }
 

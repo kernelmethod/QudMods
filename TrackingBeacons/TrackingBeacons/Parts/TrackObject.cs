@@ -1,3 +1,4 @@
+using HarmonyLib;
 using Qud.API;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,22 @@ using Kernelmethod.TrackingBeacons;
 namespace Kernelmethod.TrackingBeacons.Parts {
     [Serializable]
     public class TrackObject : IPart {
-        // All of the map notes corresponding to objects being tracked
-        // by this part.
-        public HashSet<string> MapNoteIDs = new HashSet<string>();
+        // Global mapping between tracked GameObjects and their corresponding notes.
+        public static Dictionary<string, string> TrackerNoteMapping = new Dictionary<string, string>();
+
+        // Local set of objects being tracked through the current object.
+        public HashSet<string> LocallyTracked = new HashSet<string>();
 
         public GameObject Host = null;
 
-        public void AddTrackingNote(string NoteID) {
-            MapNoteIDs.Add(NoteID);
-        }
-
-        public void RemoveTrackingNote(string NoteID) {
-            // Propagate note removals upwards
+        public void StopTracking(string TrackerID) {
+            // Propagate tracker removals upwards
             if (Host != null && Host.TryGetPart<TrackObject>(out var part))
-                part.RemoveTrackingNote(NoteID);
+                part.StopTracking(TrackerID);
 
-            MapNoteIDs.Remove(NoteID);
+            LocallyTracked.Remove(TrackerID);
 
-            if (MapNoteIDs.Count == 0)
+            if (LocallyTracked.Count == 0)
                 // Not tracking any objects anymore; safe to remove part.
                 ParentObject.RemovePart(this);
         }
@@ -35,12 +34,13 @@ namespace Kernelmethod.TrackingBeacons.Parts {
         public void TrackThroughHost(GameObject Host) {
             if (Options.DebugMessages)
                 MessageQueue.AddPlayerMessage($"Tracking {ParentObject.DisplayName} through {Host.DisplayName}");
+
             UnregisterCurrentHost();
 
             this.Host = Host;
             var part = Host.RequirePart<TrackObject>();
-            foreach (var noteID in MapNoteIDs) {
-                part.AddTrackingNote(noteID);
+            foreach (var tracked in LocallyTracked) {
+                part.LocallyTracked.Add(tracked);
             }
             part.UpdateMapNotes(Host.CurrentZone);
         }
@@ -49,8 +49,8 @@ namespace Kernelmethod.TrackingBeacons.Parts {
             if (Host != null && Host.TryGetPart<TrackObject>(out var part)) {
                 if (Options.DebugMessages)
                     MessageQueue.AddPlayerMessage($"Unregistering {Host.DisplayName} as host for {ParentObject.DisplayName}");
-                foreach (var note in MapNoteIDs)
-                    part.RemoveTrackingNote(note);
+                foreach (var tracked in LocallyTracked)
+                    part.StopTracking(tracked);
             }
 
             Host = null;
@@ -74,24 +74,36 @@ namespace Kernelmethod.TrackingBeacons.Parts {
             var reveal = !(Z == null || Z.IsWorldMap() || Z.ZoneWorld != "JoppaWorld");
             var zoneID = Z?.ZoneID ?? "JoppaWorld";
 
-            foreach (var noteID in MapNoteIDs) {
-                var note = JournalAPI.GetMapNote(noteID);
-
-                if (note == null) {
-                    MetricsManager.LogInfo($"Tracking part could not find journal note with ID {noteID}");
-                    RemoveTrackingNote(noteID);
-                    continue;
+            foreach (var trackerID in LocallyTracked) {
+                JournalMapNote note = null;
+                if (TrackerNoteMapping.TryGetValue(trackerID, out var noteID)) {
+                    note = JournalAPI.GetMapNote(noteID);
+                    if (note != null)
+                        JournalAPI.DeleteMapNote(note);
                 }
 
-                note.ZoneID = zoneID;
-                note.Revealed = reveal;
+                noteID = Guid.NewGuid().ToString();
+                var text = note?.Text ?? "{{R|ERROR: unknown object}}";
+
+                JournalAPI.AddMapNote(
+                    zoneID,
+                    text,
+                    "Tracking Beacons",
+                    secretId: noteID,
+                    revealed: reveal,
+                    sold: true,
+                    silent: true
+                );
+
+                TrackerNoteMapping[trackerID] = noteID;
+                Traverse.Create<XRL.UI.JournalScreen>().Field("LastHash").SetValue(0);
             }
         }
 
         public override bool WantEvent(int ID, int cascade) {
             return base.WantEvent(ID, cascade)
                 || ID == EnteringZoneEvent.ID
-                || ID == WasReplicatedEvent.ID
+                || ID == ReplicaCreatedEvent.ID
                 || ID == EquippedEvent.ID
                 || ID == UnequippedEvent.ID
                 || ID == TakenEvent.ID
@@ -105,10 +117,10 @@ namespace Kernelmethod.TrackingBeacons.Parts {
             return base.HandleEvent(E);
         }
 
-        public override bool HandleEvent(WasReplicatedEvent E) {
+        public override bool HandleEvent(ReplicaCreatedEvent E) {
             // When an object is cloned, the clone shouldn't track all of the
             // beacons that are tracking the original object.
-            if (ParentObject == E.Replica)
+            if (ParentObject == E.Object)
                 ParentObject.RemovePart(this);
 
             return base.HandleEvent(E);

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<populations>
+  <population Name="Artifact 5R" Load="Merge">
+    <group Name="Items" Load="Merge">
+      <object Weight="10" Number="1" Blueprint="Kernelmethod_TrackingBeacons_Magnetic Tracking Beacon" />
+    </group>
+  </population>
+</populations>

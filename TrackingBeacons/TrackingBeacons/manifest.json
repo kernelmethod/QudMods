@@ -1,9 +1,9 @@
 {
     "id": "Kernelmethod_TrackingBeacons",
     "title": "Tracking Beacons",
-    "description": "",
+    "description": "Adds tracking beacons to the game, which can be applied to items and creatures to track their location in your journal.",
     "version": "0.1.0",
     "author": "{{G|kernelmethod}}",
     "tags": "",
-    "PreviewImage": ""
+    "PreviewImage": "preview.png"
 }

@@ -57,7 +57,7 @@ namespace Kernelmethod.TrackingBeacons.Parts {
                 // Identify all of the organic objects that bleed in the cell
                 var organicObjects = cell
                     .GetObjectsInCell()
-                    .Where(o => CanApplyTo(o))
+                    .Where(o => CanApplyTo(o) && !o.HasTag("CannotBeTracked"))
                     .ToList();
 
                 if (organicObjects.Count == 0) {

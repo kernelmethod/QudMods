@@ -3,7 +3,7 @@
   <object Name="Kernelmethod_TrackingBeacons_Magnetic Tracking Beacon" Inherits="Item">
     <part Name="Render" DisplayName="magnetic tracking beacon" Tile="items/sw_magnet.bmp" TileColor="&amp;K" DetailColor="y" RenderString="015" RenderLayer="5" />
     <part Name="Physics" Category="Artifacts" Weight="1" />
-    <part Name="Description" Short="Its sleek metal surface emits a soft hum." />
+    <part Name="Description" Short="It refracts light around its sleek metal surface. The circuitry beneath issues its silent report at regular intervals." />
     <part Name="Applicator" />
     <part Name="TinkerItem" Bits="0045" CanDisassemble="true" CanBuild="true" />
     <part Name="Examiner" Unknown="UnknownOddTrinket" Complexity="4" />
@@ -15,9 +15,11 @@ Can only be applied to metallic creatures and objects." />
 
     <tag Name="TinkerCategory" Value="utility" />
     <tag Name="NoAIEquip" />
+    <tag Name="CannotBeTracked" />
     <stag Name="Electromagnetic" />
   </object>
 
+  <!--
   <object Name="Kernelmethod_TrackingBeacons_Tracking Beacon Injector" Inherits="Item">
     <part Name="Render" DisplayName="beacon injector" ColorString="&amp;c" DetailColor="y" RenderString="011" Tile="Items/sw_injector.bmp" />
     <part Name="Physics" Category="Artifacts" Weight="0" />
@@ -34,4 +36,5 @@ Can only be applied to creatures or objects that are organic and have a circulat
     <tag Name="TinkerCategory" Value="utility" />
     <tag Name="NoAIEquip" />
   </object>
+  -->
 </objects>
