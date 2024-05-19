@@ -74,25 +74,17 @@ namespace Kernelmethod.TrackingBeacons.Parts {
             var reveal = !(Z == null || Z.IsWorldMap() || Z.ZoneWorld != "JoppaWorld");
             var zoneID = Z?.ZoneID ?? "JoppaWorld";
 
-            foreach (var entry in MapNotes) {
-                var note = JournalAPI.GetMapNote(entry.Key);
+            foreach (var noteID in MapNoteIDs) {
+                var note = JournalAPI.GetMapNote(noteID);
 
                 if (note == null) {
-                    MetricsManager.LogInfo($"Tracking part could not find journal note with ID {entry.Key}");
-                    RemoveTrackingNote(entry.Key);
+                    MetricsManager.LogInfo($"Tracking part could not find journal note with ID {noteID}");
+                    RemoveTrackingNote(noteID);
                     continue;
                 }
 
-                JournalAPI.DeleteMapNote(note);
-                JournalAPI.AddMapNote(
-                    zoneID,
-                    entry.Value.DisplayName,
-                    "Tracking Beacons",
-                    secretId: entry.Key,
-                    revealed: reveal,
-                    sold: true,
-                    silent: true
-                );
+                note.ZoneID = zoneID;
+                note.Revealed = reveal;
             }
         }
 
