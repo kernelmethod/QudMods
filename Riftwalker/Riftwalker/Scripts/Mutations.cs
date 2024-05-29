@@ -8,8 +8,6 @@ namespace XRL.World.Parts.Mutation
     [Serializable]
     class Kernelmethod_Riftwalker_EscapeRift : BaseMutation
     {
-        public GameObjectReference escapeRift = null;
-
         public Kernelmethod_Riftwalker_EscapeRift()
         {
             DisplayName = "Escape Rift";
@@ -106,22 +104,6 @@ namespace XRL.World.Parts.Mutation
                 Temporary temporary = gameObject.GetPart("Temporary") as Temporary;
                 temporary.Duration = Kernelmethod_Riftwalker_Random.Next(6, 8);
                 C.AddObject(gameObject);
-                escapeRift = gameObject.takeReference();
-            }
-        }
-
-        public void CloseVortex()
-        {
-            if (escapeRift != null)
-            {
-                GameObject vortex = escapeRift.go();
-                if (vortex != null)
-                {
-                    vortex.Obliterate();
-                }
-
-                escapeRift.free();
-                escapeRift = null;
             }
         }
 
