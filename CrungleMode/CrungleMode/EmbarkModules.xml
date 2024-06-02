@@ -13,7 +13,7 @@
     </module>
 
     <module Class="XRL.CharacterBuilds.Qud.Kernelmethod_CrungleMode_CrungleGamemodeModule">
-        <window ID="Chargen/Kernelmethod_CrungleMode_Gamemode" Prefab="HorizScroll" Class="XRL.CharacterBuilds.Qud.UI.QudGamemodeModuleWindow">
+        <window ID="Chargen/Kernelmethod_CrungleMode_Gamemode" Prefab="HorizScroll" Class="Kernelmethod.CrungleMode.UI.CrungleGamemodeModuleWindow">
             <title>:choose game mode:</title>
             <name>Game Modes</name>
         </window>
