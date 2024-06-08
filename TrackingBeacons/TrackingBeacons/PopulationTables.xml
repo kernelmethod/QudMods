@@ -3,6 +3,7 @@
   <population Name="Artifact 5R" Load="Merge">
     <group Name="Items" Load="Merge">
       <object Weight="10" Number="1" Blueprint="Kernelmethod_TrackingBeacons_Magnetic Tracking Beacon" />
+      <object Weight="10" Number="1" Blueprint="Kernelmethod_TrackingBeacons_Tracking Beacon Injector" />
     </group>
   </population>
 </populations>

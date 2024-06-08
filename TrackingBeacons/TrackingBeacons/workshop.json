@@ -1,0 +1,8 @@
+{
+  "WorkshopId": 3262473542,
+  "Title": "Tracking Beacons",
+  "Description": "Adds tracking beacons to the game, which can be used to keep track of the location of objects and creatures even as they move around the world.\n\n[h2]New items[/h2]\n\nThis mod adds the [b]magnetic tracking beacon[/b] item to the game, which can be attached to any metal creature or object.\n\nIt also adds the [b]tracking beacon injector[/b] item, which can be injected into organic creatures or objects.\n\nThe location of an object with an attached tracker will continue to be tracked even if the object gets sucked into a space-time vortex or is otherwise lost.\n\nBeacons can be applied to targets (with their consent) or forcibly by equipping them into your main hand. Beacons are destroyed by electromagnetic pulses.",
+  "Tags": "Item",
+  "Visibility": "2",
+  "ImagePath": "preview.png"
+}

@@ -19,7 +19,6 @@ Can only be applied to metallic creatures and objects." />
     <stag Name="Electromagnetic" />
   </object>
 
-  <!--
   <object Name="Kernelmethod_TrackingBeacons_Tracking Beacon Injector" Inherits="Item">
     <part Name="Render" DisplayName="beacon injector" ColorString="&amp;c" DetailColor="y" RenderString="011" Tile="Items/sw_injector.bmp" />
     <part Name="Physics" Category="Artifacts" Weight="0" />
@@ -36,5 +35,4 @@ Can only be applied to creatures or objects that are organic and have a circulat
     <tag Name="TinkerCategory" Value="utility" />
     <tag Name="NoAIEquip" />
   </object>
-  -->
 </objects>
