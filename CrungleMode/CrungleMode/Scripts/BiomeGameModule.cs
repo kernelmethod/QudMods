@@ -218,8 +218,8 @@ namespace XRL.CharacterBuilds.Qud
             }
 
             // ... and then remove the current faction affiliation.
-            LogInfo($"HandleBootPlayerObject: removing faction membership (was: {Target.pBrain.Factions})");
-            Target.pBrain.FactionMembership.Clear();
+            LogInfo($"HandleBootPlayerObject: removing faction membership (was: {Target.Brain.Allegiance})");
+            Target.Brain.Allegiance.Clear();
 
             return Target;
         }
@@ -356,7 +356,7 @@ namespace XRL.CharacterBuilds.Qud
                         break;
                 }
             }
-            The.ZoneManager.Tick(bAllowFreeze: true);
+            The.ZoneManager.Tick(AllowFreeze: true);
             return ballBag.PeekOne();
         }
 
