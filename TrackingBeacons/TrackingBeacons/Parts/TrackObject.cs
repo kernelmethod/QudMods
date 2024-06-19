@@ -10,6 +10,7 @@ using Kernelmethod.TrackingBeacons;
 
 namespace Kernelmethod.TrackingBeacons.Parts {
     [Serializable]
+    [Obsolete("no longer used for object tracking")]
     public class TrackObject : IPart {
         // Global mapping between tracked GameObjects and their corresponding notes.
         public static Dictionary<string, string> TrackerNoteMapping = new Dictionary<string, string>();
@@ -107,7 +108,8 @@ namespace Kernelmethod.TrackingBeacons.Parts {
                 || ID == EquippedEvent.ID
                 || ID == UnequippedEvent.ID
                 || ID == TakenEvent.ID
-                || ID == DroppedEvent.ID;
+                || ID == DroppedEvent.ID
+                || ID == AfterGameLoadedEvent.ID;
         }
 
         public override bool HandleEvent(EnteringZoneEvent E) {
@@ -144,6 +146,12 @@ namespace Kernelmethod.TrackingBeacons.Parts {
         public override bool HandleEvent(DroppedEvent E) {
             UnregisterCurrentHost();
             return base.HandleEvent(E);
+        }
+
+        public override bool HandleEvent(AfterGameLoadedEvent E) {
+            // Part is OBSOLETE; discard
+            ParentObject.RemovePart(this);
+            return true;
         }
     }
 }
