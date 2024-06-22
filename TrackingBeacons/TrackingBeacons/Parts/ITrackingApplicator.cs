@@ -79,8 +79,8 @@ namespace Kernelmethod.TrackingBeacons.Parts {
 
                     // Prompt the player to choose which object to inject
                     var selection = Popup.ShowOptionList(
-                        "Select an object",
-                        options,
+                        Title: "Select an object",
+                        Options: options,
                         Icons: icons,
                         AllowEscape: true
                     );
