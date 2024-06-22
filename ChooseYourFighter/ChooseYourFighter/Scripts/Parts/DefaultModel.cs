@@ -1,4 +1,5 @@
 using System;
+using XRL;
 using XRL.World;
 using XRL.World.Parts;
 
@@ -7,7 +8,7 @@ namespace Kernelmethod.ChooseYourFighter {
     /// A part that stores the original tile that was used by an object.
     /// </summary>
     [Serializable]
-    public class DefaultModel : IPart {
+    public class DefaultModel : IScribedPart {
         public PlayerModel Model = null;
 
         public override void Initialize() {
@@ -22,6 +23,20 @@ namespace Kernelmethod.ChooseYourFighter {
             if (pRender != null) {
                 Model.HFlip = TileFactory.CheckFlip(ParentObject) ? pRender.HFlip : !pRender.HFlip;
             }
+        }
+
+        public override void Read(GameObject Basis, SerializationReader Reader) {
+            var modVersion = Reader.ModVersions["Kernelmethod_ChooseYourFighter"];
+
+            if (modVersion >= (new XRL.Version("0.7.0"))) {
+                base.Read(Basis, Reader);
+                return;
+            }
+
+            MetricsManager.LogInfo($"Kernelmethod_ChooseYourFighter: migrating DefaultModel instance from {modVersion}");
+
+            // Versions < 0.7.0 used a non-IScribed interface
+            Model = Reader.ReadObject() as PlayerModel;
         }
     }
 }

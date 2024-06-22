@@ -75,12 +75,12 @@ namespace Kernelmethod.ChooseYourFighter {
 
             objects.Insert(0, The.Player);
 
-            int selection = Popup.ShowOptionList(
-                "Whose appearance would you like to change?",
-                objects.Select((GameObject o) => o.DisplayName).ToArray(),
+            int selection = Popup.PickOption(
+                Title: "Whose appearance would you like to change?",
+                Options: objects.Select((GameObject o) => o.DisplayName).ToArray(),
                 Icons: objects.Select((GameObject o) => o.RenderForUI()).ToArray(),
                 AllowEscape: true,
-                centerIntro: true
+                CenterIntro: true
             );
 
             if (selection == -1)
@@ -97,14 +97,14 @@ namespace Kernelmethod.ChooseYourFighter {
             bool RequireDefault = true;
 
             while (model == null) {
-                int num = Popup.ShowOptionList(
-                    MenuTitle(),
-                    MainMenuOptions(Object).ToArray(),
+                int num = Popup.PickOption(
+                    Title: MenuTitle(),
+                    Options: MainMenuOptions(Object).ToArray(),
                     Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys(),
                     AllowEscape: true,
                     IntroIcon: MenuIcon(Object),
-                    centerIntro: true
+                    CenterIntro: true
                 );
 
                 if (num == 0)
@@ -148,14 +148,14 @@ namespace Kernelmethod.ChooseYourFighter {
             PlayerModel model = null;
 
             while (model == null) {
-                int num = await Popup.ShowOptionListAsync(
-                    MenuTitle(),
-                    MainMenuOptions(null).ToArray(),
+                int num = await Popup.PickOptionAsync(
+                    Title: MenuTitle(),
+                    Options: MainMenuOptions(null).ToArray(),
                     Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys().ToArray(),
                     AllowEscape: true,
                     IntroIcon: MenuIconCharacterCreation(module),
-                    centerIntro: true
+                    CenterIntro: true
                 );
 
                 if (num == 0) {
@@ -191,14 +191,14 @@ namespace Kernelmethod.ChooseYourFighter {
                 var names = models.Select((PlayerModel m) => m.ColorizedName);
                 var icons = models.Select((PlayerModel m) => m.Icon());
 
-                int num = Popup.ShowOptionList(
-                    MenuTitle(),
-                    names.ToArray(),
+                int num = Popup.PickOption(
+                    Title: MenuTitle(),
+                    Options: names.ToArray(),
                     Intro: "Choose a tile for your character from the list below.",
                     AllowEscape: true,
                     Icons: icons.ToArray(),
                     IntroIcon: MenuIcon(Object),
-                    centerIntro: true
+                    CenterIntro: true
                 );
 
                 if (num < 0)
@@ -227,14 +227,14 @@ namespace Kernelmethod.ChooseYourFighter {
                 var names = models.Select((PlayerModel m) => m.ColorizedName);
                 var icons = models.Select((PlayerModel m) => m.Icon());
 
-                int num = await Popup.ShowOptionListAsync(
-                    MenuTitle(),
-                    names.ToArray(),
+                int num = await Popup.PickOptionAsync(
+                    Title: MenuTitle(),
+                    Options: names.ToArray(),
                     Intro: "Choose a tile for your character from the list below.",
                     AllowEscape: true,
                     Icons: icons.ToArray(),
                     IntroIcon: MenuIconCharacterCreation(module),
-                    centerIntro: true
+                    CenterIntro: true
                 );
 
                 if (num < 0)
@@ -252,9 +252,19 @@ namespace Kernelmethod.ChooseYourFighter {
         }
 
         public static PlayerModel GetModelFromBlueprint() {
-            var input = Popup.AskString("Enter blueprint:", "", 999, 0, null, ReturnNullForEscape: false, EscapeNonMarkupFormatting: true, false);
-            var blueprint = WishSearcher.SearchForBlueprint(input).Result;
+            var input = Popup.AskString(
+                "Enter blueprint:",
+                Default: "",
+                MinLength: 0,
+                MaxLength: 999,
+                ReturnNullForEscape: true,
+                EscapeNonMarkupFormatting: true,
+                AllowColorize: false
+            );
+            if (input.IsNullOrEmpty())
+                return null;
 
+            var blueprint = WishSearcher.SearchForBlueprint(input).Result;
             if (blueprint == null)
                 return null;
 
@@ -268,10 +278,18 @@ namespace Kernelmethod.ChooseYourFighter {
 
         public static async Task<PlayerModel> GetModelFromBlueprintAsync() {
             var input = await Popup.AskStringAsync(
-                "Enter blueprint:", "", 999, 0, null, ReturnNullForEscape: false, EscapeNonMarkupFormatting: true, false
+                "Enter blueprint:",
+                Default: "",
+                MinLength: 0,
+                MaxLength: 999,
+                ReturnNullForEscape: true,
+                EscapeNonMarkupFormatting: true,
+                AllowColorize: false
             );
-            var blueprint = WishSearcher.SearchForBlueprint(input).Result;
+            if (input.IsNullOrEmpty())
+                return null;
 
+            var blueprint = WishSearcher.SearchForBlueprint(input).Result;
             if (blueprint == null)
                 return null;
 
