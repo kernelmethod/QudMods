@@ -141,13 +141,13 @@ namespace Kernelmethod.ChooseYourFighter {
         /// Returns `null` if no option was selected, and returns a `PlayerModel` with `model.Id == null`
         /// if "default" was selected.
         /// </summary>
-        public static async Task<PlayerModel> CharacterCreationChooseTileMenu(IRenderable Icon = null) {
+        public static async Task<PlayerModel> CharacterCreationChooseTileMenuAsync(IRenderable Icon = null, PlayerModel Default = null) {
             PlayerModel model = null;
 
             while (model == null) {
                 int num = await Popup.PickOptionAsync(
                     Title: MenuTitle(),
-                    Options: MainMenuOptions(null).ToArray(),
+                    Options: MainMenuOptions(Default).ToArray(),
                     Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys().ToArray(),
                     AllowEscape: true,
