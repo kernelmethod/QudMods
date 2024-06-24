@@ -1,4 +1,4 @@
-using Kernelmethod.ChooseYourFighter;
+using Kernelmethod.ChooseYourFighter.UI;
 
 namespace XRL.World.Conversations.Parts {
     public class Kernelmethod_ChooseYourFighter_ChangeAppearance : IConversationPart {

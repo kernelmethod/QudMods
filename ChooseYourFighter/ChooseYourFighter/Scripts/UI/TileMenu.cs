@@ -7,7 +7,7 @@ using XRL;
 using XRL.CharacterBuilds.Qud;
 using XRL.World;
 
-namespace Kernelmethod.ChooseYourFighter {
+namespace Kernelmethod.ChooseYourFighter.UI {
     public static class TileMenu {
         public static IRenderable MenuIconCharacterCreation(Kernelmethod_ChooseYourFighter_PlayerModelModule module) {
             if (module.data?.model != null)
@@ -141,7 +141,7 @@ namespace Kernelmethod.ChooseYourFighter {
         /// Returns `null` if no option was selected, and returns a `PlayerModel` with `model.Id == null`
         /// if "default" was selected.
         /// </summary>
-        public static async Task<PlayerModel> CharacterCreationChooseTileMenuAsync(IRenderable Icon = null, PlayerModel Default = null) {
+        public static async Task<PlayerModel> ChooseTileMenuAsync(IRenderable Icon = null, PlayerModel Default = null) {
             PlayerModel model = null;
 
             while (model == null) {

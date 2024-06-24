@@ -1,4 +1,5 @@
 using Kernelmethod.ChooseYourFighter;
+using Kernelmethod.ChooseYourFighter.UI;
 using System;
 
 namespace XRL.World.Parts {

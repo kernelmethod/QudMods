@@ -2,6 +2,8 @@ using XRL;
 using XRL.UI;
 using XRL.Wish;
 
+using Kernelmethod.ChooseYourFighter.UI;
+
 namespace Kernelmethod.ChooseYourFighter {
     [HasWishCommand]
     public class WishHandler {

@@ -8,6 +8,7 @@ using XRL.UI.Framework;
 using XRL.World;
 
 using Kernelmethod.ChooseYourFighter;
+using Kernelmethod.ChooseYourFighter.UI;
 
 namespace XRL.CharacterBuilds.Qud.UI {
     [UIView(
@@ -65,7 +66,7 @@ namespace XRL.CharacterBuilds.Qud.UI {
         {
             if (dataElement.Id == "Tile") {
                 var icon = TileMenu.MenuIconCharacterCreation(base.module);
-                var model = await TileMenu.CharacterCreationChooseTileMenu(Icon: icon);
+                var model = await TileMenu.ChooseTileMenuAsync(Icon: icon);
 
                 if (model != null)
                     base.module.data.model = (model.Id == null) ? null : model;
