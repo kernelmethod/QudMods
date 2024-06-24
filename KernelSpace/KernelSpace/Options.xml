@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <options>
-  <option ID="Option_KernelSpace_VillageNavBonus" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Add nav bonus for finding villages" />
-  <option ID="Option_KernelSpace_DataDiskAdjustments" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Tinkering merchants carry more data disks (requires restart)" />
-  <option ID="Option_KernelSpace_EasierFungalCures" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Make electric snails and seedsprout worms ineligible for fungal cures (restart required; only applies to new games)" />
-  <option ID="Option_KernelSpace_MoreLegendaryWights" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Increase spawn rate for legendary gyre wights (requires restart)" />
-  <option ID="Option_KernelSpace_IncreasedRoboticization" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Slightly increase NPC roboticization rates (requires restart)" />
-  <option ID="Option_KernelSpace_MakeTinkerable" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Increase the number of items that can be crafted with tinkering (requires restart)" />
-  <option ID="Option_KernelSpace_RebalanceZetachromeHalberd" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Increase the damage dealt by zetachrome halberds to match zetachrome warhammers and two-handed zetachrome long swords (requires restart; only applies to new weapons)" />
-  <option ID="Option_KernelSpace_CorpseButchering" Category="Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Allow croc corpses to be butchered into croccasins (requires restart)" />
+  <option ID="Option_KernelSpace_VillageNavBonus" Category="Mods: Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Add nav bonus for finding villages" />
+  <option ID="Option_KernelSpace_DataDiskAdjustments" Category="Mods: Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Tinkering merchants carry more data disks (requires restart)" />
+  <option ID="Option_KernelSpace_EasierFungalCures" Category="Mods: Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Make electric snails and seedsprout worms ineligible for fungal cures (restart required; only applies to new games)" />
+  <option ID="Option_KernelSpace_MoreLegendaryWights" Category="Mods: Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Increase spawn rate for legendary gyre wights (requires restart)" />
+  <option ID="Option_KernelSpace_IncreasedRoboticization" Category="Mods: Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Slightly increase NPC roboticization rates (requires restart)" />
+  <option ID="Option_KernelSpace_MakeTinkerable" Category="Mods: Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Increase the number of items that can be crafted with tinkering (requires restart)" />
+  <option ID="Option_KernelSpace_RebalanceZetachromeHalberd" Category="Mods: Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Increase the damage dealt by zetachrome halberds to match zetachrome warhammers and two-handed zetachrome long swords (requires restart; only applies to new weapons)" />
+  <option ID="Option_KernelSpace_CorpseButchering" Category="Mods: Kernel Space" Type="Checkbox" Default="Yes" DisplayText="Allow croc corpses to be butchered into croccasins (requires restart)" />
 
   <!--
     Disabled by default
   -->
-  <option ID="Option_KernelSpace_DisableEatingSounds" Category="Kernel Space" Type="Checkbox" Default="No" DisplayText="Disable eating sounds" />
+  <option ID="Option_KernelSpace_DisableEatingSounds" Category="Mods: Kernel Space" Type="Checkbox" Default="No" DisplayText="Disable eating sounds" />
 </options>
