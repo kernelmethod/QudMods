@@ -143,7 +143,7 @@ namespace Kernelmethod.ChooseYourFighter {
 
         [ModSensitiveCacheInit]
         public static void Init() {
-            LogInfo("Initializing models dictionary");
+            Utils.LogInfo("Initializing models dictionary", Context: nameof(TileFactory));
             _Models = new Dictionary<string, PlayerModel>();
 
             // Populate dictionary with castes/callings
@@ -159,7 +159,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 _Models.Add(id, model);
             }
 
-            LogInfo("Parsing model info from ChooseYourFighter.xml");
+            Utils.LogInfo("Parsing model info from ChooseYourFighter.xml", Context: nameof(TileFactory));
 
             foreach (XmlDataHelper item in DataManager.YieldXMLStreamsWithRoot("KernelmethodChooseYourFighter", IncludeMods: true)) {
                 HandleNodes(item);
@@ -178,7 +178,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 _Models.Add(id, model);
             }
 
-            LogInfo("Finishing init...");
+            Utils.LogInfo("Finishing init...", Context: nameof(TileFactory));
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Kernelmethod.ChooseYourFighter {
             if (model.Background != null)
                 Object.Render.SetBackgroundColor(model.Background[0]);
 
-            LogInfo($"CheckFlip = {CheckFlip(Object)}");
+            Utils.LogInfo($"CheckFlip = {CheckFlip(Object)}", Context: nameof(TileFactory));
             Object.Render.HFlip = CheckFlip(Object) ? model.HFlip : !model.HFlip;
         }
 
@@ -217,10 +217,6 @@ namespace Kernelmethod.ChooseYourFighter {
                 return false;
 
             return true;
-        }
-
-        private static void LogInfo(string message) {
-            MetricsManager.LogInfo($"Kernelmethod_ChooseYourFighter::TileFactory: {message}");
         }
     }
 }

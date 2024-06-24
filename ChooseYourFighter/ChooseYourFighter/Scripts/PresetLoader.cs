@@ -102,17 +102,13 @@ namespace Kernelmethod.ChooseYourFighter {
 
         [ModSensitiveCacheInit]
         public static void Init() {
-            LogInfo("Loading presets");
+            Utils.LogInfo("Loading presets", Context: nameof(PresetLoader));
 
             foreach (XmlDataHelper item in DataManager.YieldXMLStreamsWithRoot("embarkmodules", IncludeMods: true)) {
                 HandleNodes(item);
             }
 
-            LogInfo($"Found {Presets.Count} presets");
-        }
-
-        private static void LogInfo(string message) {
-            MetricsManager.LogInfo($"Kernelmethod_ChooseYourFighter::PresetLoader: {message}");
+            Utils.LogInfo($"Found {Presets.Count} presets", Context: nameof(PresetLoader));
         }
     }
 }

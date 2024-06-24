@@ -33,7 +33,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 return;
             }
 
-            MetricsManager.LogInfo($"Kernelmethod_ChooseYourFighter: migrating DefaultModel instance from {modVersion}");
+            Utils.LogInfo($"migrating DefaultModel instance from {modVersion}", Context: nameof(DefaultModel));
 
             // Versions < 0.7.0 used a non-IScribed interface
             Model = Reader.ReadObject() as PlayerModel;

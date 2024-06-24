@@ -60,15 +60,11 @@ namespace XRL.CharacterBuilds.Qud {
                     The.Player.Render.HFlip = model.HFlip;
                 }
                 catch (Exception ex) {
-                    LogInfo("Error setting final tile properties: " + ex.ToString());
+                    Utils.LogInfo("Error setting final tile properties: " + ex.ToString());
                 }
             }
 
             return base.handleBootEvent(id, game, info, element);
-        }
-
-        private static void LogInfo(string message) {
-            MetricsManager.LogInfo($"Kernelmethod_ChooseYourFighter::Kernelmethod_ChooseYourFighter_PlayerModelModule: {message}");
         }
     }
 }
