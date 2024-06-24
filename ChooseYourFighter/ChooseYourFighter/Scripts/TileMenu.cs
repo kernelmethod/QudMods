@@ -30,15 +30,11 @@ namespace Kernelmethod.ChooseYourFighter {
             return Icon;
         }
 
-        public static IRenderable MenuIcon(GameObject Object) {
-            return Object?.RenderForUI() ?? null;
-        }
-
         public static string MenuTitle() {
             return "{{Y|Select player tile}}";
         }
 
-        public static List<string> MainMenuOptions(GameObject Object) {
+        public static List<string> MainMenuOptions(PlayerModel Default = null) {
             var options = new List<string> {
                 "Enter blueprint ID for tile",
                 "Castes and callings",
@@ -50,11 +46,7 @@ namespace Kernelmethod.ChooseYourFighter {
             else
                 options.Add("{{K|Expansions}}");
 
-            if (Object?.HasPart(typeof(DefaultModel)) ?? true)
-                options.Add("Reset to default");
-            else
-                options.Add("{{K|Reset to default}}");
-
+            options.Add(Default != null ? "Reset to default" : "{{K|Reset to default}}");
             return options;
         }
 
@@ -67,66 +59,72 @@ namespace Kernelmethod.ChooseYourFighter {
         /// of appearance.
         /// </summary>
         public static void ChangeAppearanceMenu() {
+            GameObject obj = null;
+
             var objects = The.Player.GetCompanionsReadonly();
             if (objects.Count == 0) {
-                ChooseTileMenu(The.Player);
-                return;
+                obj = The.Player;
+            }
+            else {
+                objects.Insert(0, The.Player);
+
+                int selection = Popup.PickOption(
+                    Title: "Whose appearance would you like to change?",
+                    Options: objects.Select((GameObject o) => o.DisplayName).ToArray(),
+                    Icons: objects.Select((GameObject o) => o.RenderForUI()).ToArray(),
+                    AllowEscape: true,
+                    CenterIntro: true
+                );
+
+                if (selection == -1)
+                    return;
+
+                obj = objects[selection];
             }
 
-            objects.Insert(0, The.Player);
-
-            int selection = Popup.PickOption(
-                Title: "Whose appearance would you like to change?",
-                Options: objects.Select((GameObject o) => o.DisplayName).ToArray(),
-                Icons: objects.Select((GameObject o) => o.RenderForUI()).ToArray(),
-                AllowEscape: true,
-                CenterIntro: true
-            );
-
-            if (selection == -1)
+            if (obj == null)
                 return;
 
-            ChooseTileMenu(objects[selection]);
+            var model = ChooseTileMenu(
+                Icon: obj.RenderForUI(),
+                Default: obj.GetPart<DefaultModel>()?.Model
+            );
+            TileFactory.ChangeAppearance(obj, model);
         }
 
         /// <summary>
         /// Create a menu for the player to change the appearance of themselves or another object.
         /// </summary>
-        public static PlayerModel ChooseTileMenu(GameObject Object) {
+        public static PlayerModel ChooseTileMenu(IRenderable Icon = null, PlayerModel Default = null) {
             PlayerModel model = null;
-            bool RequireDefault = true;
 
             while (model == null) {
                 int num = Popup.PickOption(
                     Title: MenuTitle(),
-                    Options: MainMenuOptions(Object).ToArray(),
+                    Options: MainMenuOptions(Default).ToArray(),
                     Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys(),
                     AllowEscape: true,
-                    IntroIcon: MenuIcon(Object),
+                    IntroIcon: Icon,
                     CenterIntro: true
                 );
 
                 if (num == 0)
                     model = GetModelFromBlueprint();
                 else if (num == 1)
-                    model = ChooseTileMenuFiltered(Object, ModelType.CasteOrCalling);
+                    model = ChooseTileMenuFiltered(ModelType.CasteOrCalling, Icon: Icon);
                 else if (num == 2)
-                    model = ChooseTileMenuFiltered(Object, ModelType.Preset);
+                    model = ChooseTileMenuFiltered(ModelType.Preset, Icon: Icon);
                 else if (num == 3) {
                     if (!TileFactory.HasExpansionModels()) {
                         Popup.Show("You don't have any expansions enabled for Choose Your Fighter.");
                         continue;
                     }
-                    model = ChooseTileMenuFiltered(Object, ModelType.Expansion);
+                    model = ChooseTileMenuFiltered(ModelType.Expansion, Icon: Icon);
                 }
                 else if (num == 4) {
-                    DefaultModel defaultModel = null;
-                    if (Object?.TryGetPart<DefaultModel>(out defaultModel) ?? false) {
-                        model = defaultModel.Model;
-                        Object.RemovePart<DefaultModel>();
-                        RequireDefault = false;
-                    }
+                    if (Default != null)
+                        model = Default;
                     else
                         Popup.Show("You are already using your character's original tile.", LogMessage: false);
                 }
@@ -134,7 +132,6 @@ namespace Kernelmethod.ChooseYourFighter {
                     break;
             }
 
-            TileFactory.ChangeAppearance(Object, model, RequireDefault);
             return model;
         }
 
@@ -144,7 +141,7 @@ namespace Kernelmethod.ChooseYourFighter {
         /// Returns `null` if no option was selected, and returns a `PlayerModel` with `model.Id == null`
         /// if "default" was selected.
         /// </summary>
-        public static async Task<PlayerModel> CharacterCreationChooseTileMenu(Kernelmethod_ChooseYourFighter_PlayerModelModule module) {
+        public static async Task<PlayerModel> CharacterCreationChooseTileMenu(IRenderable Icon = null) {
             PlayerModel model = null;
 
             while (model == null) {
@@ -154,7 +151,7 @@ namespace Kernelmethod.ChooseYourFighter {
                     Intro: "Choose an option to see available character tiles.",
                     Hotkeys: MainMenuHotkeys().ToArray(),
                     AllowEscape: true,
-                    IntroIcon: MenuIconCharacterCreation(module),
+                    IntroIcon: Icon,
                     CenterIntro: true
                 );
 
@@ -163,15 +160,15 @@ namespace Kernelmethod.ChooseYourFighter {
 
                 }
                 else if (num == 1)
-                    model = await ChooseTileMenuFilteredAsync(module, ModelType.CasteOrCalling);
+                    model = await ChooseTileMenuFilteredAsync(ModelType.CasteOrCalling, Icon: Icon);
                 else if (num == 2)
-                    model = await ChooseTileMenuFilteredAsync(module, ModelType.Preset);
+                    model = await ChooseTileMenuFilteredAsync(ModelType.Preset, Icon: Icon);
                 else if (num == 3) {
                     if (!TileFactory.HasExpansionModels()) {
                         await Popup.ShowAsync("You don't have any expansions installed for Choose Your Fighter.", LogMessage: false);
                         continue;
                     }
-                    model = await ChooseTileMenuFilteredAsync(module, ModelType.Expansion);
+                    model = await ChooseTileMenuFilteredAsync(ModelType.Expansion, Icon: Icon);
                 }
                 else if (num == 4)
                     // Model ID will automatically be set to null
@@ -183,7 +180,7 @@ namespace Kernelmethod.ChooseYourFighter {
             return model;
         }
 
-        public static PlayerModel ChooseTileMenuFiltered(GameObject Object, ModelType category, string Group = null) {
+        public static PlayerModel ChooseTileMenuFiltered(ModelType category, IRenderable Icon = null, string Group = null) {
             while (true) {
                 var models = new List<PlayerModel>(TileFactory.Models.Where(m => m.Category == category && m.Group == Group));
                 models.Sort();
@@ -197,7 +194,7 @@ namespace Kernelmethod.ChooseYourFighter {
                     Intro: "Choose a tile for your character from the list below.",
                     AllowEscape: true,
                     Icons: icons.ToArray(),
-                    IntroIcon: MenuIcon(Object),
+                    IntroIcon: Icon,
                     CenterIntro: true
                 );
 
@@ -208,7 +205,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 if (!choice.IsGroup)
                     return choice;
 
-                choice = ChooseTileMenuFiltered(Object, category, Group: choice.Id);
+                choice = ChooseTileMenuFiltered(category, Icon: Icon, Group: choice.Id);
 
                 if (choice != null)
                     return choice;
@@ -216,8 +213,8 @@ namespace Kernelmethod.ChooseYourFighter {
         }
 
         public static async Task<PlayerModel> ChooseTileMenuFilteredAsync(
-            Kernelmethod_ChooseYourFighter_PlayerModelModule module,
             ModelType category,
+            IRenderable Icon = null,
             string Group = null
         ) {
             while (true) {
@@ -233,7 +230,7 @@ namespace Kernelmethod.ChooseYourFighter {
                     Intro: "Choose a tile for your character from the list below.",
                     AllowEscape: true,
                     Icons: icons.ToArray(),
-                    IntroIcon: MenuIconCharacterCreation(module),
+                    IntroIcon: Icon,
                     CenterIntro: true
                 );
 
@@ -244,7 +241,7 @@ namespace Kernelmethod.ChooseYourFighter {
                 if (!choice.IsGroup)
                     return choice;
 
-                choice = await ChooseTileMenuFilteredAsync(module, category, Group: choice.Id);
+                choice = await ChooseTileMenuFilteredAsync(category, Icon: Icon, Group: choice.Id);
 
                 if (choice != null)
                     return choice;

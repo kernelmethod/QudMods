@@ -64,7 +64,8 @@ namespace XRL.CharacterBuilds.Qud.UI {
         public async void SelectMenuOption(FrameworkDataElement dataElement)
         {
             if (dataElement.Id == "Tile") {
-                var model = await TileMenu.CharacterCreationChooseTileMenu(base.module);
+                var icon = TileMenu.MenuIconCharacterCreation(base.module);
+                var model = await TileMenu.CharacterCreationChooseTileMenu(Icon: icon);
 
                 if (model != null)
                     base.module.data.model = (model.Id == null) ? null : model;
