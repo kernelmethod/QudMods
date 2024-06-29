@@ -61,7 +61,6 @@ namespace Kernelmethod.TrackingBeacons.Parts {
                     .ToList();
 
                 if (organicObjects.Count == 0) {
-                    var builder = new StringBuilder();
                     return E.Actor.Fail("There is nothing there that you can apply " + ParentObject.t(Single: true) + " to.");
                 }
 
