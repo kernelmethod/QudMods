@@ -138,11 +138,11 @@
     <!--
         Custom blueprints to use to render some of the pets
     -->
-    <object Name="Kernelmethod_BetterPetSelector_EitherOrBlueprint">
-        <part Name="Render" Tile="Creatures/EitherOr.png" ColorString="&amp;r" DetailColor="c" />
+    <object Name="Kernelmethod_BetterPetSelector_EitherOrBlueprint" Inherits="Widget">
+      <part Name="Render" Tile="Creatures/EitherOr.png" ColorString="&amp;r" DetailColor="c" />
     </object>
 
-    <object Name="Kernelmethod_BetterPetSelector_LorentEpsumBlueprint">
-        <part Name="Render" Tile="Creatures/Lorent_epsome_wraithknight_errant.png" ColorString="&amp;c" DetailColor="r" />
+    <object Name="Kernelmethod_BetterPetSelector_LorentEpsumBlueprint" Inherits="Widget">
+      <part Name="Render" Tile="Creatures/Lorent_epsome_wraithknight_errant.png" ColorString="&amp;c" DetailColor="r" />
     </object>
 </objects>
