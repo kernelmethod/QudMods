@@ -72,7 +72,8 @@ namespace Kernelmethod.BetterPetSelector.Patches {
             });
             var icons = availablePets.Select((Pet p) => p.Icon);
 
-            int num = await Popup.ShowOptionListAsync("Choose Pet", descriptions.ToArray(), null, 0, null, 60, RespectOptionNewlines: false, AllowEscape: true, Icons: icons.ToArray());
+            int num = await Popup.PickOptionAsync(Title: "Choose Pet", Options: descriptions.ToArray(), Icons: icons.ToArray(), 
+                Hotkeys: null, Intro: null, Spacing: 0, MaxWidth: 60, RespectOptionNewlines: false, AllowEscape: true);
             if (window.module.data == null)
             {
                 window.module.data = new QudCustomizeCharacterModuleData();

@@ -135,6 +135,10 @@
         <tag Name="Kernelmethod_BetterPetSelector_Description" Value="A robotic imposter who thinks they are the real you" />
     </object>
 
+    <object Name="Herman" Load="Merge">
+        <tag Name="Kernelmethod_BetterPetSelector_Description" Value="Definitely a human. Not a clew of worms animating a corpse" />
+    </object>
+
     <!--
         Custom blueprints to use to render some of the pets
     -->
