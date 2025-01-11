@@ -1,3 +1,9 @@
+**This repository is no longer maintained. The current repository is:**
+
+> https://gitlab.com/kernelmethod/qudmods/
+
+---
+
 # kernelmethod's mods for Caves of Qud
 
 This is the main repository for all of my mods for [Caves of
